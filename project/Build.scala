@@ -5,7 +5,7 @@ import com.typesafe.sbteclipse.plugin.EclipsePlugin.EclipseKeys
 
 object ApplicationBuild extends Build {
 
-  val appName         = "socialraffle"
+  val appName         = "socialfunnel"
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
