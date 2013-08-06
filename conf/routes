@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+# Dashboard
+
+GET		/login								controllers.Application.login()
+GET		/dashboard/login					controllers.Application.login()
+POST	/dashboard/login					controllers.Application.authenticate()
+GET		/dashboard/logout					controllers.Application.logout()
+GET		/logout								controllers.Application.logout()
+GET		/dashboard							controllers.Dashboard.index()
+
+# Admin
+GET     /adminpanel							controllers.admin.Panel.index()
+GET     /adminpanel/index   	            controllers.admin.Panel.index()
+GET     /adminpanel/account     	        controllers.admin.Panel.account()
+GET     /adminpanel/charts          	    controllers.admin.Panel.charts()
+GET     /adminpanel/faq                 	controllers.admin.Panel.faq()
+GET     /adminpanel/grid                 	controllers.admin.Panel.grid()
+GET     /adminpanel/login                	controllers.admin.Panel.login()
+GET     /adminpanel/plans                	controllers.admin.Panel.plans()
+
+# Home Page
+
+GET		/home  		                controllers.landing.Home.index()
+GET     /home/signup	            controllers.landing.Home.signup()
+GET     /home/signin				controllers.landing.Home.signin()
+GET     /home/reset					controllers.landing.Home.reset()
+POST    /home/reset 				controllers.landing.Home.doReset()
+POST	/home/resetpassword			controllers.landing.Home.resetPassword()
+
+# Users
+
+POST	/users/register				controllers.Users.register()
+GET		/users/register				controllers.landing.Home.signup()
+GET		/users/check				controllers.Users.checkUsername()
+

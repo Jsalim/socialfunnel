@@ -1,0 +1,121 @@
+@(username: String, registered: Boolean)
+<!DOCTYPE html>
+<html class="login-bg">
+<head>
+	<title>Detail Admin - Sign up</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+   <!-- bootstrap -->
+    <link href="@routes.Assets.at("css/bootstrap/bootstrap.css")" rel="stylesheet">
+    <link href="@routes.Assets.at("css/bootstrap/bootstrap-responsive.css")" rel="stylesheet">
+    <link href="@routes.Assets.at("css/bootstrap/bootstrap-overrides.css")" type="text/css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/layout.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/elements.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/icons.css")">
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/lib/font-awesome.css")">
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="@routes.Assets.at("css/signup.css")" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <link href="@routes.Assets.at("css/lib/uniform.default.css")" type="text/css" rel="stylesheet">
+
+	<link href="@routes.Assets.at("css/jquery.pnotify.default.css")" type="text/css" rel="stylesheet">
+	<link href="@routes.Assets.at("css/jquery.pnotify.default.icons.css")" type="text/css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">
+            <img src="@routes.Assets.at("img/logo.png")" class="logo" />
+        </a>
+    </div>
+	<form method ="POST" action="@routes.Application.authenticate()">
+	    <div class="row-fluid login-wrapper">
+	        <div class="box">
+	            <div class="content-wrap">
+	                <h6>Entrar</h6>
+	                
+	                <input class="span12" type="text" name="username" placeholder="Username" value="@username"/>
+	                <input class="span12" type="password" name="password" placeholder="Senha"/>
+	                
+	                <label class="checkbox">
+	                	<input type="checkbox" /> Lembre-se de mim
+					</label>
+					<a class="forgot-pass" href="@landing.routes.Home.reset()">Esqueceu a senha?</a>
+					<br>
+					<br>
+	                <div class="action">
+	                    <button class="btn-flat default signup">Entrar</button>
+	                </div>                
+	            </div>
+	        </div>
+	
+	        <div class="span4 already">
+	            <p>Ainda não possui uma conta?</p>
+	            <a href="@landing.routes.Home.signup()">Cadastre-se</a>
+	        </div>
+	    </div>
+    </form>
+
+	<!-- scripts -->
+    <script src="@routes.Assets.at("js/jquery-1.9.0.min.js")"></script>
+    <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+    <script src="@routes.Assets.at("js/theme.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.uniform.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.pnotify.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.placeholder.js")"></script>
+    
+    <script type="text/javascript">
+    	@if(registered){
+    		$.pnotify({
+    			  text: "Cadastro realizado com sucesso.",
+    			  opacity: 0.95,
+    			  type: "success",
+    			  width:"300px",
+    			  sticker: false,
+    			  history: false,
+    			  delay: 4000,
+    			  closer: false,
+    			  before_open: function(pnotify){
+    			    pnotify.css({
+    			      "top":"60px", 
+    			      "left": ($(window).width() / 2) - (pnotify.width() / 2)
+    			    });
+    			  }
+    			});    		
+    	}
+    	
+    	@if(username != null){
+    		$.pnotify({
+    			  text: "Usuário ou senha inválidos.",
+    			  opacity: 0.95,
+    			  type: "error",
+    			  width:"300px",
+    			  sticker: false,
+    			  history: false,
+    			  delay: 4000,
+    			  closer: false,
+    			  before_open: function(pnotify){
+    			    pnotify.css({
+    			      "top":"60px", 
+    			      "left": ($(window).width() / 2) - (pnotify.width() / 2)
+    			    });
+    			  }
+    			});    		
+    	}
+    
+    	$("input:checkbox, input:radio").uniform();
+    	$("input, textarea").placeholder();
+    </script>
+</body>
+</html>
