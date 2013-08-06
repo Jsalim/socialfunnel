@@ -34,7 +34,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="index.html">
+        <a href="@landing.routes.Home.index()">
             <img src="@routes.Assets.at("img/logo.png")" class="logo" />
         </a>
     </div>
@@ -79,15 +79,15 @@
     	@if(agentForm != null && agentForm.hasErrors){
     		
     		var message = ""
-   			    @if(agentForm.errors.size() > 0) {
-   			        @for((key, value) <- agentForm.errors) {
-   			        	@for(err <- value) {
-   			        		@if(err != null){ 
-   			        			+ "@err.message() \n" 
-   			        		}
-   			            }
-   			        }
-   			    }
+		    @if(agentForm.errors.size() > 0) {
+		        @for((key, value) <- agentForm.errors) {
+		        	@for(err <- value) {
+		        		@if(err != null){ 
+		        			+ "@err.message() \n" 
+		        		}
+		            }
+		        }
+		    }
     		
     		$.pnotify({
   			  text: message,

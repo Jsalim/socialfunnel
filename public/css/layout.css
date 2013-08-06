@@ -567,3 +567,13 @@ input.search{
 		height: 100%;
 	}
 }
+
+/*MISAEL*/
+
+@font-face {
+	font-family: HelveticaNeue-Condensed;
+	src: url('../font/HelveticaNeue-Condensed.otf');
+	font-weight:400;
+}
+
+.helvetica {font-family: HelveticaNeue-condensed, sans-serif!important; text-transform:uppercase; }

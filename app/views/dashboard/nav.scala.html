@@ -1,4 +1,4 @@
-@(tab: String)
+@(tab: String, userSession: util.UserSession)
     <!-- navbar -->
     <div class="navbar navbar-inverse">
         <div class="navbar-inner">
@@ -12,11 +12,21 @@
 
 			<div class="">
                 <ul class="nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="chart-showcase.html">Charts</a></li>
-                    <li><a href="user-list.html">Users</a></li>
-                    <li><a href="form-showcase.html">Forms</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li @if(tab.equals("index")){ class="active"}>
+						<a href="@routes.Dashboard.index()"><i class="icon-large icon-home"></i></a>
+		            </li>
+		            <li @if(tab.equals("applications")){ class="active"}>
+						<a href="@routes.Dashboard.apps()"><!-- <i class="icon-large icon-sign-blank"></i>  -->APLICATIVOS</a>
+		            </li>
+		             <li @if(tab.equals("interactions")){ class="active"}>
+                		<a href="@routes.Dashboard.interactions()"><!-- <i class="icon-large icon-comments"></i> -->INTERAÇÕES</a>
+               		</li>
+               		<li @if(tab.equals("helpdesk")){ class="active"}>
+                		<a href="@routes.Dashboard.helpdesk()"><!-- <i class="icon-large icon-group"></i>  -->ATENDIMENTO</a>
+                	</li>
+                    <li @if(tab.equals("reports")){ class="active"}>
+                		<a href="@routes.Dashboard.reports()"><!-- <i class="icon-large icon-bar-chart"></i>  -->RELATÓRIOS</a>
+                	</li>
                 </ul>
             </div>
             
@@ -115,7 +125,7 @@
                  
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                        Your account
+                        @userSession.getUser().getUsername()
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">

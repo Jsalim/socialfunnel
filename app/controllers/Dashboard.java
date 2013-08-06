@@ -47,7 +47,7 @@ public class Dashboard extends Controller {
 			// the brand address name passed by the frontend
 //			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
 //				return ok(views.html.dashboard.index.render(userSession, userSession.getBrand()));
-				return ok(views.html.dashboard.index.render());
+				return ok(views.html.dashboard.index.render(userSession));
 //			}else{ // else, if there is no parameter and no brand in cache
 ////				ObjectNode result = Json.newObject();
 ////				result.put("success", false);
@@ -62,14 +62,15 @@ public class Dashboard extends Controller {
 			return internalServerError(e.getJson());
 		}
 	}
-//	@Transactional(readOnly = true)
-//	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-//	public static Result interactions() {
-//		try {
-//			UserSession userSession = userService.getUserSession(session());
-//			// the brand address name passed by the frontend
+	@Transactional(readOnly = true)
+	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
+	public static Result interactions() {
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			// the brand address name passed by the frontend
 //			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
 //				return ok(views.html.dashboard.interactionspanel.render(userSession, userSession.getBrand()));
+				return ok(views.html.dashboard.interactionspanel.render(userSession));
 //			}else{ // else, if there is no parameter and no brand in cache
 ////				ObjectNode result = Json.newObject();
 ////				result.put("success", false);
@@ -77,13 +78,13 @@ public class Dashboard extends Controller {
 ////				return badRequest(result);
 //				return redirect(controllers.landing.routes.Home.signin().url());
 //			}
-//
-//		} catch (NoUUIDException e) {
-//			e.printStackTrace();
-//			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-//			return internalServerError(e.getJson());
-//		}
-//	}
+
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
 //	@Transactional(readOnly = true)
 //	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
 //	public static Result campaigns() {
@@ -106,14 +107,16 @@ public class Dashboard extends Controller {
 //			return internalServerError(e.getJson());
 //		}
 //	}
-//	@Transactional(readOnly = true)
-//	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-//	public static Result helpdesk() {
-//		try {
-//			UserSession userSession = userService.getUserSession(session());
-//			// the brand address name passed by the frontend
+	
+	@Transactional(readOnly = true)
+	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
+	public static Result reports() {
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			// the brand address name passed by the frontend
 //			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession]
 //				return ok(views.html.dashboard.helpdeskpanel.render(userSession, userSession.getBrand()));
+				return ok(views.html.dashboard.reportspanel.render(userSession));
 //			}else{ // else, if there is no parameter and no brand in cache
 ////				ObjectNode result = Json.newObject();
 ////				result.put("success", false);
@@ -121,21 +124,23 @@ public class Dashboard extends Controller {
 ////				return badRequest(result);
 //				return redirect(controllers.landing.routes.Home.signin().url());
 //			}
-//
-//		} catch (NoUUIDException e) {
-//			e.printStackTrace();
-//			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-//			return internalServerError(e.getJson());
-//		}
-//	}
-//	@Transactional(readOnly = true)
-//	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-//	public static Result leads() {
-//		try {
-//			UserSession userSession = userService.getUserSession(session());
-//			// the brand address name passed by the frontend
-//			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
-//				return ok(views.html.dashboard.leadspanel.render(userSession, userSession.getBrand()));
+
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
+	
+	@Transactional(readOnly = true)
+	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
+	public static Result apps() {
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			// the brand address name passed by the frontend
+//			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession]
+//				return ok(views.html.dashboard.helpdeskpanel.render(userSession, userSession.getBrand()));
+				return ok(views.html.dashboard.appspanel.render(userSession));
 //			}else{ // else, if there is no parameter and no brand in cache
 ////				ObjectNode result = Json.newObject();
 ////				result.put("success", false);
@@ -143,21 +148,23 @@ public class Dashboard extends Controller {
 ////				return badRequest(result);
 //				return redirect(controllers.landing.routes.Home.signin().url());
 //			}
-//
-//		} catch (NoUUIDException e) {
-//			e.printStackTrace();
-//			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-//			return internalServerError(e.getJson());
-//		}
-//	}
-//	@Transactional(readOnly = true)
-//	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-//	public static Result report() {
-//		try {
-//			UserSession userSession = userService.getUserSession(session());
-//			// the brand address name passed by the frontend
-//			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
-//				return ok(views.html.dashboard.reportpanel.render(userSession, userSession.getBrand()));
+
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}	
+	
+	@Transactional(readOnly = true)
+	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
+	public static Result helpdesk() {
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			// the brand address name passed by the frontend
+//			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession]
+//				return ok(views.html.dashboard.helpdeskpanel.render(userSession, userSession.getBrand()));
+				return ok(views.html.dashboard.helpdeskpanel.render(userSession));
 //			}else{ // else, if there is no parameter and no brand in cache
 ////				ObjectNode result = Json.newObject();
 ////				result.put("success", false);
@@ -165,13 +172,13 @@ public class Dashboard extends Controller {
 ////				return badRequest(result);
 //				return redirect(controllers.landing.routes.Home.signin().url());
 //			}
-//
-//		} catch (NoUUIDException e) {
-//			e.printStackTrace();
-//			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-//			return internalServerError(e.getJson());
-//		}
-//	}
+
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
 //
 //	@Transactional(readOnly = true)
 //	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
