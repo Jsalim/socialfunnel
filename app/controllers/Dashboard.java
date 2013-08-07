@@ -17,7 +17,7 @@ import interceptors.UserSessionInterceptor;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.*;
-//import services.BrandService;
+import services.BrandService;
 import services.UserService;
 import util.UserSession;
 
@@ -30,7 +30,7 @@ import util.UserSession;
 public class Dashboard extends Controller {
 	/** singleton instance of {@link UserService}  */
 	private static final UserService userService = UserService.getInstance();
-//	private static final BrandService brandService = BrandService.getInstance();
+	private static final BrandService brandService = BrandService.getInstance();
 
 	/**
 	 * Renders the a brand specific Dashboard. The {@link Brand#getNameAddress()} method returns a unique brand address name. A instance of
@@ -198,78 +198,79 @@ public class Dashboard extends Controller {
 //		}
 //	}
 //
-//	/**
-//	 * Renders the gate view.
-//	 * @see /dashboard/gate.scala.html
-//	 * 
-//	 * */
-//	@Transactional(readOnly = true)
-//	@With(AuthCheckInterceptor.class)
-//	public static Result gate(){
-//		String[] newbrand = request().queryString().get("newbrand");
-//		
-//		Boolean addBrand = false;
-//		
-//		if(newbrand != null && newbrand.length > 0 && newbrand[0] != null && newbrand[0].equals("true")){
-//			addBrand = true;
-//		}
-//		
-//		try {
-//			UserSession userSession = userService.getUserSession(session());
-//			List<Brand> userBrands = brandService.getUserBrands(userSession.getUser());
-//			
-//			if(userBrands.size() == 1 && addBrand == false){
-//				userSession.setBrand(userBrands.get(0));
-//				userService.updateExistingUserSession(userSession);
-//				return redirect(routes.Dashboard.index());
-//			}
-//			
-//			return ok(views.html.dashboard.gate.render(userBrands, userSession, addBrand));
-//		} catch (NoUUIDException e) {
-//			e.printStackTrace();
-//			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-//			return internalServerError(e.getJson());
-//		}
-//	}
+	/**
+	 * Renders the gate view if user has more then one brand
+	 * or go to the dashboard of the single brand he or she has.
+	 * @see /dashboard/gate.scala.html
+	 * 
+	 * */
+	@Transactional(readOnly = true)
+	@With(AuthCheckInterceptor.class)
+	public static Result gate(){
+		String[] newbrand = request().queryString().get("newbrand");
+		
+		Boolean addBrand = false;
+		
+		if(newbrand != null && newbrand.length > 0 && newbrand[0] != null && newbrand[0].equals("true")){
+			addBrand = true;
+		}
+		
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			List<Brand> userBrands = brandService.getUserBrands(userSession.getUser());
+			
+			if(userBrands.size() == 1 && addBrand == false){
+				userSession.setBrand(userBrands.get(0));
+				userService.updateExistingUserSession(userSession);
+				return redirect(routes.Dashboard.index());
+			}
+			
+			return ok(views.html.dashboard.gate.render(userBrands, userSession, addBrand));
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
 //
-//	/**
-//	 * This view can only be called by an authenticated user and the user must have a UserBrandRole associated with that brand
-//	 * /dashboard/index?id=
-//	 *  
-//	 *  @see {@link UserBrandRole}
-//	 *  @see /dashboard/configurations.scala.html
-//	 * */
-//	@With(AjaxAuthCheckInterceptor.class)
-//	@Transactional
-//	public static Result configurations(){
-//		UserSession userSession;
-//		try {
-//			userSession = userService.getUserSession(session());
-//			String[] id = request().queryString().get("id");
-//
-//			List<Brand> brands = brandService.getUserBrands(userSession.getUser());
-//
-//			if(id != null && id.length > 0 && !id[0].equals("")){
-//				for(Brand brand : brands){
-//					if(brand.getId() == Long.parseLong(id[0])){
-//						return ok(views.html.dashboard.configurations.render(userSession, brand));
-//					}
-//				}
-//				ObjectNode result = Json.newObject();
-//				result.put("success", false);
-//				result.put("error", "Usuário não tem relação com a marca: " + id[0]);
-//				return unauthorized(result);
-//			}else{
-//				ObjectNode result = Json.newObject();
-//				result.put("success", false);
-//				result.put("error", "Parametro \"id\" não foi identificado.");
-//				return badRequest(result);
-//			}
-//		}  catch (NoUUIDException e) { 
-//			e.printStackTrace();
-//			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-//			return internalServerError(e.getJson());
-//		}
-//	}
+	/**
+	 * This view can only be called by an authenticated user and the user must have a UserBrandRole associated with that brand
+	 * /dashboard/index?id=
+	 *  
+	 *  @see {@link UserBrandRole}
+	 *  @see /dashboard/configurations.scala.html
+	 * */
+	@With(AjaxAuthCheckInterceptor.class)
+	@Transactional
+	public static Result configurations(){
+		UserSession userSession;
+		try {
+			userSession = userService.getUserSession(session());
+			String[] id = request().queryString().get("id");
+
+			List<Brand> brands = brandService.getUserBrands(userSession.getUser());
+
+			if(id != null && id.length > 0 && !id[0].equals("")){
+				for(Brand brand : brands){
+					if(brand.getId() == Long.parseLong(id[0])){
+						return ok(views.html.dashboard.configurations.render(userSession, brand));
+					}
+				}
+				ObjectNode result = Json.newObject();
+				result.put("success", false);
+				result.put("error", "Usuário não tem relação com a marca: " + id[0]);
+				return unauthorized(result);
+			}else{
+				ObjectNode result = Json.newObject();
+				result.put("success", false);
+				result.put("error", "Parametro \"id\" não foi identificado.");
+				return badRequest(result);
+			}
+		}  catch (NoUUIDException e) { 
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
 
 }

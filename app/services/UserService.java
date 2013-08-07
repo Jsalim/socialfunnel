@@ -136,15 +136,15 @@ public final class UserService {
 	/**
 	 * Checks if the user exists on database.
 	 * 
-	 * @param username
-	 *            String representing a username
-	 * @return true if there is at least 1 username is persisted
+	 * @param usernameOrEmail
+	 *            String representing a username or email
+	 * @return true if there is at least 1 username or email is persisted
 	 * */
-	public boolean exists(String username) {
+	public boolean exists(String usernameOrEmail) {
 		EntityManager em = JPA.em();
 
-		Query query = em.createNativeQuery("SELECT COUNT(id) as count FROM Agent u WHERE username = :username");
-		query.setParameter("username", username);
+		Query query = em.createNativeQuery("SELECT COUNT(id) as count FROM Agent u WHERE username = :uoe OR email = :uoe");
+		query.setParameter("uoe", usernameOrEmail);
 
 		int count = 0;
 		try {

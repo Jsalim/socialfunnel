@@ -118,15 +118,13 @@ public class Application extends Controller {
 		String uuid = session("uuid");
 		Cache.remove(uuid + "_user");
 		session().clear();
-//		return redirect(routes.Dashboard.index());
-		return ok("logout");
+		return redirect(controllers.landing.routes.Home.signin());
 	}
 
 	/**
 	 * Validates login form using Login.class template
 	 * 
-	 * @return dashboard view if login is successful, or back to login form if
-	 *         not
+	 * @return go to the dashboard gate action if login is successful, or back to login form if not
 	 */
 	@Transactional
 	public static Result authenticate() {
@@ -141,14 +139,14 @@ public class Application extends Controller {
 			return badRequest(views.html.home.signin.render(loginForm.field("username").value(), false));
 		} else {
 			session("username", loginForm.get().username);
-			return redirect(routes.Dashboard.index());
+			return redirect(routes.Dashboard.gate());
 //			return ok("OK");
 		}
 	}
 
-//	public static Result killwindow() {
-//		return ok(views.html.killwindow.render());
-//	}
+	public static Result killwindow() {
+		return ok(views.html.killwindow.render());
+	}
 
 	/**
 	 * Normalizes a string and replaces special chars, white spaces and

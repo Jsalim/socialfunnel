@@ -5,8 +5,10 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET		/killwindow							controllers.Application.killwindow()
+
+# Application
+GET		/application/toslug					controllers.Application.toSlug()
 
 
 # Dashboard
@@ -16,11 +18,13 @@ GET		/dashboard/login					controllers.Application.login()
 POST	/dashboard/login					controllers.Application.authenticate()
 GET		/dashboard/logout					controllers.Application.logout()
 GET		/logout								controllers.Application.logout()
+GET		/dashboard/gate						controllers.Dashboard.gate()
 GET		/dashboard							controllers.Dashboard.index()
 GET		/dashboard/interactions				controllers.Dashboard.interactions()
 GET		/dashboard/helpdesk					controllers.Dashboard.helpdesk()
 GET		/dashboard/apps						controllers.Dashboard.apps()
 GET		/dashboard/reports					controllers.Dashboard.reports()
+GET		/dashboard/configurations			controllers.Dashboard.configurations()
 
 # Admin
 GET     /adminpanel							controllers.admin.Panel.index()
@@ -52,3 +56,26 @@ PUT		/users/notifications		controllers.Users.updateNotifications()
 
 # Brands
 GET		/brands/addresscheck		controllers.Brands.brandNameAddressCheck()
+GET		/brands/newBrandWizard		controllers.Brands.newBrandWizard()
+POST	/brands/clearaccounts		controllers.Brands.clearInstallationAccounts()
+
+# Brand auth ajax
+
+POST	/brands								controllers.Brands.createBrand()
+POST	/brands/imageupload 				controllers.Brands.imageUpload()
+GET  	/brands/:id							controllers.Brands.readBrand(id: String)
+DELETE  /brands/:id							controllers.Brands.removeBrand(id: Long)
+POST	/brands/filter						controllers.Brands.addFilter()
+GET		/brands/filter						controllers.Brands.getFilter()
+
+#Twitter
+GET		/twitter/handler 			controllers.TwitterController.handler()
+GET		/twitter/callback 			controllers.TwitterController.callback(oauth_token: String, oauth_verifier: String)
+GET		/twitter/accounts			controllers.TwitterController.accounts()
+
+#Facebook
+GET		/facebook/page/accounts		controllers.FacebookController.pageAccounts()
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

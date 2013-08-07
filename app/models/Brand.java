@@ -70,6 +70,9 @@ public class Brand implements Comparable<Brand>{
 	
 	@Column(length = 1000, nullable = true)
 	private String description;
+	
+	@Column(length = 1000, nullable = true)
+	private String phone;
 
 	public long getId() {
 		return id;
@@ -184,6 +187,14 @@ public class Brand implements Comparable<Brand>{
 
 	public void setStreamFilters(Set<StreamFilter> streamFilters) {
 		this.streamFilters = streamFilters;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }

@@ -1,0 +1,645 @@
+@(userBrands: List[Brand], userSession: util.UserSession, addBrand: java.lang.Boolean)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minhas Marcas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width">
+	<!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("home/css/reset.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/font-awesome.min.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("home/css/gate-theme.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("home/css/signin.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("home/css/external-pages.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/bootstrap-wizard.css")" />
+    <!-- <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/bootstrap-fileupload.css")" /> -->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("uploader/fineuploader.css")">
+    <!-- 
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/bootstrap-notify.css")" />
+     -->
+     <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/pnotify.css")" />
+     <!-- 
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/styles/alert-blackgloss.css")" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/styles/alert-bangtidy.css")" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/styles/alert-notification-animations.css")" />
+      -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Roboto+Condensed|Raleway:900' rel='stylesheet' type='text/css'>
+    <style>
+		
+		</style>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '@play.Play.application().configuration().getString("fbapp.key")', // App ID from the App Dashboard
+      status     : true, // check the login status upon init?
+      cookie     : true, // set sessions cookies to allow your server to access the session?
+      oauth		 : true
+    });
+    // Additional initialization code such as adding Event Listeners goes here
+  };
+
+  // Load the SDK's source Asynchronously
+  // Note that the debug version is being actively developed and might 
+  // contain some type checks that are overly strict. 
+  // Please report such bugs using the bugs tool.
+  (function(d, debug){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document, /*debug*/ false));
+  
+</script>
+
+	<!-- <div class="navbar navbar-fixed-top">  
+	  <div class="navbar-inner">  
+	    <div class="container">  
+	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="brand" href="@routes.Dashboard.gate()">Social Funnel</a>
+	          <div class="nav-collapse collapse">
+	          </div>
+	    </div>  
+	  </div>  
+	</div> -->
+	
+	<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    	<a id="gate-link" class="brand" href="@landing.routes.Home.index()">Social Funnel</a>
+        <div id="gate-nav">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+			
+          	<div class="nav-collapse collapse">
+              <ul class="nav">
+                  <li class="divider-vertical"></li>
+              </ul>
+              <div class="pull-right">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="user-dropdown" style="padding: 10px 15px 5px;">
+                    	<img id="menu-avatar" src="@{userSession.getUser().getImgLink()}">&nbsp; 
+                    	@{userSession.getUser().getUsername()}&nbsp; 
+                    	<b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/preferences"><i class="icon-cog"></i> Configurações</a></li>
+                            <li class="divider"></li>
+                            <li><a href="@routes.Application.logout()"><i class="icon-off"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+	
+	<div id="modal-container"></div>  
+
+	<div class="container mg-top-20">
+        <div class="row">
+        	<div class="span2" >
+        		<div class="brand_box affix" id="add-new-brand">
+	                <i class="icon-plus icon-4x"></i><div style="margin-top: 2px">Nova Marca</div>	
+                </div>
+            </div>
+        
+            <div class="span10">
+		            <ul class="thumbnails" id="brand-list">
+		            @for(brand <- userBrands){
+		              <li class="span5 brand-item" id="@{brand.getId()}">
+		                <div class="thumbnail brand_box">
+		                
+							<div class="caption">
+								<p class="brand-name helvetica" >@{brand.getName()}</p>
+		                    	<p class="brand-desc" >@{brand.getDescription()}</p>
+		                  	</div>		                	
+		                    
+		                  <div class="box-preview-stats" >
+	                        <ul class="unstyled helvetica">
+	                            <li> 
+	                                Impressões: 
+	                                <span class="number red" >78112 <i class="icon-arrow-down"></i></span>
+	                            </li>
+	                            <li>
+	                                Leads: 
+	                                <span class="number blue" >422<i class="icon-arrow-up"></i></span>
+	                            </li>
+	                            <li>
+	                                Atendimentos: 
+	                                <span class="number blue" >127<i class="icon-arrow-up"></i></span>
+	                            </li>
+	                        </ul>
+	
+	                    </div><!-- End .sparkStats -->
+		                  <div class="caption">
+			                 <div id="brand-links">
+			                 <p class="actions">
+			                    <a href="@routes.Dashboard.index()?brand=@{brand.getNameAddress()}"><i class="icon-signin"></i></a>
+			                    <a class="cogs" onclick="configurations(@{brand.getId()})"><i class="icon-cogs"></i></a>
+				                <a class="delete text-error" onclick="deleteBrand(@{brand.getId()})"><i class="icon-trash"></i></a>
+			                 </p>
+			                 </div>
+		                  </div>
+		                </div>
+		              </li>
+		             }
+		             
+		             <li class="span5" id="">
+		                <div class="thumbnail brand_box" style="opacity: 0.4">
+		                  <!-- <img style="width: 300px; height: 200px;" src="@routes.Assets.at("img/default-thumbnail.png")" class="img-circle"> -->
+		                  <div style="color: #777; background-color: #e0e0e0; width: 300px; height: 200px; margin: 19px auto 20px auto; border-radius: 20px; text-align: center;">
+		                  	<i class="icon-filter" style="font-size: 120px; margin-top: 10px;"></i>
+		                  	<br>
+		                  	<span style="font-size: 30px;">Crie sua <br> <b>marca</b></span>
+		                  </div>
+		                </div>
+		              </li>
+		            </ul>
+            </div>
+        </div>
+	</div>
+	
+	<!-- Begining Wizard -->
+	
+	<div class="wizard" id="new-brand-wizard" style="overflow: hidden;">
+			
+
+	</div>
+	
+	<!-- Ending Wizard -->
+
+    <script src="@routes.Assets.at("js/jquery.js")"></script>
+    <script src="@routes.Assets.at("js/jquery-ui.custom.js")"></script>
+    <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+	<script src="@routes.Assets.at("js/textext.js")"></script>
+	<script src="@routes.Assets.at("js/bootstrap-wizard.js")"></script>
+	<!-- <script src="@routes.Assets.at("js/bootstrap-fileupload.js")"></script> -->
+	<script src="@routes.Assets.at("uploader/fineuploader.js")"></script>
+	<!-- 
+	<script src="@routes.Assets.at("js/bootstrap-notify.js")"></script>
+	 -->
+	 <script src="@routes.Assets.at("js/pnotify.min.js")"></script>
+	<script src="@routes.Assets.at("js/jquery.popupwindow.js")"></script>
+	<script src="@routes.Assets.at("js/jquery.sparkline.min.js")"></script>
+	<script src="@routes.Assets.at("js/jquery.slimscroll.js")"></script>
+
+<script type="text/javascript">
+
+function retina(){
+	
+	retinaMode = (window.devicePixelRatio > 1);
+	
+	return retinaMode;
+	
+}
+
+$("li.brand-item").mouseenter(function(){
+	$(this).find(".actions").fadeIn(100);
+});
+
+$("li.brand-item").mouseleave(function(){
+	$(this).find(".actions").fadeOut(100);
+});
+
+function setBrandName(card) {
+	var host = $("#new-brand-name").val();
+	var name = $("#new-server-name").val();
+	var displayName = host;
+
+	if (name) {
+		displayName = name + " ("+host+")";
+	};
+
+	card.wizard.setSubtitle(displayName);
+	card.wizard.el.find(".create-brand-name").text(displayName);
+}
+
+function validateIP(ipaddr) {
+    //Remember, this function will validate only Class C IP.
+    //change to other IP Classes as you need
+    ipaddr = ipaddr.replace(/\s/g, "") //remove spaces for checking
+    var re = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/; //regex. check for digits and in
+                                          //all 4 quadrants of the IP
+    if (re.test(ipaddr)) {
+        //split into units with dots "."
+        var parts = ipaddr.split(".");
+        //if the first unit/quadrant of the IP is zero
+        if (parseInt(parseFloat(parts[0])) == 0) {
+            return false;
+        }
+        //if the fourth unit/quadrant of the IP is zero
+        if (parseInt(parseFloat(parts[3])) == 0) {
+            return false;
+        }
+        //if any part is greater than 255
+        for (var i=0; i<parts.length; i++) {
+            if (parseInt(parseFloat(parts[i])) > 255){
+                return false;
+            }
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validateFQDN(val) {
+	return /^[a-z0-9-_]+(\.[a-z0-9-_]+)*\.([a-z]{2,4})$/.test(val);
+}
+
+function fqdn_or_ip(el) {
+	var val = el.val();
+	ret = {
+		status: true
+	};
+	if (!validateFQDN(val)) {
+		if (!validateIP(val)) {
+			ret.status = false;
+			ret.msg = "Invalid IP address or FQDN";
+		}
+	}
+	return ret;
+}
+
+function validateName(val){
+	val = $.trim(val);
+	if(val.length >= 2 ){
+		return true;
+	}
+	return false;
+}
+
+function nameValidator(el){
+	el.val($.trim(el.val()));
+	
+	var val = el.val()
+	
+	ret = {
+			status: true
+	};
+	if (!validateName(val)) {
+		ret.status = false;
+		ret.msg = "Nome inválido";
+	}
+	
+	return ret
+}
+
+function descValidator(el){
+	el.val($.trim(el.val()));
+	
+	var val = el.val()
+	
+	ret = {
+			status: true
+	};
+	if (!validateName(val)) {
+		ret.status = false;
+		ret.msg = "Descrição\nInválida";
+	}
+	
+	return ret
+}
+
+var addressValidator = false;
+
+function nameAddressValidator(el){
+	el.val($.trim(el.val()));
+	
+	console.log(addressValidator)	
+	
+	ret = {
+			status: true
+	};
+	
+	if (addressValidator == false) {
+		ret.msg = "Endereço inválido ou indisponível";
+		ret.status = false;
+	}
+	
+	return ret
+}
+
+function removePopups(el){
+	if(el != null){
+		$(el).siblings(".error-popover").remove();
+		return;
+	}
+	$(".error-popover").remove();
+}
+
+function nameEmailValidator(el){
+	
+	ret = {
+			status: true
+	};
+	
+	var nameValid = true
+	var emailValid = true
+	
+	$("#new-user-table input.new-user-name").each(function(){
+		var name = $.trim($(this).val());
+		if(!isValidUserName(name)){
+			nameValid = false;
+			return;
+		}
+	});
+	
+	$("#new-user-table input.new-user-email").each(function(){
+		var email = $.trim($(this).val());
+		if(!isValidEmailAddress(email)){
+			emailValid = false;
+			return;
+		}
+	});
+	
+	if (!nameValid || !emailValid) {
+		ret.status = false;
+		ret.msg = "Nome ou email inválidos";
+	}
+	
+	return ret
+}
+
+// /dashboard/checkuseraccounts
+
+function accountValidator(){
+	ret = {
+			status: true
+	};
+	
+	var validator = false
+	
+	$("button.validate-account").each(function(){
+		if($(this).hasClass("active")){
+			validator = true;
+			return;
+		}
+	});
+	
+	if (!validator) {
+		ret.status = false;
+		ret.msg = "É preciso adicionar pelo menos uma conta de uma rede social";
+	}
+	
+	return ret
+}
+
+function isValidEmailAddress(emailAddress) {
+	// @@ because of play parser
+    var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+    return pattern.test(emailAddress);
+}
+
+function isValidUserName(userName) {
+	if($.trim(userName) == ""){
+		return false;
+	}
+    return true;
+}
+
+function configurations(id){
+	if(id == null){
+		$.pnotify({
+		    title: 'Oh No!', 
+		    text: 'Houve um erro inesperado. Estamos verificando o que pode ter acontecido.',
+		    type: 'error'
+		});
+		return
+	}else{
+		$.ajax({
+			url:"@routes.Dashboard.configurations()?id="+id,
+			success:function(html){
+				$("#modal-container").html(html)
+				$("#edit-brand").modal()
+			},
+			error:function(xhr){
+				if(xhr.status == 401){
+					$.pnotify({
+					    title: 'Sua sessão expirou!',
+					    text: 'Por favor faça o login novamente.',
+					    type: 'error'
+					});
+					setTimeout(function() { 
+						  window.location = "@landing.routes.Home.signin()" // Do something after 2 seconds
+					}, 3000);
+				}else{
+					$.pnotify({
+					    title: 'Oh No!',
+					    text: 'Houve um erro ao resgatar seus dados do twitter. Estamos verificando o que pode ter acontecido.',
+					    type: 'error'
+					});
+				}
+			},
+			complete:function(){
+				
+			}
+		});
+	}
+}
+
+function deleteBrand(id){
+	if(id == null){
+		$.pnotify({
+		    title: 'Oh No!', 
+		    text: 'Houve um erro inesperado. Estamos verificando o que pode ter acontecido.',
+		    type: 'error'
+		});
+		return
+	}else{
+		show3BtnModal({
+			header: "Atenção",
+			message: "Deseja remover esta marca? Uma vez confirmada a remomção da marca iremos desativá-la por 7 dias e, em seguida, removeremos os dados dos nossos sistema.",
+			closeText: "Fechar",
+			dangerText: "Remover",
+			dangerFunc: function(){
+				$.ajax({
+					url:"/brands/" + id,
+					type: "DELETE",
+					success:function(data){
+						if(data.success){
+							$("#myModal").on('hidden', function(){
+								/* $("li#"+id).fadeOut(300); */
+								$("li#"+id).animate({
+					                opacity: 0,
+					                marginLeft: '-=450'
+					            }, 
+					            300,
+					            'swing',
+					            function(){
+					            	$("li#"+id).remove();	
+					            });
+							});
+							$("#myModal").modal('hide');
+						}
+					},
+					error:function(xhr){
+						if(xhr.status == 401){
+							$.pnotify({
+							    title: 'Sua sessão expirou!',
+							    text: 'Por favor faça o login novamente.',
+							    type: 'error'
+							});
+							setTimeout(function() { 
+								  window.location = "@landing.routes.Home.signin()" // Do something after 2 seconds
+							}, 3000);
+						}else{
+							$.pnotify({
+							    title: 'Oh No!',
+							    text: 'Houve um erro ao resgatar seus dados do twitter. Estamos verificando o que pode ter acontecido.',
+							    type: 'error'
+							});
+						}
+					},
+					complete:function(){
+						
+					}
+				})
+
+			}
+		});
+	}	
+}
+
+function show3BtnModal(opt){
+	
+	var modalhtml = '<div id="myModal" class="modal hide fade">'+
+	  '<div class="modal-header">'+
+	    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+	    '<h3>'+ opt.header +'</h3>'+
+	  '</div>'+
+	  '<div class="modal-body">'+
+	    '<p>'+ opt.message +'</p>'+
+	  '</div>';
+	  
+	if(opt.closeText || opt.confirmText || opt.dangerText){
+		 
+		 modalhtml = modalhtml + '<div class="modal-footer">' +
+	  	((opt.closeText != null ) ? '<button id="close-modal-action" class="btn">'+opt.closeText+'</button>' : '') +
+	    ((opt.confirmText != null ) ? '<button id="confirm-modal-action" data-loading-text="Aguarde" class="btn btn-primary">'+opt.confirmText+'</button>' : '') +
+	    ((opt.dangerText != null) ? '<button id="danger-modal-action" data-loading-text="Aguarde" class="btn btn-danger">'+opt.dangerText+'</button>' : '') +
+	    
+	  '</div>'
+	}
+	modalhtml = modalhtml + '</div>';
+	
+	$("body").append(modalhtml);
+
+	if(opt.closeFunc != null){
+		$("#close-modal-action").click(function(){
+			 $(this).button('loading');
+			 opt.closeFunc()
+		})		
+	}else{
+		$("#close-modal-action").click(function(){
+			 $("#myModal").modal('hide');
+		})
+	}
+	// ------------
+	if(opt.confirmFunc != null){
+		$("#confirm-modal-action").click(function(){
+			 $(this).button('loading');
+			 opt.confirmFunc()
+		});		
+	}
+	// ------------
+	if(opt.dangerFunc != null){
+		$("#danger-modal-action").click(function(){
+			 $(this).button('loading');
+			 opt.dangerFunc()
+		});
+	}
+	// ------------
+	$("#myModal").modal();
+	$("#myModal").on('hidden', function(){
+	    $(this).remove();
+	});
+}
+
+function facebookLogout(){
+	FB.getLoginStatus(function(response) {
+		if (response.status === 'connected') {
+			FB.logout(function(){
+			});
+		}else{
+		}
+	});
+}
+
+$(function() {
+
+	$("#add-new-brand").click(function() {
+		
+		$.ajax({
+			url:"@routes.Brands.newBrandWizard()",
+			success: function(html, status, xhr){
+				
+				// destroy all modals before getting a new one
+ 				$.ajax({
+					url:"@routes.Brands.clearInstallationAccounts()",
+					type: 'POST'
+				});
+				$(".wizard-modal").remove()
+ 				$("#new-brand-wizard").html(html);
+			}, 
+			error: function(xhr, status){
+				if(xhr.status == 401){
+					$.pnotify({
+					    title: 'Sua sessão expirou!',
+					    text: 'Por favor faça o login novamente.',
+					    type: 'error'
+					});
+					setTimeout(function() { 
+						  window.location = "@landing.routes.Home.signin()" // Do something after 2 seconds
+					}, 3000);
+				}else{
+					$.pnotify({
+					    title: 'Oh No!', 
+					    text: 'Houve um erro inesperado. Estamos verificando o que pode ter acontecido.',
+					    type: 'error'
+					});
+				}
+			},
+			complete: function(){
+				facebookLogout()
+			}
+		});
+		
+	});
+	
+	$("#add-new-brand").on("mouseover", function(){
+		$(this).children("div").addClass("underline");
+	})
+	
+	$("#add-new-brand").on("mouseout", function(){
+		$(this).children("div").removeClass("underline");
+	})
+	
+	// scala template condition. see parameter newbrand on Dashboard#gate() controller 
+	@if(addBrand){
+		// simulate add brand click
+		$("#add-new-brand").trigger('click');
+	}
+	
+});
+
+</script>
+
+	</body>
+</html>

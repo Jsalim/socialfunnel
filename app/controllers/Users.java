@@ -61,28 +61,32 @@ public class Users extends Controller {
 		String username = params.get("username");
 		String password = params.get("password");
 
-		Form<Agent> form = new Form<Agent>(Agent.class);
+		Form<Agent> agentForm = new Form<Agent>(Agent.class);
 		
 		if(name == null){
-			form.errors().put("name", Arrays.asList(new ValidationError("name", "Nome inválido")));
+			agentForm.errors().put("name", Arrays.asList(new ValidationError("name", "Nome inválido")));
 		}else if(name.length() < 3 || name.length() >= 50){
-			form.errors().put("name", Arrays.asList(new ValidationError("name", "Nome deve conter 3 a 50 caracteres.")));
+			agentForm.errors().put("name", Arrays.asList(new ValidationError("name", "Nome deve conter 3 a 50 caracteres.")));
 		}
 
 		if(email == null || MyUtil.isEmailAddr(email) == false){
-			form.errors().put("email", Arrays.asList(new ValidationError("email", "Email inválido.")));
+			agentForm.errors().put("email", Arrays.asList(new ValidationError("email", "Email inválido.")));
+		}else if(userService.exists(email)){
+			agentForm.errors().put("email", Arrays.asList(new ValidationError("email", "Email já está em uso")));
 		}
 
 		if(username == null){
-			form.errors().put("username", Arrays.asList(new ValidationError("username", "Username inválido.")));
+			agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username inválido.")));
 		}else if(username.length() < 3 || username.length() >= 30){
-			form.errors().put("username", Arrays.asList(new ValidationError("username", "Username deve conter 3 a 30 caracteres.")));
+			agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username deve conter 3 a 30 caracteres.")));
+		}else if(userService.exists(username)){
+			agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username já está em uso.")));
 		}
 
 		if(password == null){
-			form.errors().put("password", Arrays.asList(new ValidationError("password", "Senha inválido.")));
+			agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha inválido.")));
 		}else if(password.length() < 6){
-			form.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve ter no mínimo 6 caracteres.")));
+			agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve ter no mínimo 6 caracteres.")));
 		}else{
 			boolean upperFound = false, hasNumber = false;
 			for (char c : password.toCharArray()) {
@@ -98,20 +102,20 @@ public class Users extends Controller {
 			}
 
 			if(upperFound && hasNumber){
-				form.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve conter ao menos 1 caracter maiúsculo e 1 dígito.")));
+				agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve conter ao menos 1 caracter maiúsculo e 1 dígito.")));
 			}
 		}
 
 		Agent user = new Agent(name, email, username, password);
 
-		if(form.hasErrors()){
+		if(agentForm.hasErrors()){
 			InvalidParameterException paramException = new InvalidParameterException(Json.toJson(form().errorsAsJson()).toString());
 			
-			for(Map.Entry<String, List<ValidationError>> entry:  form.errors().entrySet()){
+			for(Map.Entry<String, List<ValidationError>> entry:  agentForm.errors().entrySet()){
 				Logger.info(entry.getKey() + " " +entry.getValue());
 			}
 			
-			return badRequest(views.html.home.signup.render(form, user));
+			return badRequest(views.html.home.signup.render(agentForm, user));
 		}else{
 			user.setStatus(UserStatus.STATUS_ACTIVE);
 

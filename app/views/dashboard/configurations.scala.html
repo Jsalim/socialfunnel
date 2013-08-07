@@ -1,0 +1,133 @@
+@(user: util.UserSession, brand: models.Brand)
+
+<div id="edit-brand" class="modal hide fade wizard-modal in" role="dialog" style="margin-top: -25px; width: 750px; margin-left: -375px; display: block;" aria-hidden="false">
+<div class="wizard-modal-header modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 class="wizard-title"><i class="icon-cogs"></i>&nbsp; @{brand.getName()}</h3>
+<span class="wizard-subtitle"></span>
+</div>
+<div class="pull-left wizard-steps" style="height: 475px;">
+<div class="wizard-nav-container" style="height: 410px;">
+<ul class="nav nav-list" style="padding-bottom:30px;">
+<li class="wizard-nav-item already-visited"><a class="wizard-nav-link"><i class="icon-chevron-right"></i>Nome</a></li><li class="wizard-nav-item already-visited"><a class="wizard-nav-link"><i class="icon-chevron-right"></i>Twitter</a></li><li class="wizard-nav-item already-visited"><a class="wizard-nav-link"><i class="icon-chevron-right"></i>Facebook</a></li><li class="wizard-nav-item already-visited"><a class="wizard-nav-link"><i class="icon-chevron-right"></i>Equipe</a></li><li class="wizard-nav-item already-visited active"><a class="wizard-nav-link"><i class="icon-chevron-right"></i>Concluir</a></li></ul>
+</div>
+<!-- <div class="wizard-progress-container">
+
+<div class="progress progress-striped">
+<div class="bar" style="width: 80%;"></div>
+</div>
+</div> -->
+</div>
+<form>
+<div class="wizard-cards">
+<div class="wizard-card-container">
+<div class="wizard-card" data-onvalidated="setBrandName" data-cardname="name" style="height: 350px; display: none;">
+				<h3>Nome</h3>
+
+				<div class="wizard-input-section">
+					<p>
+						Para começar, por favor preencha o nome da marca que gostaria de adicinar e o endereço do painel de gerenciamento. (O nome da marca deve conter 2 ou mais caracteres)
+					</p>
+
+					<div class="control-group">
+						<input name="brandName" id="new-brand-name" type="text" placeholder="Nome da Marca" data-validate="nameValidator" data-original-title="">
+					</div>
+					
+					<div class="input-append control-group brand-domain"> 
+						<input name="brandNameAddress" id="new-brand-name-normalized" type="text" placeholder="ex. minhamarca" data-validate="nameAddressValidator" data-original-title=""><span class="add-on">.socialfunnel.net</span>
+					</div>
+					
+					<div class="control-group"> 
+						<textarea data-validate="descValidator" rows="2" name="brandDescription" id="new-brand-description" placeholder="Breve descrição sobre a sua marca" data-original-title=""></textarea>
+					</div>
+					
+					<div id="fine-uploader"><div class="qq-uploader"><div class="qq-upload-drop-area" style="display: none;"><span>Drop files here to upload</span></div><div class="qq-upload-button" style="position: relative; overflow: hidden; direction: ltr;"><div>Click or Drop</div><input type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></div><span class="qq-drop-processing"><span>Processing dropped files...</span><span class="qq-drop-processing-spinner"></span></span><ul class="qq-upload-list"></ul></div></div>
+					
+					<br>
+					<br>
+				</div>
+			</div><div class="wizard-card" data-onvalidated="removePopups" data-cardname="twitter" style="height: 350px; display: none;">
+				<h3>Twitter</h3>
+
+				<div class="wizard-input-section">
+					<p>
+						Adicione uma ou mais contas do Twitter para a marca <strong class="create-brand-name">bereguedel</strong>.
+					</p>
+						<button id="add-twitter-account" type="button" data-validate="" class="btn btn-info" data-loading-text="&lt;i class='icon-twitter icon-1x'&gt;&lt;/i&gt; Autenticando...">
+							<i class="icon-twitter icon-1x"></i> Adicionar
+						</button>
+
+						<img id="twitter-loading" src="/assets/img/loaders/loader10.gif" >
+						<div id="twitter-accounts-container"><table id="twitter-account-table" class="table table-striped table-bordered" style="margin-top: 25px;"><tbody><tr><td style="width:50px;"><img style="height:40px;width:40px;" src="http://a0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"></td><td style="border-left:none;"><div style="font-size:14px; font-weight:bold;"><a target="_blank" href="http://twitter.com/misaeltester">@@misaeltester </a> </div><span style="font-size: 12px; color:#666;"> 4 Seguidores </span></td><td style="text-align:right; border-left:none;"><button type="button" class="btn active validate-account" data-type="twitter" data-toggle="button" value="186946503" style="margin-top:5px"><i class="icon-ok"></i></button><input id="186946503" class="account" type="hidden" name="twitter[]" value="186946503"></td></tr></tbody></table></div>
+				</div>
+			</div><div class="wizard-card" data-onvalidated="removePopups" data-cardname="facebook" style="height: 350px; display: none;">
+				<h3>Facebook</h3>
+
+				<div class="wizard-input-section">
+					<p>
+						Adicione uma ou mais contas do Facebook para a marca <strong class="create-brand-name">bereguedel</strong>.
+					</p>
+						<button id="add-facebook-account" type="button" data-validate="accountValidator" class="btn btn-primary" data-loading-text="&lt;i class='icon-facebook icon-1x'&gt;&lt;/i&gt; Autenticando..." data-original-title="">
+							<i class="icon-facebook icon-1x"></i> Adicionar
+						</button>
+						
+						<img id="facebook-loading" src="/assets/img/loaders/loader10.gif" >
+						<div id="facebook-accounts-container">
+						</div>
+						
+				</div>
+			</div><div class="wizard-card" data-onvalidated="removePopups" data-onload="" data-cardname="team" style="height: 350px; display: none;">
+				<h3>Equipe</h3>
+
+				<div class="wizard-input-section">
+				
+				<!-- O seu usuário <strong>misawsneto</strong> será o administrador da marca <strong class="create-brand-name"></strong>.  -->
+					<p>
+						Adicione membros a sua equipe. Insira o nome e email para cada mebro da equipe.
+						Caso eles já possuam cadastro o sistema irá associá-los a marca <strong class="create-brand-name">bereguedel</strong>.
+						Caso contrário, enviaremos um email para cada um dos membros cadastrados com um link de ativação.
+					</p>
+					
+					<button type="button" class="btn" onclick="addNewUserRow()" data-validate="nameEmailValidator" data-original-title="">Novo usuáro</button>
+					
+					<table id="new-user-table" class="table table-striped table-bordered" style="margin-top: 25px; display: none;">
+					</table>
+				</div>
+			</div><div class="wizard-card" data-onvalidated="removePopups" data-onload="" data-cardname="team" style="height: 350px; display: block;">
+				<h3>Concluir</h3>
+
+				<div class="wizard-input-section">
+				<!-- O seu usuário <strong>misawsneto</strong> será o administrador da marca <strong class="create-brand-name"></strong>.  -->
+					<p>
+						O seu usuário <strong>misawsneto</strong> será o administrador da marca <strong class="create-brand-name">bereguedel</strong>.
+						Para alterar essas e outras informações vá até configurações no canto superior esquerdo de seu painel de administração. 
+						Para finalizar a criação da marca <strong class="create-brand-name">bereguedel</strong> envie o formulário.
+					</p>
+				</div>
+			</div><div class="wizard-error" style="height: 350px; display: none;">
+				<div class="alert alert-error">
+					<strong>Houve um problema</strong> com o envio do formulário.
+					Por favor, verifique as informações e tente novamente.
+				</div>
+			</div><div class="wizard-failure" style="height: 350px; display: none;">
+				<div class="alert alert-error">
+					<strong>Houve um problema</strong> com a submissão do seu formulário.
+					Favor entrar em contato com nossa equipe técnica.
+				</div>
+			</div><div class="wizard-success" style="height: 350px; display: none;">
+				<div class="alert alert-success">
+					<strong><span class="create-brand-name">bereguedel</span></strong>
+					foi criada <strong>com sucesso.</strong>
+				</div>
+
+				<a style="float: right;" class="btn im-done">Fechar</a>
+			</div></div>
+<div class="wizard-modal-footer">
+<div class="wizard-buttons-container">
+<!-- <button class="btn wizard-back" type="button">Voltar</button>
+<button class="btn wizard-next btn-success" type="button">Enviar</button> -->
+</div>
+</div>
+</div>
+</form>
+</div>

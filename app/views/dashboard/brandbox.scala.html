@@ -1,0 +1,49 @@
+@(brand: models.Brand)
+		              <li class="span5 brand-item" id="@{brand.getId()}" style=" margin-left: -150px; opacity: 0;">
+		                <div class="thumbnail brand_box">
+		                
+							<div class="caption">
+								<p class="brand-name" >@{brand.getName()}</p>
+		                    	<p class="brand-desc" >@{brand.getDescription()}</p>
+		                  	</div>		                	
+		                    
+		                  <div class="box-preview-stats" >
+	                        <ul class="unstyled">
+	                            <li> 
+	                                Pageviews: 
+	                                <span class="number red" >781 <i class="icon-arrow-down"></i></span>
+	                            </li>
+	                            <li>
+	                                Pages / Visit: 
+	                                <span class="number blue" >2,19 <i class="icon-arrow-up"></i></span>
+	                            </li>
+	                            <li>
+	                                Avg. Visit Duration: 
+	                                <span class="number blue" >00:02:58 <i class="icon-minus"></i></span>
+	                            </li>
+	                        </ul>
+	
+	                    </div><!-- End .sparkStats -->
+		                  <div class="caption">
+			                 <div style="height: 26px;">
+			                 <p class="actions" style="display: none;">
+			                    <a href="@routes.Dashboard.index()?brand=@{brand.getNameAddress()}"><i class="icon-signin"></i></a>
+			                    <a style="color: #444;" onclick="configurations(@{brand.getId()})"><i class="icon-cogs"></i></a>
+				                <a style="float: right;" class="delete text-error" onclick="deleteBrand(@{brand.getId()})"><i class="icon-trash"></i></a>
+			                 </p>
+			                 </div>
+		                  </div>
+		                </div>
+		              </li>
+
+<script type="text/javascript">
+
+$("li.brand-item").mouseenter(function(){
+	$(this).find(".actions").fadeIn(100);
+});
+
+$("li.brand-item").mouseleave(function(){
+	$(this).find(".actions").fadeOut(100);
+});
+
+</script>
