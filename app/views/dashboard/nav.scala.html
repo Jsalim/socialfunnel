@@ -39,7 +39,18 @@
                 <li class="notification-dropdown hidden-phone">
                     <a href="#" class="trigger">
                         <i class="icon-warning-sign"></i>
-                        <span class="count">8</span>
+                        <span id="alert-counter" class="count"
+                        	@if(userSession.getUnSeenNotis() != null && userSession.getUnSeenNotis().size() < 1){ 
+                    			style="display:none;" 
+                    		}else{
+                    			style="display:block;"
+                    		} 
+                    		>
+                    		
+                    		@if(userSession.getUnSeenNotis() != null && userSession.getUnSeenNotis().size() > 0){
+                				@{userSession.getUnSeenNotis().size()}
+                			}
+						</span>
                     </a>
                     <div class="pop-dialog">
                         <div class="pointer right">
@@ -129,12 +140,16 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="personal-info.html">Personal info</a></li>
-                        <li><a href="#">Account settings</a></li>
-                        <li><a href="#">Billing</a></li>
-                        <li><a href="#">Export your data</a></li>
-                        <li><a href="#">Send feedback</a></li>
-                    </ul>
+	                   	<li><a href="#" onclick="openNewAccount()">Páginas e perfis</a></li>
+	                   	<li><a href="#" onclick="openMessageModal()">Publicar conteúdo</a></li>
+	                   	<li class="divider"></li>
+                       	<li><a href="">Nova Marca</a></li>
+                       	<li class="divider"></li>
+                       	<li><a href="">Configurações</a></li>
+                       	<li><a href="">Logout</a></li>
+                       	<li class="divider"></li>
+                   		<li><a href="#">Suporte</a></li>
+                   </ul>
                 </li>
                 <li class="settings hidden-phone">
                     <a href="personal-info.html" role="button">
@@ -152,3 +167,75 @@
         </div>
     </div>
     <!-- end navbar -->
+    <script type="text/javascript">
+	          		/* function  openQuickSearch(){
+	            		$("#quick-search-container").addClass("quick-search-open");
+	              	} */
+	              	/* 
+	              	$("img.myimg").error(function(){
+              			if($(this).is("img")){
+	              			$(this).attr("src", "http://png-1.findicons.com/files/icons/1072/face_avatars/300/i04.png");
+              			}
+              		}); */
+	              	
+	              	function getUnseenNotifications(){
+              			$.ajax({
+              				url:'@routes.Users.getNotifications()?unseen=true',
+              				contentType: 'application/json',
+              				success: function(data){
+              					console.log(data)
+           						if(data.success && data.unseenNotification.length > 0){
+           							$("#alert-counter").html(data.unseenNotification.length).show();
+           						}else{
+           							$("#alert-counter").html("").hide();	
+           						}
+              				},
+              				error: function(){
+              					
+              				},
+							complete:function(){
+																
+							}
+              			});
+              			setTimeout(getUnseenNotifications, 10000)
+              		}
+	              	
+	              	function notificationsAlert(){
+              				// if notifications menu is not open
+              			if(!$("#notifications-button").hasClass("open")){
+              				// show notification loader
+	              			$("#notification-loader").show();
+	              			// do request
+	              			$.ajax({
+	              				url:'@routes.Users.getNotifications()?limit=10',
+	              				contentType: 'application/json',
+	              				success: function(data){
+	              					// if request is successful and there is unseen notifications, update notis number
+	           						if(data.success && data.unseenNotification.length > 0){
+	           							// update notis and show
+	           							$("#alert-counter").html(data.unseenNotification.length).show();
+	           						}else{ // if no new notis, hide
+	           							$("#alert-counter").html("").hide();	
+	           						}
+	              					// get latest notifications
+	              					if(data.success && data.lastNotification.length > 0){
+	              						var i = 0;
+	              						for(; i < data.lastNotification.length; i++){
+	              						}
+	              					}
+	              				},
+	              				error: function(){
+	              					
+	              				},
+								complete:function(){
+									$("#notification-loader").hide();																	
+								}
+	              			});
+              			}
+              		}
+	              	
+	              	$(document).ready(function(){
+	              		
+	              		setTimeout(getUnseenNotifications, 10000)
+	              	});
+       	</script>

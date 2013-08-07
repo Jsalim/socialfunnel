@@ -47,3 +47,8 @@ POST	/users/register				controllers.Users.register()
 GET		/users/register				controllers.landing.Home.signup()
 GET		/users/check				controllers.Users.checkUsername()
 
+GET		/users/notifications		controllers.Users.getNotifications()
+PUT		/users/notifications		controllers.Users.updateNotifications()
+
+# Brands
+GET		/brands/addresscheck		controllers.Brands.brandNameAddressCheck()

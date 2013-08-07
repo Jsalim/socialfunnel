@@ -62,11 +62,11 @@ public class Users extends Controller {
 		String password = params.get("password");
 
 		Form<Agent> form = new Form<Agent>(Agent.class);
-
+		
 		if(name == null){
 			form.errors().put("name", Arrays.asList(new ValidationError("name", "Nome inválido")));
-		}else if(name.length() <= 3 || name.length() >= 50){
-			form.errors().put("name", Arrays.asList(new ValidationError("name", "O campo nome deve ter entre 3 e 50 caracteres.")));
+		}else if(name.length() < 3 || name.length() >= 50){
+			form.errors().put("name", Arrays.asList(new ValidationError("name", "Nome deve conter 3 a 50 caracteres.")));
 		}
 
 		if(email == null || MyUtil.isEmailAddr(email) == false){
@@ -75,14 +75,14 @@ public class Users extends Controller {
 
 		if(username == null){
 			form.errors().put("username", Arrays.asList(new ValidationError("username", "Username inválido.")));
-		}else if(username.length() <= 3 || username.length() >= 30){
-			form.errors().put("username", Arrays.asList(new ValidationError("username", "O campo username deve ter entre 3 e 30 caracteres.")));
+		}else if(username.length() < 3 || username.length() >= 30){
+			form.errors().put("username", Arrays.asList(new ValidationError("username", "Username deve conter 3 a 30 caracteres.")));
 		}
 
 		if(password == null){
 			form.errors().put("password", Arrays.asList(new ValidationError("password", "Senha inválido.")));
-		}else if(password.length() <= 6){
-			form.errors().put("password", Arrays.asList(new ValidationError("password", "O campo senha deve ter no mínimo 6 caracteres.")));
+		}else if(password.length() < 6){
+			form.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve ter no mínimo 6 caracteres.")));
 		}else{
 			boolean upperFound = false, hasNumber = false;
 			for (char c : password.toCharArray()) {
@@ -98,7 +98,7 @@ public class Users extends Controller {
 			}
 
 			if(upperFound && hasNumber){
-				form.errors().put("password", Arrays.asList(new ValidationError("password", "A senha precisa ter ao menos um caracter maiúsculo e um dígito.")));
+				form.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve conter ao menos 1 caracter maiúsculo e 1 dígito.")));
 			}
 		}
 

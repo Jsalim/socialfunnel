@@ -39,8 +39,8 @@ public class Dashboard extends Controller {
 	 * @see /dashboard/index.scala.html
 	 * */
 	@Transactional(readOnly = true)
-//	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-	@With({AuthCheckInterceptor.class})
+	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
+//	@With({AuthCheckInterceptor.class})
 	public static Result index() {
 		try {
 			UserSession userSession = userService.getUserSession(session());
