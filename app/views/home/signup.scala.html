@@ -39,15 +39,12 @@
         </a>
     </div>
     <form id="regform" class ="form-horizontal" method ="POST" action="@routes.Users.register()">
-   		@if(agentForm == null || !agentForm.hasErrors()){ 
-	    	<div id="brand-form" class="row-fluid login-wrapper">
+   		@if(flash().get("invitation") == null || flash().get("invitation").equals("")){ 
+	    	<div id="brand-form" class="row-fluid login-wrapper" style=" @if(agentForm != null && agentForm.hasErrors()){ display: none;}">
 		        <div class="box">
 		            <div class="content-wrap">
 			                <h6>Cadastro</h6>
 			                
-			                @if(flash().get("invitation") != null && !flash().get("invitation").equals("")){
-				            	<input type="hidden" name="invitation" value='@flash().get("invitation")'/>
-							}
 							<div id="brand-name" class="control-group">
 			                	<input class="span12" type="text" name="brand" placeholder="Marca" value=""/>
 			                </div>
@@ -74,7 +71,7 @@
 			    </div>
 		    </div>
     	}
-	    <div id="user-form" class="row-fluid login-wrapper" style=" @if(agentForm == null || !agentForm.hasErrors){ display: none;}">
+	    <div id="user-form" class="row-fluid login-wrapper" style=" @if(agentForm == null || !agentForm.hasErrors()){ display: none;}">
 	        <div class="box">
 	            <div class="content-wrap">
 		                <h6>Cadastro</h6>
@@ -210,21 +207,21 @@
     	$("#next-step").click(function(){
     		var error = false;
 
-    		if(!$("#brand-name input").val()){
+    		if(!$("#brand-name input").val().trim()){
     			$("#brand-name").addClass("error");
     			error = true;
     		}else{
     			$("#brand-name").removeClass("error");
     		}
     		
-			if(!$("#brand-address input").val()){
+			if(!$("#brand-address input").val().trim()){
 				$("#brand-address").addClass("error");
 				error = true;
 			}else{
     			$("#brand-address").removeClass("error");
     		}
 			
-			if(!$("#brand-phone input").val()){
+			if(!$("#brand-phone input").val().trim()){
 				$("#brand-phone").addClass("error");
 				error = true;
 			}else{
