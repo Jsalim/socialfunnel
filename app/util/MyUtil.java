@@ -19,8 +19,6 @@ public class MyUtil {
 		try{
 			string = string.substring(0, size - 1) + "...";
 		}catch (RuntimeException e){
-			// this is a good thing
-			Logger.info("String is smaller than limit");
 			return string;
 		}
 		return string;

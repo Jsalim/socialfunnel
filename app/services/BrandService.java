@@ -2,6 +2,7 @@ package services;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,8 @@ import constants.FilterTypes;
 import constants.Permissions;
 import exceptions.InvalidParameterException;
 
+import play.data.Form;
+import play.data.validation.ValidationError;
 import play.Logger;
 import play.db.jpa.JPA;
 import play.libs.Json;
@@ -40,7 +43,7 @@ public class BrandService {
 	private static BrandService instance;
 
 	private static final UserService userService = UserService.getInstance();
-//	private static final EmailService emailService = EmailService.getInstance(); 
+	//	private static final EmailService emailService = EmailService.getInstance(); 
 
 
 	public BrandService() {}
@@ -68,28 +71,30 @@ public class BrandService {
 		Set<TwitterAccountInfo> twAccounts = new HashSet<TwitterAccountInfo>();
 
 		// remove accounts that are already in db from list, retrieve it from the database and add the managed instance back on the list
-		for(FacebookAccountInfo accountInfo: facebookAccounts){
-			FacebookAccountInfo facebookAccountInfo = JPA.em().find(FacebookAccountInfo.class, new AccountKey(accountInfo.getId(), accountInfo.getOauthToken()));
-			if(facebookAccountInfo != null){
-				fbaAccounts.add(facebookAccountInfo);
-			}else{
-				fbaAccounts.add(accountInfo);
+		if(facebookAccounts != null){
+			for(FacebookAccountInfo accountInfo: facebookAccounts){
+				FacebookAccountInfo facebookAccountInfo = JPA.em().find(FacebookAccountInfo.class, new AccountKey(accountInfo.getId(), accountInfo.getOauthToken()));
+				if(facebookAccountInfo != null){
+					fbaAccounts.add(facebookAccountInfo);
+				}else{
+					fbaAccounts.add(accountInfo);
+				}
 			}
 		}
 		// remove accounts that are already in db from list, retrieve it from the database and add the managed instance back on the list
-		for(TwitterAccountInfo accountInfo: twitterAccounts){
-			TwitterAccountInfo twitterAccountInfo = JPA.em().find(TwitterAccountInfo.class, new AccountKey(accountInfo.getId(), accountInfo.getOauthToken()));
-			if(twitterAccountInfo != null){
-				twAccounts.add(twitterAccountInfo);
-			}else{
-				twAccounts.add(accountInfo);
+		if(twitterAccounts != null){
+			for(TwitterAccountInfo accountInfo: twitterAccounts){
+				TwitterAccountInfo twitterAccountInfo = JPA.em().find(TwitterAccountInfo.class, new AccountKey(accountInfo.getId(), accountInfo.getOauthToken()));
+				if(twitterAccountInfo != null){
+					twAccounts.add(twitterAccountInfo);
+				}else{
+					twAccounts.add(accountInfo);
+				}
 			}
 		}
 
 		brand.setFacebookAccounts(fbaAccounts);
 		brand.setTwitterAccounts(twAccounts);
-
-		Logger.info(owner.toString());
 
 		UserBrandRole userBrandRole = new UserBrandRole();
 		userBrandRole.brand = brand;
@@ -108,41 +113,78 @@ public class BrandService {
 		return brand;
 	}
 
+	public Form<Brand> validateBrandForm(String brandName, String brandAddress, String brandPhone){
+
+		Form<Brand> brandForm = new Form<Brand>(Brand.class);
+
+		if(brandForm != null){
+			if(brandName == null){
+				brandForm.errors().put("brandname", Arrays.asList(new ValidationError("brandname", "Nome inválido")));
+			}else if(brandName.length() < 2 || brandName.length() > 50){
+				brandForm.errors().put("brandname", Arrays.asList(new ValidationError("brandname", "Nome deve conter 2 a 50 caracteres.")));
+			}
+
+			if(brandAddress == null || MyUtil.isHost(brandAddress) == false){
+				brandForm.errors().put("brandaddress", Arrays.asList(new ValidationError("brandaddress", "Subdomínio inválido.")));
+			}else if(!isNameAddressAvailable(brandAddress)){
+				brandForm.errors().put("brandaddress", Arrays.asList(new ValidationError("brandaddress", "Subdomínio já está em uso.")));
+			}
+
+			if(brandPhone == null){
+				brandForm.errors().put("brandphone", Arrays.asList(new ValidationError("brandphone", "Telefone inválido.")));
+			}else if(brandPhone.length() < 8 || brandPhone.length() > 20){
+				brandForm.errors().put("brandphone", Arrays.asList(new ValidationError("brandphone", "Telefone deve conter 8 a 20 caracteres.")));
+			}
+
+			return brandForm;
+		}else {
+			return null;
+		}
+	}
+
 	private void addOrInviteUserToBrand(Set<Invitation> invitations, Brand brand){
-//		try {
-//			for (Invitation invitation: invitations){
-//				invitation.setBrand(brand);
-//				invitation.setHash(MyUtil.stringToMD5(invitation.getEmail() + new Date().getTime() + new Random().nextInt(Integer.MAX_VALUE)));
-//
-//				JPA.em().persist(invitation);
-//			}
-//
-//			emailService.batchInvitationEmails(invitations);
-//		} catch (NoSuchAlgorithmException e) {
-//			e.printStackTrace();
-//		}
+		//		try {
+		//			if(invitations != null)
+		//				for (Invitation invitation: invitations){
+		//					invitation.setBrand(brand);
+		//					invitation.setHash(MyUtil.stringToMD5(invitation.getEmail() + new Date().getTime() + new Random().nextInt(Integer.MAX_VALUE)));
+		//	
+		//					JPA.em().persist(invitation);
+		//				}
+		//			
+		//				emailService.batchInvitationEmails(invitations);
+		//			}
+		//		} catch (NoSuchAlgorithmException e) {
+		//			e.printStackTrace();
+		//		}
 	}
 
 	//Available
 	public boolean isNameAddressAvailable(String input){
 
-		Query query = JPA.em().createQuery("SELECT count(*) FROM Brand b WHERE nameAddress = :input");
-		query.setParameter("input", input);
+		if(input != null){
+			input = input.trim().toLowerCase();
 
-		Long count = 0l;
-		try {
-			count = (Long) query.getSingleResult();
-			if(count == 0){
-				//				Logger.debug(input + " " + count);
-				return true;
+			Query query = JPA.em().createQuery("SELECT count(*) FROM Brand b WHERE nameAddress = :input");
+			query.setParameter("input", input);
+
+			Long count = 0l;
+			try {
+				count = (Long) query.getSingleResult();
+				if(count == 0){
+					//				Logger.debug(input + " " + count);
+					return true;
+				}
+			} catch (NoResultException e) {
+				Logger.debug(e.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (NoResultException e) {
-			Logger.debug(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		return false;
+			return false;
+		}else{
+			return false;
+		}
 	}
 
 	public Brand getBrandByNameAddress(String id) {

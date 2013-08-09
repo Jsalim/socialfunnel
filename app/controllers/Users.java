@@ -16,6 +16,7 @@ import java.util.Map;
 
 import models.Agent;
 import models.AgentNotification;
+import models.Brand;
 
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
@@ -35,6 +36,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 import services.UserService;
+import services.BrandService;
 import util.MyUtil;
 import util.UserSession;
 
@@ -47,6 +49,8 @@ public class Users extends Controller {
 
 	/** singleton instance of {@link UserService}  */
 	private static final UserService userService = UserService.getInstance(); 
+	/** singleton instance of {@link BrandService}  */
+	private static final BrandService brandService = BrandService.getInstance();
 
 	/**
 	 * Renders register form
@@ -61,61 +65,14 @@ public class Users extends Controller {
 		String username = params.get("username");
 		String password = params.get("password");
 
-		Form<Agent> agentForm = new Form<Agent>(Agent.class);
-		
-		if(name == null){
-			agentForm.errors().put("name", Arrays.asList(new ValidationError("name", "Nome inválido")));
-		}else if(name.length() < 3 || name.length() >= 50){
-			agentForm.errors().put("name", Arrays.asList(new ValidationError("name", "Nome deve conter 3 a 50 caracteres.")));
-		}
-
-		if(email == null || MyUtil.isEmailAddr(email) == false){
-			agentForm.errors().put("email", Arrays.asList(new ValidationError("email", "Email inválido.")));
-		}else if(userService.exists(email)){
-			agentForm.errors().put("email", Arrays.asList(new ValidationError("email", "Email já está em uso")));
-		}
-
-		if(username == null){
-			agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username inválido.")));
-		}else if(username.length() < 3 || username.length() >= 30){
-			agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username deve conter 3 a 30 caracteres.")));
-		}else if(userService.exists(username)){
-			agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username já está em uso.")));
-		}
-
-		if(password == null){
-			agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha inválido.")));
-		}else if(password.length() < 6){
-			agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve ter no mínimo 6 caracteres.")));
-		}else{
-			boolean upperFound = false, hasNumber = false;
-			for (char c : password.toCharArray()) {
-				if (Character.isUpperCase(c)) {
-					upperFound = true;
-					break;
-				}
-			}
-			for (char c : password.toCharArray()) {
-				if (Character.isDigit(c)){
-					hasNumber = true;
-				}
-			}
-
-			if(upperFound && hasNumber){
-				agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve conter ao menos 1 caracter maiúsculo e 1 dígito.")));
-			}
-		}
+		Form<Agent> agentForm = userService.validateAgentForm(name, email, username, password);
 
 		Agent user = new Agent(name, email, username, password);
 
 		if(agentForm.hasErrors()){
 			InvalidParameterException paramException = new InvalidParameterException(Json.toJson(form().errorsAsJson()).toString());
 			
-			for(Map.Entry<String, List<ValidationError>> entry:  agentForm.errors().entrySet()){
-				Logger.info(entry.getKey() + " " +entry.getValue());
-			}
-			
-			return badRequest(views.html.home.signup.render(agentForm, user));
+			return badRequest(views.html.home.signup.render(agentForm, user, null, null));
 		}else{
 			user.setStatus(UserStatus.STATUS_ACTIVE);
 
@@ -124,7 +81,7 @@ public class Users extends Controller {
 			if(invitation != null && !invitation.equals("")){
 				saved = userService.processInvitation(user, invitation);
 			}else{
-				saved = userService.save(user);
+				saved = userService.create(user);
 			}
 
 			if(saved) {
@@ -135,7 +92,74 @@ public class Users extends Controller {
 				result.put("success", false);
 				result.put("error", "Convite inválido.");
 				badRequest(result);
-				return badRequest(views.html.home.signup.render(null, null));
+				return badRequest(views.html.home.signup.render(null, null, null, null));
+			}
+		}
+//		return ok();
+	}
+
+	/**
+	 * Renders register form
+	 * @return
+	 */
+	@play.db.jpa.Transactional
+	public static Result simpleRegister() {
+		DynamicForm params = form().bindFromRequest();
+		
+		String invitation = params.get("invitation");
+
+		String brandName = params.get("brandname");
+		String brandAddress = params.get("brandaddress");
+		String brandPhone = params.get("brandphone");
+
+		String name = params.get("name");
+		String email = params.get("email");
+		String username = params.get("username");
+		String password = params.get("password");
+
+		Form<Brand> brandForm = brandService.validateBrandForm(brandName, brandAddress, brandPhone);
+
+		Form<Agent> agentForm = userService.validateAgentForm(name, email, username, password);
+
+		Agent user = new Agent(name, email, username, password);
+		
+		Brand brand = new Brand(brandName, brandAddress, brandPhone);
+
+		if(brandForm.hasErrors()){
+			Logger.error("ERROR");
+			return badRequest(views.html.home.signup.render(agentForm, user, brandForm, brand));
+		}
+		
+		if(agentForm.hasErrors() || brandForm.hasErrors()){
+			return badRequest(views.html.home.signup.render(agentForm, user, brandForm, brand));
+		}else{
+			user.setStatus(UserStatus.STATUS_ACTIVE);
+
+			boolean saved = false;
+
+			if(invitation != null && !invitation.equals("")){
+				saved = userService.processInvitation(user, invitation);
+			}else{
+				saved = userService.create(user);
+			}
+
+			if(saved) {
+				Agent agent = userService.findByUsername(user.getUsername());
+				try{
+					brand = brandService.createBrand(brandName, null, brandAddress, agent, null, null, null);
+				}catch (Exception e){
+					Logger.error(e.getMessage());
+					userService.delete(user);
+					return badRequest(views.html.home.signup.render(null, null, null, null));
+				}
+				flash("registered", "true");
+				return redirect(routes.Application.login());
+			}else{
+				ObjectNode result = Json.newObject();
+				result.put("success", false);
+				result.put("error", "Convite inválido.");
+				badRequest(result);
+				return badRequest(views.html.home.signup.render(null, null, null, null));
 			}
 		}
 //		return ok();

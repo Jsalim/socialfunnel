@@ -30,7 +30,7 @@ public class Home extends Controller {
 			flash("invitation", invitation[0]);
 		}
 		
-		return ok(views.html.home.signup.render(null, null));
+		return ok(views.html.home.signup.render(null, null, null, null));
 	}
 //
 	public static Result signin() {

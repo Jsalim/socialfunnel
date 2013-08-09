@@ -48,6 +48,7 @@ POST	/home/resetpassword			controllers.landing.Home.resetPassword()
 # Users
 
 POST	/users/register				controllers.Users.register()
+POST	/users/sregister 			controllers.Users.simpleRegister()
 GET		/users/register				controllers.landing.Home.signup()
 GET		/users/check				controllers.Users.checkUsername()
 

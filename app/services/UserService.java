@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Arrays;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -34,6 +35,9 @@ import play.mvc.Http.Session;
 import util.MyUtil;
 import util.UserSession;
 
+import static play.data.Form.form;
+import play.data.Form;
+import play.data.validation.ValidationError;
 /**
  * @author marcio
  * 
@@ -115,6 +119,59 @@ public final class UserService {
 		return user;
 	}
 
+	public Form<Agent> validateAgentForm(String name, String email, String username, String password){
+
+		Form<Agent> agentForm = new Form<Agent>(Agent.class);
+
+		if(agentForm != null){
+			if(name == null){
+				agentForm.errors().put("name", Arrays.asList(new ValidationError("name", "Nome inválido")));
+			}else if(name.length() < 3 || name.length() >= 50){
+				agentForm.errors().put("name", Arrays.asList(new ValidationError("name", "Nome deve conter 3 a 50 caracteres.")));
+			}
+
+			if(email == null || MyUtil.isEmailAddr(email) == false){
+				agentForm.errors().put("email", Arrays.asList(new ValidationError("email", "Email inválido.")));
+			}else if(exists(email)){
+				agentForm.errors().put("email", Arrays.asList(new ValidationError("email", "Email já está em uso")));
+			}
+
+			if(username == null){
+				agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username inválido.")));
+			}else if(username.length() < 3 || username.length() >= 30){
+				agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username deve conter 3 a 30 caracteres.")));
+			}else if(exists(username)){
+				agentForm.errors().put("username", Arrays.asList(new ValidationError("username", "Username já está em uso.")));
+			}
+
+			if(password == null){
+				agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha inválido.")));
+			}else if(password.length() < 6){
+				agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve ter no mínimo 6 caracteres.")));
+			}else{
+				boolean upperFound = false, hasNumber = false;
+				for (char c : password.toCharArray()) {
+					if (Character.isUpperCase(c)) {
+						upperFound = true;
+						break;
+					}
+				}
+				for (char c : password.toCharArray()) {
+					if (Character.isDigit(c)){
+						hasNumber = true;
+					}
+				}
+
+				if(upperFound && hasNumber){
+					agentForm.errors().put("password", Arrays.asList(new ValidationError("password", "Senha deve conter ao menos 1 caracter maiúsculo e 1 dígito.")));
+				}
+			}
+			return agentForm;
+		}else {
+			return null;
+		}
+	}
+
 	/**
 	 * Save a user no database
 	 * 
@@ -124,9 +181,27 @@ public final class UserService {
 	 * @return true if the user is persisted or false if JPA EM throws an
 	 *         exception.
 	 * */
-	public boolean save(Agent user) {
+	public boolean create(Agent user) {
 		try {
 			JPA.em().persist(user);
+		} catch (PersistenceException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Save a user no database
+	 * 
+	 * @param user
+	 *            The user Object built by binding the HTTP action parameters
+	 *            from the play framework
+	 * @return true if the user is persisted or false if JPA EM throws an
+	 *         exception.
+	 * */
+	public boolean delete(Agent user) {
+		try {
+			JPA.em().remove(user);
 		} catch (PersistenceException e) {
 			return false;
 		}
@@ -195,7 +270,6 @@ public final class UserService {
 	
 	public UserSession updateUsersNotificationInCache(UserSession userSession) {
 		List<AgentNotification> agentNotifications = getUnseenNotifications(userSession);
-		Logger.info(agentNotifications.size() + "");
 		userSession.setUnSeenNotis(agentNotifications);
 		return updateExistingUserSession(userSession);
 	}

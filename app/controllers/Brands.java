@@ -251,10 +251,15 @@ public class Brands extends Controller{
 					result.put("success", true);
 					result.put("available", true);
 					return ok(result);
+				}else{
+					result.put("success", false);
+					result.put("error", "Invalid hostname.");
+					return ok(result);
 				}
-
+			}else{
 				result.put("success", false);
-				result.put("error", "Invalid hostname.");
+				result.put("available", false);
+				result.put("error", "Usuário inválido.");
 				return ok(result);
 			}
 		}

@@ -47,6 +47,14 @@ public class Brand implements Comparable<Brand>{
 	@Column(nullable = false)
 	private boolean active = true;
 	
+	public Brand() {}
+	
+	public Brand(String name, String nameAddress, String phone) {
+		this.name = name;
+		this.nameAddress = nameAddress;
+		this.phone = phone;
+	}
+	
 	/** The mappedBy property defines which attribute in the UserBrandRole table is mapping the relationship
 	 *  @see UserBrandRole#brand
 	 * */
@@ -148,7 +156,9 @@ public class Brand implements Comparable<Brand>{
 	}
 
 	public void setNameAddress(String nameAddress) {
-		this.nameAddress = nameAddress;
+		if(nameAddress != null){
+			this.nameAddress = nameAddress.toLowerCase();
+		}
 	}
 
 	public String getDescription() {

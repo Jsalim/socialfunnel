@@ -1,4 +1,4 @@
-@(agentForm: Form[Agent])(agent: Agent)
+@(agentForm: Form[Agent])(agent: Agent)(brandForm: Form[Brand])(brand: Brand)
 
 <!DOCTYPE html>
 <html class="login-bg">
@@ -38,27 +38,26 @@
             <img src="@routes.Assets.at("img/logo.png")" class="logo" />
         </a>
     </div>
+    @if(flash().get("invitation") == null || flash().get("invitation").equals("")){
+    <form id="regform" class ="form-horizontal" method ="POST" action="@routes.Users.simpleRegister()">
+    }else{
     <form id="regform" class ="form-horizontal" method ="POST" action="@routes.Users.register()">
+    }
    		@if(flash().get("invitation") == null || flash().get("invitation").equals("")){ 
-	    	<div id="brand-form" class="row-fluid login-wrapper" style=" @if(agentForm != null && agentForm.hasErrors()){ display: none;}">
+	    	<div id="brand-form" class="row-fluid login-wrapper" style=" @if(brandForm != null && !brandForm.hasErrors()){ display: none;}">
 		        <div class="box">
 		            <div class="content-wrap">
 			                <h6>Cadastro</h6>
 			                
 							<div id="brand-name" class="control-group">
-			                	<input class="span12" type="text" name="brand" placeholder="Marca" value=""/>
+			                	<input class="span12" type="text" name="brandname" placeholder="Marca" value="@if(brand != null){@brand.getName()}"/>
 			                </div>
 			                <div id="brand-address" class="input-append control-group">
-			                	<input class="brand-subdomain" type="text" name="brandaddress" placeholder="subdomínio" value=""/><span class="add-on brand-domain">.socialfunnel.net</span>
+			                	<input class="brand-subdomain" type="text" name="brandaddress" placeholder="subdomínio" value="@if(brand != null){@brand.getNameAddress()}"/><span class="add-on brand-domain">.socialfunnel.net</span>
 			                </div>
 			                <div id="brand-phone" class="control-group">
-			                	<input class="span12" type="text" name="phone" placeholder="Telefone" value=""/>
+			                	<input class="span12" type="text" name="brandphone" placeholder="Telefone" value="@if(brand != null){@brand.getPhone()}"/>
 			                </div>
-			                <!-- 
-			                <div class="control-group @if(agentForm != null && agentForm.hasErrors() && agentForm.errors().containsKey("password")) { error }">
-			                	<input class="span12" type="password" name="password" placeholder="Senha"/>
-			                </div>
-			                 -->
 			                
 			                <div class="action">
 			                    <a id="next-step" class="btn-flat default signup" data-loading-text="Verificando...">PRÓXIMO</a>
@@ -71,7 +70,7 @@
 			    </div>
 		    </div>
     	}
-	    <div id="user-form" class="row-fluid login-wrapper" style=" @if(agentForm == null || !agentForm.hasErrors()){ display: none;}">
+	    <div id="user-form" class="row-fluid login-wrapper" style=" @if( (agentForm == null) || (brandForm != null && brandForm.hasErrors()) ){ display: none;}">
 	        <div class="box">
 	            <div class="content-wrap">
 		                <h6>Cadastro</h6>
@@ -138,7 +137,7 @@
   			  sticker: false,
   			  history: false,
   			  delay: 4000,
-  			  closer: false,
+  			  //closer: false,
   			  before_open: function(pnotify){
   			    pnotify.css({
   			      "top":"40px", 
@@ -148,17 +147,17 @@
   			}); 
     	}
     	
-    	function handleInvalidAddress(){
+    	function handleInvalidAddress(text){
     		$("#brand-address").addClass("error")
     		
     		$.pnotify({
-    			  text: "O subdomínio não pode ter números, caracteres especiais ou espaços.",
+    			  text: text,
     			  type: "error",
     			  width:"320px",
     			  sticker: false,
     			  history: false,
     			  delay: 4000,
-    			  closer: false,
+    			  //closer: false,
     			  before_open: function(pnotify){
     			    pnotify.css({
     			      "top":"40px", 
@@ -189,10 +188,13 @@
 				url: "@routes.Brands.brandNameAddressCheck()",
 				data: input,
 				success:function(data){
+					
 					if(data.success && data.available) {
 						handleValidAddress();
+					}else if(data.success == false && data.available == false){
+						handleInvalidAddress("O subdomínio escolhido já está sendo usado.");
 					}else{
-						handleInvalidAddress();
+						handleInvalidAddress("O subdomínio não pode ter números, caracteres especiais ou espaços.");
 					}
 				},
 				error:function(){
@@ -236,7 +238,8 @@
 	    			  sticker: false,
 	    			  history: false,
 	    			  delay: 4000,
-	    			  closer: false,
+	    			  //closer: false,
+	    			  animate_speed: 'fast',
 	    			  before_open: function(pnotify){
 	    			    pnotify.css({
 	    			      "top":"40px", 
@@ -250,6 +253,10 @@
     		$("#next-step").button('loading');
     		checkAddress();
     	})
+    	
+    	@if((brandForm != null && brandForm.hasErrors()) ){
+    		checkAddress();
+    	}
 	</script>
 </body>
 </html>

@@ -228,5 +228,9 @@ body {
 
 .ui-pnotify-text ul {margin: 0; list-style-type: none;}
 .ui-pnotify-text ul li{margin-bottom: -16px;}
+
+.ui-pnotify-closer{margin: -5px -20px 0 0;}
+.ui-pnotify-closer span.icon-remove{font-size: 15px}
+
 span.brand-domain{font-size: 15px!important;padding: 8px 6px 10px 7px!important;}
-input.brand-subdomain{width: 180px!important; height: 30px!important;}
+input.brand-subdomain{max-width: 180px!important; height: 30px!important; min-width: 40px!important;}
