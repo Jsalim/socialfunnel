@@ -24,7 +24,7 @@ object ApplicationBuild extends Build {
     "com.googlecode.linkedin-j" % "linkedin-j" % "1.0.416",
     "org.json"%"org.json" % "chargebee-1.0",
     "org.mongodb" % "mongo-java-driver" % "2.11.1",
-    "org.springframework.data" % "spring-data-mongodb" % "1.2.1.RELEASE",
+    "org.springframework.data" % "spring-data-mongodb" % "1.2.3.RELEASE",
     "cglib" % "cglib" % "3.0",
     "com.google.code.gson" % "gson" % "2.2.3",
     "commons-codec" % "commons-codec" % "1.7",
