@@ -33,7 +33,6 @@ public class UserSession {
 	@Transient
 	private List<AgentNotification> lastNotis = new ArrayList<AgentNotification>();
 	
-	
 	public Agent getUser() {
 		return user;
 	}
