@@ -1,8 +1,8 @@
-
-import java.net.ConnectException;
 import java.util.HashSet;
 
 import javax.persistence.EntityManager;
+
+import bootstrap.DS;
 
 import constants.Permissions;
 import constants.RoleName;
@@ -14,7 +14,6 @@ import play.Application;
 import play.GlobalSettings;
 import play.Logger;
 import play.Play;
-import play.api.UnexpectedException;
 import play.db.jpa.JPA;
 import play.libs.F.Promise;
 import play.libs.WS;
@@ -24,6 +23,7 @@ public class Global extends GlobalSettings {
 	@Override
 	public void onStart(Application arg0) {
 		checkAndCreateBasicRoles();
+		DS.initStore();
 		loadStates();
 	}
 

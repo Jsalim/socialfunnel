@@ -23,6 +23,7 @@ object ApplicationBuild extends Build {
     "com.google.api-client" % "google-api-client-parent" % "1.12.0-beta",
     "com.googlecode.linkedin-j" % "linkedin-j" % "1.0.416",
     "org.json"%"org.json" % "chargebee-1.0",
+    "org.springframework" % "spring-context" % "3.2.3.RELEASE",
     "org.mongodb" % "mongo-java-driver" % "2.11.1",
     "org.springframework.data" % "spring-data-mongodb" % "1.2.3.RELEASE",
     "redis.clients" % "jedis" % "2.1.0",

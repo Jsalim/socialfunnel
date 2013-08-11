@@ -24,6 +24,7 @@ public class UserSessionInterceptor extends Action.Simple{
 	public void before(Context ctx) throws NoUUIDException{
 		Session session = ctx.session();
 		UserSession userSession = userService.getUserSession(session);
+		userService.updateUserSessionState(userSession);
 		Logger.debug("UserSessionInterceptor.before: USER SESSION UUID - "+ userSession.getUUID() + "\n");
 	}
 	/**

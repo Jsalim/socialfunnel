@@ -15,6 +15,9 @@ import javax.persistence.Query;
 
 import org.joda.time.DateTime;
 
+import bootstrap.DS;
+import bootstrap.MongoConfig;
+
 import constants.Permissions;
 import constants.RoleName;
 
@@ -452,6 +455,13 @@ public final class UserService {
 			UserSession userSession, Long notificationId) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public void updateUserSessionState(UserSession userSession) {
+		if(MongoConfig.isOnline()){
+			userSession.setLastRequest(new Date());
+			DS.mop.save(userSession);
+		}
 	}
 
 }
