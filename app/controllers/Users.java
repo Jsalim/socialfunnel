@@ -148,7 +148,7 @@ public class Users extends Controller {
 				try{
 					brand = brandService.createBrand(brandName, null, brandAddress, agent, null, null, null);
 				}catch (Exception e){
-					Logger.error(e.getMessage());
+					e.printStackTrace();
 					userService.delete(user);
 					return badRequest(views.html.home.signup.render(null, null, null, null));
 				}

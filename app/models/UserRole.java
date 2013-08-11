@@ -6,6 +6,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 
 import play.db.jpa.JPA;
 import constants.Permissions;
+import constants.RoleName;
 
 @Entity(name = "roles")
 public class UserRole {
@@ -24,7 +27,8 @@ public class UserRole {
 	/*
 	 * Role name
 	 */
-	public String name;
+	@Enumerated(EnumType.STRING)
+	public RoleName name;
 
 	/*
 	 * Permission set given to the role
@@ -34,9 +38,8 @@ public class UserRole {
 	@Column(name = "permissions_id")
 	public Set<Permissions> permissions;
 
-	public static UserRole findByName(String name) {
-		UserRole role = (UserRole) JPA.em().createNativeQuery("SELECT * FROM roles r WHERE name = :nome", UserRole.class).setParameter("nome", name)
-				.getSingleResult();
+	public static UserRole findByName(RoleName name) {
+		UserRole role = (UserRole) JPA.em().createQuery("SELECT r FROM roles r WHERE name = :nome", UserRole.class).setParameter("nome", name).getSingleResult();
 		return role;
 	}
 

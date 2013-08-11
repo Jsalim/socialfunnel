@@ -19,6 +19,7 @@ import org.joda.time.format.DateTimeFormat;
 
 import constants.FilterTypes;
 import constants.Permissions;
+import constants.RoleName;
 import exceptions.InvalidParameterException;
 
 import play.data.Form;
@@ -99,7 +100,7 @@ public class BrandService {
 		UserBrandRole userBrandRole = new UserBrandRole();
 		userBrandRole.brand = brand;
 		userBrandRole.user = owner;
-		userBrandRole.role = UserRole.findByName("ADMIN");
+		userBrandRole.role = UserRole.findByName(RoleName.ADMIN);
 
 		Set<UserBrandRole> userBrandRoles = new HashSet<UserBrandRole>();
 		userBrandRoles.add(userBrandRole);

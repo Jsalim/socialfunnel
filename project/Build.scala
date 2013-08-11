@@ -25,6 +25,8 @@ object ApplicationBuild extends Build {
     "org.json"%"org.json" % "chargebee-1.0",
     "org.mongodb" % "mongo-java-driver" % "2.11.1",
     "org.springframework.data" % "spring-data-mongodb" % "1.2.3.RELEASE",
+    "redis.clients" % "jedis" % "2.1.0",
+    "org.springframework.data" % "spring-data-redis" % "1.0.5.RELEASE",
     "cglib" % "cglib" % "3.0",
     "com.google.code.gson" % "gson" % "2.2.3",
     "commons-codec" % "commons-codec" % "1.7",

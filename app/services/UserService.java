@@ -16,6 +16,7 @@ import javax.persistence.Query;
 import org.joda.time.DateTime;
 
 import constants.Permissions;
+import constants.RoleName;
 
 import exceptions.NoUUIDException;
 
@@ -400,7 +401,8 @@ public final class UserService {
 				UserBrandRole userBrandRole = new UserBrandRole();
 				userBrandRole.brand = brand;
 				userBrandRole.user = user;
-				userBrandRole.role = UserRole.findByName("AGENT");
+//				userBrandRole.role = UserRole.findByName("AGENT");
+				userBrandRole.role = UserRole.findByName(RoleName.AGENT);
 				userBrandRole.active = true;
 
 				JPA.em().persist(userBrandRole);
