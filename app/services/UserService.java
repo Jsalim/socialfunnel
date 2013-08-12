@@ -14,6 +14,9 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.joda.time.DateTime;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+
+import com.mongodb.MongoException;
 
 import bootstrap.DS;
 import bootstrap.MongoConfig;
@@ -51,7 +54,7 @@ public final class UserService {
 	/** static instance of the class called by the {@link #getInstance()} */
 	private static UserService instance = null;
 
-//	private static final EmailService emailService = EmailService.getInstance();
+	//	private static final EmailService emailService = EmailService.getInstance();
 
 	/**
 	 * Empty constructor to guarantee that this constructor can only be called
@@ -193,7 +196,7 @@ public final class UserService {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Save a user no database
 	 * 
@@ -271,7 +274,7 @@ public final class UserService {
 		Cache.set(userSession.getUUID() + "_user", userSession, Play.application().configuration().getInt("dasboard.cache.expiration"));
 		return (UserSession) Cache.get(userSession.getUUID() + "_user");
 	}
-	
+
 	public UserSession updateUsersNotificationInCache(UserSession userSession) {
 		List<AgentNotification> agentNotifications = getUnseenNotifications(userSession);
 		userSession.setUnSeenNotis(agentNotifications);
@@ -321,7 +324,7 @@ public final class UserService {
 					passwordReset = new PasswordReset(email, user, MyUtil.stringToMD5(email + new Date() + new Random().nextInt(Integer.MAX_VALUE)));
 				}
 
-//				emailService.resetEmail(passwordReset);
+				//				emailService.resetEmail(passwordReset);
 
 				JPA.em().persist(passwordReset);
 				return true;
@@ -404,7 +407,7 @@ public final class UserService {
 				UserBrandRole userBrandRole = new UserBrandRole();
 				userBrandRole.brand = brand;
 				userBrandRole.user = user;
-//				userBrandRole.role = UserRole.findByName("AGENT");
+				//				userBrandRole.role = UserRole.findByName("AGENT");
 				userBrandRole.role = UserRole.findByName(RoleName.AGENT);
 				userBrandRole.active = true;
 
@@ -457,10 +460,45 @@ public final class UserService {
 		return true;
 	}
 
-	public void updateUserSessionState(UserSession userSession) {
-		if(MongoConfig.isOnline()){
-			userSession.setLastRequest(new Date());
-			DS.mop.save(userSession);
+	public void validateDistributedSession(UserSession userSession) {
+		Logger.warn("MY SESSION SESSION " + userSession.getUUID() + ": " + userSession.isValidSession() );
+
+		try{
+			Date date = new Date();
+			if(MongoConfig.isOnline()){
+				if(userSession.getAgentId() != null){
+					//DS.mop.remove(new BasicQuery("{ agentId : " + userSession.getAgentId() + " ,  UUID: {$ne: \"" + userSession.getUUID() + "\"}}"), UserSession.class);
+					UserSession us = DS.mop.findOne(new BasicQuery("{ agentId : " + userSession.getAgentId() + "}"), UserSession.class);
+
+					if(us != null && us.getLastRequest().after(userSession.getLastRequest()) && us.getUUID().equals(userSession.getUUID())){
+						userSession.setValidSession(false);
+						updateExistingUserSession(userSession);
+					}else{// save in mongoDB only if its a valid distributed sessuion;
+						userSession.setLastRequest(date);
+						DS.mop.save(userSession);
+					}
+				}
+			}else{
+				Logger.warn("Not using mongodb cache.");
+			}
+		}catch(RuntimeException e){
+			e.printStackTrace();
+			MongoConfig.setOnline(false);
+		}
+	}
+
+	public void updateDistributedSession(UserSession userSession) {
+		try{
+			Date date = new Date();
+			if(MongoConfig.isOnline()){
+				userSession.setLastRequest(date);
+				DS.mop.save(userSession);
+			}else{
+				Logger.warn("Not using mongodb cache.");
+			}
+		}catch(RuntimeException e){
+			e.printStackTrace();
+			MongoConfig.setOnline(false);
 		}
 	}
 

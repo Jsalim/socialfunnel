@@ -24,6 +24,8 @@ public class UserSession {
 
 	private Date lastRequest = new Date();
 	
+	private boolean validSession = true;
+	
 	@Transient
 	private Agent user;
 	@Transient
@@ -40,7 +42,7 @@ public class UserSession {
 	public void setUser(Agent user) {
 		this.user = user;
 		this.agentId = this.user.getId();
-		this.id = this.agentId+"";
+		this.id = this.agentId+"";// important!!
 	}
 
 	public String getUUID() {
@@ -51,7 +53,7 @@ public class UserSession {
 		this.UUID = uuid;
 	}
 
-	public Long getId() {
+	public Long getAgentId() {
 		return agentId;
 	}
 
@@ -83,6 +85,14 @@ public class UserSession {
 
 	public void setLastRequest(Date lastRequest) {
 		this.lastRequest = lastRequest;
+	}
+
+	public boolean isValidSession() {
+		return validSession;
+	}
+
+	public void setValidSession(boolean validSession) {
+		this.validSession = validSession;
 	}
 
 }

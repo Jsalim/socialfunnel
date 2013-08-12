@@ -30,7 +30,8 @@ input.search{
 }
 
 .header{
-	margin-bottom: 60px;
+	/* margin-bottom: 60px; misael */
+	margin-bottom: 30px; 
 }
 .header h1,
 .header h2,
@@ -399,7 +400,8 @@ input.search{
 
 #pad-wrapper {
 	padding: 0px 25px;
-	margin-top: 55px;
+	/* margin-top: 55px; misael */
+	margin-top: 35px
 }
 #pad-wrapper h4 {
 	margin: 0 0 0 20px;
@@ -575,5 +577,7 @@ input.search{
 	src: url('../font/HelveticaNeue-Condensed.otf');
 	font-weight:400;
 }
+
+.navbar-inner span.tab-name{font-size:14px!important}
 
 .helvetica {font-family: HelveticaNeue-condensed, sans-serif!important; text-transform:uppercase; }

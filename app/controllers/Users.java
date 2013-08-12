@@ -26,6 +26,7 @@ import exceptions.InvalidParameterException;
 import exceptions.NoUUIDException;
 
 import play.Logger;
+import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.data.validation.Validation;
@@ -203,6 +204,13 @@ public class Users extends Controller {
 	public static Result getNotifications(){
 		try {
 			UserSession userSession = userService.getUserSession(session());
+			
+			if(userSession.isValidSession() == false){
+				String uuid = session("uuid");
+				Cache.remove(uuid + "_user");
+				session().clear();
+				return unauthorized();
+			}
 
 			ObjectNode result = Json.newObject();
 			ArrayList<String> errors = new ArrayList<String>();

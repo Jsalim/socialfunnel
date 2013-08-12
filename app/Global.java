@@ -2,6 +2,8 @@ import java.util.HashSet;
 
 import javax.persistence.EntityManager;
 
+import jobs.JobScheduler;
+
 import bootstrap.DS;
 
 import constants.Permissions;
@@ -24,6 +26,9 @@ public class Global extends GlobalSettings {
 	public void onStart(Application arg0) {
 		checkAndCreateBasicRoles();
 		DS.initStore();
+		
+//		JobScheduler.getInstance().startTestJob();
+		
 		loadStates();
 	}
 

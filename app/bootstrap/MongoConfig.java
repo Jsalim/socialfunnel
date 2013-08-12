@@ -32,6 +32,10 @@ public class MongoConfig extends AbstractMongoConfiguration{
 	public static boolean isOnline(){
 		return online;
 	}
+
+	public static void setOnline(boolean online) {
+		MongoConfig.online = online;
+	}
 	
 	public static String testCon(){
 		try { // try to connect to server and get database names. This is a way to force connection timeout synchronously

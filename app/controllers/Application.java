@@ -5,6 +5,7 @@ import interceptors.DefaultInterceptor;
 import interceptors.UserSessionInterceptor;
 
 import java.net.MalformedURLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map;
 import models.Agent;
 
 import org.codehaus.jackson.node.ObjectNode;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 
 import play.Logger;
 import play.Play;
@@ -29,6 +31,10 @@ import services.UserService;
 import util.MyUtil;
 import util.UserSession;
 
+import bootstrap.DS;
+import bootstrap.MongoConfig;
+
+import com.mongodb.MongoException;
 //import com.dataanalytics.DataAnalyticsClient;
 //import com.dataanalytics.DataAnalyticsFactory;
 //import com.dataanalytics.exceptions.DataAnalyticsException;
@@ -46,7 +52,7 @@ public class Application extends Controller {
 
 	/** singleton instance of {@link UserService} */
 	private static final UserService userService = UserService.getInstance();
-//	private static final BrandService brandService = BrandService.getInstance();
+	//	private static final BrandService brandService = BrandService.getInstance();
 
 	public static Result index() {
 		return redirect("/home");
@@ -66,7 +72,7 @@ public class Application extends Controller {
 		 * method should return a string description of the error.
 		 * */
 		public String validate() {
-			
+
 			String message = Messages.get("user.login.failed");
 			if (username != null && password != null) {
 				Agent user = userService.findByUsername(username);
@@ -80,6 +86,7 @@ public class Application extends Controller {
 							userService.updateLastLogin(userSession);
 							userService.incrementLoginCounter(userSession);
 							userService.updateExistingUserSession(userSession);
+							userService.updateDistributedSession(userSession);
 
 						} catch (NoUUIDException e) {
 							e.printStackTrace();
@@ -133,14 +140,14 @@ public class Application extends Controller {
 		DynamicForm params = form().bindFromRequest();
 
 		Form<Login> loginForm = Form.form(Login.class).bind(params.data());
-		
+
 		if (loginForm.hasErrors()) {
 			flash("loginError", "error");
 			return badRequest(views.html.home.signin.render(loginForm.field("username").value(), false));
 		} else {
 			session("username", loginForm.get().username);
 			return redirect(routes.Dashboard.gate());
-//			return ok("OK");
+			//			return ok("OK");
 		}
 	}
 
@@ -170,17 +177,17 @@ public class Application extends Controller {
 		}
 	}
 
-//	public static Result doTest() {
-//		String address = Play.application().configuration().getString("das.address");
-//		try {
-//			DataAnalyticsClient dac = DataAnalyticsFactory.getInstance(address, "");
-//			@SuppressWarnings("unchecked")
-//			List<com.restfb.types.Post> posts = (List<Post>) dac.requestList("search", com.restfb.types.Post.class, "GET", Parameter.with("q", "dilma"));
-//
-//		} catch (MalformedURLException | DataAnalyticsException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return ok();
-//	}
+	//	public static Result doTest() {
+	//		String address = Play.application().configuration().getString("das.address");
+	//		try {
+	//			DataAnalyticsClient dac = DataAnalyticsFactory.getInstance(address, "");
+	//			@SuppressWarnings("unchecked")
+	//			List<com.restfb.types.Post> posts = (List<Post>) dac.requestList("search", com.restfb.types.Post.class, "GET", Parameter.with("q", "dilma"));
+	//
+	//		} catch (MalformedURLException | DataAnalyticsException e) {
+	//			e.printStackTrace();
+	//		}
+	//
+	//		return ok();
+	//	}
 }

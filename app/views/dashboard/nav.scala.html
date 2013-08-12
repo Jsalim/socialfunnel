@@ -13,19 +13,19 @@
 			<div class="">
                 <ul class="nav">
                     <li @if(tab.equals("index")){ class="active"}>
-						<a href="@routes.Dashboard.index()"><i class="icon-large icon-home"></i></a>
+						<a href="@routes.Dashboard.index()"><span class="tab-name"><i class="icon-large icon-home"></i></span></a>
 		            </li>
 		            <li @if(tab.equals("applications")){ class="active"}>
-						<a href="@routes.Dashboard.apps()"><!-- <i class="icon-large icon-sign-blank"></i>  -->APLICATIVOS</a>
+						<a href="@routes.Dashboard.apps()"><!-- <i class="icon-large icon-sign-blank"></i>  --><span class="tab-name">APLICATIVOS</span></a>
 		            </li>
 		             <li @if(tab.equals("interactions")){ class="active"}>
-                		<a href="@routes.Dashboard.interactions()"><!-- <i class="icon-large icon-comments"></i> -->INTERAÇÕES</a>
+                		<a href="@routes.Dashboard.interactions()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">INTERAÇÕES</span></a>
                		</li>
                		<li @if(tab.equals("helpdesk")){ class="active"}>
-                		<a href="@routes.Dashboard.helpdesk()"><!-- <i class="icon-large icon-group"></i>  -->ATENDIMENTO</a>
+                		<a href="@routes.Dashboard.helpdesk()"><!-- <i class="icon-large icon-group"></i>  --><span class="tab-name">ATENDIMENTO</span></a>
                 	</li>
                     <li @if(tab.equals("reports")){ class="active"}>
-                		<a href="@routes.Dashboard.reports()"><!-- <i class="icon-large icon-bar-chart"></i>  -->RELATÓRIOS</a>
+                		<a href="@routes.Dashboard.reports()"><!-- <i class="icon-large icon-bar-chart"></i>  --><span class="tab-name">RELATÓRIOS</span></a>
                 	</li>
                 </ul>
             </div>
@@ -166,6 +166,21 @@
             </ul>            
         </div>
     </div>
+    
+    
+    <div id="session-close" class="modal hide fade">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>Sessão experirada</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p style="font-size: 14px;">Sua sessão expirou. Isso pode ter acontecido porque você iniciou uma sessão em outro browser.</p>
+	  </div>
+	  <div class="modal-footer">
+	    <a href="#" class="btn-flat" onclick="$('#session-close').modal('hide')">Fechar</a>
+	  </div>
+	</div>
+    
     <!-- end navbar -->
     <script type="text/javascript">
 	          		/* function  openQuickSearch(){
@@ -190,14 +205,17 @@
            							$("#alert-counter").html("").hide();	
            						}
               				},
-              				error: function(){
-              					
+              				error: function(xhr, ajaxOptions, thrownError) {
+              					console.log(xhr.status);
+              			        if(xhr.status == 401){
+              			        	$("#session-close").modal();
+              			        }
               				},
 							complete:function(){
 																
 							}
               			});
-              			setTimeout(getUnseenNotifications, 10000)
+              			setTimeout(getUnseenNotifications, 5000)
               		}
 	              	
 	              	function notificationsAlert(){
@@ -224,8 +242,11 @@
 	              						}
 	              					}
 	              				},
-	              				error: function(){
-	              					
+	              				error: function(xhr, ajaxOptions, thrownError) {
+	              					console.log(xhr.status);
+	              			        if(xhr.status == 401){
+	              			        	$("#session-close").modal();
+	              			        }
 	              				},
 								complete:function(){
 									$("#notification-loader").hide();																	
@@ -235,7 +256,10 @@
               		}
 	              	
 	              	$(document).ready(function(){
+	              		setTimeout(getUnseenNotifications, 5000)
 	              		
-	              		setTimeout(getUnseenNotifications, 10000)
+	              		$("#session-close").on("hidden", function(){
+	              			window.location="@routes.Application.logout()";
+	              		});
 	              	});
        	</script>

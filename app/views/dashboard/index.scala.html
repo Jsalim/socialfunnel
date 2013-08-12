@@ -2,62 +2,62 @@
 
 @header = {
 	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/chart-showcase.css")">
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/lib/morris.css")">
 }
 
 @content = {
 
 	@nav("index", userSession)
 
-	<!-- main container -->
-    <div class="content" style="margin-left: 0">
+	<div class="container-fluid">
+		<div id="main-stats">
+            <div class="row-fluid stats-row">
+                <div class="span3 stat">
+                    <div class="data">
+                        <span class="number">2457</span>
+                        visits
+                    </div>
+                    <span class="date">Today</span>
+                </div>
+                <div class="span3 stat">
+                    <div class="data">
+                        <span class="number">3240</span>
+                        users
+                    </div>
+                    <span class="date">February 2013</span>
+                </div>
+                <div class="span3 stat">
+                    <div class="data">
+                        <span class="number">322</span>
+                        orders
+                    </div>
+                    <span class="date">This week</span>
+                </div>
+                <div class="span3 stat last">
+                    <div class="data">
+                        <span class="number">$2,340</span>
+                        sales
+                    </div>
+                    <span class="date">last 30 days</span>
+                </div>
+            </div>
+         </div>
+	</div>
 
-<!--         settings changer
+	<!-- main container -->
+    <div class="content wide-content">
+
+        <!-- settings changer -->
         <div class="skins-nav">
             <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default skin</span>
+                <span class="icon"></span><span class="text">Default</span>
             </a>
             <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
                 <span class="icon"></span><span class="text">Dark skin</span>
             </a>
         </div>
- -->
+
         <div class="container-fluid">
-
-            <!-- upper main stats -->
-            <div id="main-stats">
-                <div class="row-fluid stats-row">
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">2457</span>
-                            visits
-                        </div>
-                        <span class="date">Today</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">3240</span>
-                            users
-                        </div>
-                        <span class="date">February 2013</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">322</span>
-                            orders
-                        </div>
-                        <span class="date">This week</span>
-                    </div>
-                    <div class="span3 stat last">
-                        <div class="data">
-                            <span class="number">$2,340</span>
-                            sales
-                        </div>
-                        <span class="date">last 30 days</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end upper main stats -->
-
             <div id="pad-wrapper">
                 <!-- morris stacked chart -->
                 <div class="row-fluid">
@@ -129,7 +129,7 @@
             </div>
         </div>
     </div>
-   
+    <!-- end main container -->
 }
 
 @footer = {
@@ -142,7 +142,7 @@
 
     <!-- build the charts -->
     <script type="text/javascript">
-
+	function loadGraphs(){
         // Morris Bar Chart
         Morris.Bar({
             element: 'hero-bar',
@@ -222,9 +222,17 @@
             hideHover: 'auto',
             lineColors: ["#81d5d9", "#a6e182", "#67bdf8"]
           });
+		}
 
-
-
+		loadGraphs();
+		$(window).on('resize', function(){
+			$("#hero-bar").html("");
+			$("#hero-donut").html("");
+			$("#hero-graph").html("");
+			$("#hero-area").html("");
+			loadGraphs();
+		}); 
+	
         // Build jQuery Knobs
         $(".knob").knob();
 
