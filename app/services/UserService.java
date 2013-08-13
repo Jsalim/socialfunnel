@@ -470,7 +470,7 @@ public final class UserService {
 					//DS.mop.remove(new BasicQuery("{ agentId : " + userSession.getAgentId() + " ,  UUID: {$ne: \"" + userSession.getUUID() + "\"}}"), UserSession.class);
 					UserSession us = DS.mop.findOne(new BasicQuery("{ agentId : " + userSession.getAgentId() + "}"), UserSession.class);
 
-					if(us != null && us.getLastRequest().after(userSession.getLastRequest()) && us.getUUID().equals(userSession.getUUID())){
+					if(us != null && us.getLastRequest().after(userSession.getLastRequest()) && !us.getUUID().equals(userSession.getUUID())){
 						userSession.setValidSession(false);
 						updateExistingUserSession(userSession);
 					}else{// save in mongoDB only if its a valid distributed sessuion;
