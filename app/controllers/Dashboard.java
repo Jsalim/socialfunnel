@@ -232,7 +232,25 @@ public class Dashboard extends Controller {
 			return internalServerError(e.getJson());
 		}
 	}
-//
+
+	@Transactional(readOnly = true)
+	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
+	public static Result settings() {
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			// the brand address name passed by the frontend
+			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
+				return ok(views.html.dashboard.settingspanel.render(userSession, userSession.getBrand()));
+			}else{ // else, if there is no parameter and no brand in cache
+				return redirect(controllers.landing.routes.Home.signin().url());
+			}
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
+	
 	/**
 	 * This view can only be called by an authenticated user and the user must have a UserBrandRole associated with that brand
 	 * /dashboard/index?id=

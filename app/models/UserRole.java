@@ -17,6 +17,10 @@ import play.db.jpa.JPA;
 import constants.Permissions;
 import constants.RoleName;
 
+/**
+ * This class represents the users role for the Brand
+ * @see {@link RoleName}
+ * */
 @Entity(name = "roles")
 public class UserRole {
 

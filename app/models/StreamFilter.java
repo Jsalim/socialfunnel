@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -18,6 +17,9 @@ import javax.persistence.ManyToOne;
 
 import constants.FilterTypes;
 
+/**
+ * Filters may be persisted for later visualization.
+ * */
 @Entity
 public class StreamFilter {
 
@@ -49,7 +51,6 @@ public class StreamFilter {
 	private String jsonMessageTypes = "{}";
 	@Lob
 	private String jsonChannels = "{}";
-
 	@Lob
 	private String jsonTerms = "{}";
 	

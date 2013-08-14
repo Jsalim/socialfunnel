@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 
 import constants.MediaChannels;
 
+/**
+ * A representation of a ticket.
+ * */
 @Entity
 public class Ticket {
 

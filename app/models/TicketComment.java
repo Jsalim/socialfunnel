@@ -16,6 +16,10 @@ import javax.persistence.ManyToOne;
 
 import constants.MediaChannels;
 
+/**
+ * A representation of a ticket comment for a ticket instance
+ * @see {@link Ticket} and {@link Agent} 
+ * */
 @Entity
 public class TicketComment {
 
@@ -23,10 +27,12 @@ public class TicketComment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	/** A ticket id reference*/
 	@JoinColumn(nullable = false, name = "ticket_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Ticket ticket;
 
+	/** ticket comment represented as a reply */
 	@JoinColumn(nullable = true, name = "reply_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TicketComment replyTo;
@@ -35,6 +41,7 @@ public class TicketComment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Agent from;
 
+	/** The channel medium */
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private MediaChannels channel;

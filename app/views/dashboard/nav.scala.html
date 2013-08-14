@@ -145,14 +145,14 @@
 	                   	<li class="divider"></li>
                        	<li><a href="@routes.Dashboard.gate()?newbrand=true">Nova Marca</a></li>
                        	<li class="divider"></li>
-                       	<li><a href="">Configurações</a></li>
-                       	<li><a href="">Logout</a></li>
+                       	<li><a href="@routes.Dashboard.settings()">Configurações</a></li>
+                       	<li><a href="@routes.Application.logout()">Logout</a></li>
                        	<li class="divider"></li>
                    		<li><a href="#">Suporte</a></li>
                    </ul>
                 </li>
-                <li class="settings hidden-phone">
-                    <a href="personal-info.html" role="button">
+                <li class="settings hidden-phone @if(tab.equals("settings")){ active }">
+                    <a href="@routes.Dashboard.settings()" role="button">
                         <i class="icon-cog"></i>
                     </a>
                 </li>
@@ -167,19 +167,20 @@
         </div>
     </div>
     
-    
+    <!-- session-close modal -->
     <div id="session-close" class="modal hide fade">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	    <h3>Sessão experirada</h3>
 	  </div>
 	  <div class="modal-body">
-	    <p style="font-size: 14px;">Sua sessão expirou. Isso pode ter acontecido porque você iniciou uma sessão em outro browser.</p>
+	    <p style="font-size: 14px;">Sua sessão expirou. Verifique se outra sessão foi aberta para seu usuário.</p>
 	  </div>
 	  <div class="modal-footer">
-	    <a href="#" class="btn-flat" onclick="$('#session-close').modal('hide')">Fechar</a>
+	    <a href="#" class="btn-flat" onclick="$('#session-close').modal('hide')" style="font-size: 14px;">Fechar</a>
 	  </div>
 	</div>
+	<!-- end of session close modal -->
     
     <!-- end navbar -->
     <script type="text/javascript">
@@ -192,21 +193,23 @@
 	              			$(this).attr("src", "http://png-1.findicons.com/files/icons/1072/face_avatars/300/i04.png");
               			}
               		}); */
-	              	
+              		
+	              	// remotely get unseen notifications for count pupose
 	              	function getUnseenNotifications(){
               			$.ajax({
               				url:'@routes.Users.getNotifications()?unseen=true',
               				contentType: 'application/json',
               				success: function(data){
-              					console.log(data)
            						if(data.success && data.unseenNotification.length > 0){
+           							// get notifications unseen notifications count and show the number of unseen notifications
            							$("#alert-counter").html(data.unseenNotification.length).show();
            						}else{
+           							// hide notifications
            							$("#alert-counter").html("").hide();	
            						}
               				},
               				error: function(xhr, ajaxOptions, thrownError) {
-              					console.log(xhr.status);
+              					// if user is unauthorized, open the #session-close modal
               			        if(xhr.status == 401){
               			        	$("#session-close").modal();
               			        }
@@ -215,6 +218,7 @@
 																
 							}
               			});
+              			// recursive timeout recusively by calling getUnseenNotifications on timeout callback 
               			setTimeout(getUnseenNotifications, 5000)
               		}
 	              	
@@ -243,12 +247,13 @@
 	              					}
 	              				},
 	              				error: function(xhr, ajaxOptions, thrownError) {
-	              					console.log(xhr.status);
-	              			        if(xhr.status == 401){
+	              					// if user is not authenticated... 
+	              			        if(xhr.status == 401){ 
 	              			        	$("#session-close").modal();
 	              			        }
 	              				},
 								complete:function(){
+									// hide the notification loader
 									$("#notification-loader").hide();																	
 								}
 	              			});
@@ -257,7 +262,7 @@
 	              	
 	              	$(document).ready(function(){
 	              		setTimeout(getUnseenNotifications, 5000)
-	              		
+	              		// when session modal notification is closed, logout the
 	              		$("#session-close").on("hidden", function(){
 	              			window.location="@routes.Application.logout()";
 	              		});

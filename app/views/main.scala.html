@@ -46,7 +46,7 @@
     <!-- end of content -->
         
     <!-- scripts -->
-    
+    <script src="@routes.Assets.at("js/ajaxscript.js")"></script>
     <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
     <script src="@routes.Assets.at("js/jquery-ui-1.10.2.custom.min.js")"></script>
     <!-- knob -->
@@ -90,7 +90,7 @@
             var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
             var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
 
-            var plot = $.plot($("#statsChart"),
+            /* var plot = $.plot($("#statsChart"),
                 [ { data: visits, label: "Signups"},
                  { data: visitors, label: "Visits" }], {
                     series: {
@@ -132,7 +132,7 @@
                         font: {size:12, color: "#9da3a9"}
                     }
                  });
-
+ */
             function showTooltip(x, y, contents) {
                 $('<div id="tooltip">' + contents + '</div>').css( {
                     position: 'absolute',

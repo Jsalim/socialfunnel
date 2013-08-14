@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -57,6 +58,12 @@ public class Agent {
 
 	@Column(nullable = false)
 	private int loginCounter = 0;
+	
+	@Column(nullable = true)
+	private String phone;
+	
+	@Lob
+	private String details;
 
 	/** The mappedBy property defines which attribute in the UserBrandRole table is mapping the relationship
 	 *  @see UserBrandRole#user
@@ -216,5 +223,17 @@ public class Agent {
 	@Override
 	public int hashCode() {
 		return username.hashCode() * 31;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
 	}
 }
