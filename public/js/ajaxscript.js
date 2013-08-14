@@ -3,8 +3,6 @@
 		var source = $(this).attr("data-source");
 		var target = $(this).attr("data-target");
 		
-		console.log(source + " " + target);
-		
 		if (source == null)
 			source = $(this).attr("href");
 		if (source != null && target != null) {
