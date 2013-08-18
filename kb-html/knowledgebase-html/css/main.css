@@ -33,7 +33,8 @@ blockquote p {
 
 /* Header - Logo and Nav ---------------------------------------------------------------------------------------------*/
 .header-wrapper {
-  background-color: #3b4348;
+  /* background-color: #3b4348; */
+  background-color: #2C3742;
   width: 100%;
   height: auto;
 }
@@ -141,11 +142,12 @@ span.tag-line {
 
 /* Header - Search ---------------------------------------------------------------------------------------------------*/
 .search-area-wrapper {
-  background: #353b65 url("../images/main-bg.jpg") center top no-repeat;
+  /* background: #353b65 url("../images/main-bg.jpg") center top no-repeat; */
+  background-color: #ccc;
   background-size: 100%;
-  min-height: 279px;
+  /*min-height: 279px;*/
   height: auto !important;
-  height: 279px;
+  /*height: 279px;*/
 }
 .search-area-wrapper .search-area {
   padding: 50px 0;
@@ -169,7 +171,8 @@ p.search-tag-line {
 }
 
 form.search-form {
-  margin: 40px 0 0;
+  /*margin: 40px 0 0;*/
+  margin: 0;
   text-align: center;
 }
 form.search-form .input-common, form.search-form input.search-term, form.search-form input.search-btn {
@@ -181,11 +184,12 @@ form.search-form .input-common, form.search-form input.search-term, form.search-
   vertical-align: bottom;
 }
 form.search-form input.search-term {
-  font-size: 14px;
-  height: 24px;
+  font-size: 16px;
+ /* height: 24px;*/
   line-height: 24px;
-  padding: 12px;
-  width: 72%;
+ /* padding: 12px;*/
+  padding: 10px;
+  width: 65%;
   color: #858c91;
   margin-right: 10px;
   margin-bottom: 0;
@@ -567,6 +571,7 @@ ul.articles li.article-entry:last-child {
   margin-bottom: 10px;
 }
 .article-entry .like-count {
+  cursor: pointer;
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -901,7 +906,8 @@ input[type=text].error,
 /* Footer ------------------------------------------------------------------------------------------------------------*/
 #footer-wrapper {
   width: 100%;
-  background: url("../images/footer-bg.png");
+  /* background: url("../images/footer-bg.png"); */
+  background-color: #2C3742
 }
 #footer-wrapper > #footer {
   padding: 20px 35px;
@@ -975,7 +981,7 @@ input[type=text].error,
 }
 
 #footer-bottom-wrapper {
-  background-color: #353c41;
+  /* background-color: #353c41; */
   width: 100%;
 }
 #footer-bottom-wrapper > #footer-bottom {
@@ -986,6 +992,7 @@ input[type=text].error,
 }
 
 #footer-bottom .copyright {
+  color: #ddd;
   margin: 5px 0 10px;
 }
 #footer-bottom .social-nav {
@@ -1346,9 +1353,9 @@ a#scroll-top:hover {
   /* Search Area */
   .search-area-wrapper {
     background-size: auto;
-    min-height: 240px;
+    /*min-height: 240px;*/
     height: auto !important;
-    height: 240px;
+    /*height: 240px;*/
   }
   .search-area-wrapper .search-area {
     padding: 20px 0;

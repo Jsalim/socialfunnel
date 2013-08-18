@@ -18,8 +18,7 @@
                 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
                 <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-                <!-- Style Sheet-->
-                <link rel="stylesheet" href="style.css"/>
+				<link rel="stylesheet" href="style.css"/>
                 <link rel='stylesheet' id='bootstrap-css-css'  href='css/bootstrap.css' type='text/css' media='all' />
                 <link rel='stylesheet' id='responsive-css-css'  href='css/bootstrap-responsive.css' type='text/css' media='all' />
 				<link rel='stylesheet' id='override-css-css'  href='css/bootstrap-overrides.css' type='text/css' media='all' />
@@ -27,9 +26,11 @@
                 <link rel='stylesheet' id='main-css-css'  href='css/main.css?ver=1.0' type='text/css' media='all' />
 				<link rel='stylesheet' id='override-css-css'  href='css/ui-elements.css' type='text/css' media='all' />
 				<link rel='stylesheet' id='elements-css-css'  href='css/elements.css' type='text/css' media='all' />
+				
+				
                 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
                 <!--[if lt IE 9]>
-                <script src="js/html5.js"></script>
+                 <script src="js/html5.js"></script>
                 <![endif]-->
 
         </head>
@@ -47,7 +48,6 @@
                                                 <a href="index.html"  title="Knowledge Base Theme">
                                                         <img src="images/logo.png" alt="Knowledge Base Theme">
                                                 </a>
-                                                <span class="tag-line">Premium HTML Template</span>
                                         </div>
 
 
@@ -55,9 +55,9 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li class="current-menu-item"><a href="index.html">Home</a></li>
+                                                                <li><a href="index.html">Home</a></li>
                                                                 <li><a href="home-categories-description.html">Home 2</a></li>
-                                                                <li><a href="home-categories-articles.html">Home 3</a></li>
+                                                                <li class="current-menu-item"><a href="home-categories-articles.html">Home 3</a></li>
                                                                 <li><a href="articles-list.html">Articles List</a></li>
                                                                 <li><a href="faq.html">FAQs</a></li>
                                                                 <li><a href="#">Skins</a>
@@ -89,11 +89,9 @@
                 <!-- Start of Search Wrapper -->
                 <div class="search-area-wrapper">
                         <div class="search-area container">
-                              
                                 <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
                                         <input class="search-term required" type="text" id="s" name="s" placeholder="Type your search terms here" title="* Please enter a search term!" />
-                                        <!-- <input class="search-btn" type="submit" value="Search" /> -->
-										<button class="btn-flat btn-large">Search</button>
+                                        <button class="search-btn btn-flat btn-large" type="submit" value="Search">PESQUISAR</button>
                                         <div id="search-error-container"></div>
                                 </form>
                         </div>
@@ -108,81 +106,180 @@
                                         <!-- start of page content -->
                                         <div class="span8 page-content">
 
-                                                <!-- Basic Home Page Template -->
+                                                <div class="row home-listing-area">
+                                                        <div class="span8">
+                                                                <h2>Categories</h2>
+                                                        </div>
+                                                </div>
+
                                                 <div class="row separator">
+
                                                         <section class="span4 articles-list">
-                                                                <h3>Featured Articles</h3>
+                                                                <h3><a href="single.html">WordPress for Beginners</a> <span>(4)</span></h3>
                                                                 <ul class="articles">
-                                                                        <li class="article-entry standard">
-                                                                                <h4><a href="single.html">Integrating WordPress with Your Website</a></h4>
-                                                                                <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
-                                                                                <span class="like-count">66</span>
+                                                                        <li class="article-entry image">
+                                                                                <h4><a href="single.html">New To WordPress &#8211; Where to Start</a></h4>
+                                                                                <span class="article-meta">24 Feb, 2013 in <a href="single.html" title="View all posts in WordPress for Beginners">WordPress for Beginners</a></span>
+                                                                                <span class="like-count">1</span>
                                                                         </li>
                                                                         <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Introduction to Blogging</a></h4>
+                                                                                <span class="article-meta">23 Feb, 2013 in <a href="single.html" title="View all posts in WordPress for Beginners">WordPress for Beginners</a></span>
+                                                                                <span class="like-count">1</span>
+                                                                        </li>
+                                                                        <li class="article-entry image">
+                                                                                <h4><a href="single.html">First Steps With WordPress</a></h4>
+                                                                                <span class="article-meta">22 Feb, 2013 in <a href="single.html" title="View all posts in WordPress for Beginners">WordPress for Beginners</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Installing WordPress</a></h4>
+                                                                                <span class="article-meta">21 Feb, 2013 in <a href="single.html" title="View all posts in WordPress for Beginners">WordPress for Beginners</a></span>
+                                                                                <span class="like-count">1</span>
+                                                                        </li>
+                                                                </ul>
+                                                        </section>
+
+                                                        <section class="span4 articles-list">
+                                                                <h3><a href="single.html">Designing in WordPress</a> <span>(4)</span></h3>
+                                                                <ul class="articles">
+                                                                        <li class="article-entry image">
+                                                                                <h4><a href="single.html">Using Images</a></h4>
+                                                                                <span class="article-meta">25 Feb, 2013 in <a href="single.html" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
+                                                                                <span class="like-count">7</span>
+                                                                        </li>
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Designing Headers</a></h4>
+                                                                                <span class="article-meta">23 Feb, 2013 in <a href="single.html" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
+                                                                                <span class="like-count">1</span>
+                                                                        </li>
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Formatting Date and Time</a></h4>
+                                                                                <span class="article-meta">22 Feb, 2013 in <a href="single.html" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Developing a Colour Scheme</a></h4>
+                                                                                <span class="article-meta">21 Feb, 2013 in <a href="single.html" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                </ul>
+                                                        </section>
+
+                                                </div>
+
+                                                <div class="row separator">
+
+                                                        <section class="span4 articles-list">
+                                                                <h3><a href="single.html">Theme Development</a> <span>(4)</span></h3>
+                                                                <ul class="articles">
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">WordPress CSS Information and Techniques</a></h4>
+                                                                                <span class="article-meta">24 Feb, 2013 in <a href="single.html" title="View all posts in Theme Development">Theme Development</a></span>
+                                                                                <span class="like-count">1</span>
+                                                                        </li>
+                                                                        <li class="article-entry image">
+                                                                                <h4><a href="single.html">Stepping Into Templates</a></h4>
+                                                                                <span class="article-meta">23 Feb, 2013 in <a href="single.html" title="View all posts in Theme Development">Theme Development</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Creating Individual Pages</a></h4>
+                                                                                <span class="article-meta">22 Feb, 2013 in <a href="single.html" title="View all posts in Theme Development">Theme Development</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                        <li class="article-entry image">
+                                                                                <h4><a href="single.html">Uploading Files</a></h4>
+                                                                                <span class="article-meta">21 Feb, 2013 in <a href="single.html" title="View all posts in Theme Development">Theme Development</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                </ul>
+                                                        </section>
+
+                                                        <section class="span4 articles-list">
+
+                                                                <h3><a href="single.html">Website Dev</a> <span>(4)</span></h3>
+                                                                <ul class="articles">
+                                                                        <li class="article-entry standard">
                                                                                 <h4><a href="single.html">WordPress Site Maintenance</a></h4>
-                                                                                <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+                                                                                <span class="article-meta">24 Feb, 2013 in <a href="single.html" title="View all posts in Website Dev">Website Dev</a></span>
                                                                                 <span class="like-count">15</span>
                                                                         </li>
                                                                         <li class="article-entry video">
                                                                                 <h4><a href="single.html">Meta Tags in WordPress</a></h4>
-                                                                                <span class="article-meta">23 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+                                                                                <span class="article-meta">23 Feb, 2013 in <a href="single.html" title="View all posts in Website Dev">Website Dev</a></span>
                                                                                 <span class="like-count">8</span>
-                                                                        </li>
-                                                                        <li class="article-entry image">
-                                                                                <h4><a href="single.html">WordPress in Your Language</a></h4>
-                                                                                <span class="article-meta">22 Feb, 2013 in <a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
-                                                                                <span class="like-count">6</span>
                                                                         </li>
                                                                         <li class="article-entry standard">
                                                                                 <h4><a href="single.html">Know Your Sources</a></h4>
-                                                                                <span class="article-meta">22 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+                                                                                <span class="article-meta">22 Feb, 2013 in <a href="single.html" title="View all posts in Website Dev">Website Dev</a></span>
                                                                                 <span class="like-count">2</span>
                                                                         </li>
                                                                         <li class="article-entry standard">
                                                                                 <h4><a href="single.html">Validating a Website</a></h4>
-                                                                                <span class="article-meta">21 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+                                                                                <span class="article-meta">21 Feb, 2013 in <a href="single.html" title="View all posts in Website Dev">Website Dev</a></span>
                                                                                 <span class="like-count">3</span>
                                                                         </li>
                                                                 </ul>
                                                         </section>
 
+                                                </div>
+
+                                                <div class="row separator">
 
                                                         <section class="span4 articles-list">
-                                                                <h3>Latest Articles</h3>
+                                                                <h3><a href="single.html">WordPress Plugins</a> <span>(4)</span></h3>
                                                                 <ul class="articles">
-                                                                        <li class="article-entry standard">
-                                                                                <h4><a href="single.html">Integrating WordPress with Your Website</a></h4>
-                                                                                <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
-                                                                                <span class="like-count">66</span>
-                                                                        </li>
-                                                                        <li class="article-entry standard">
-                                                                                <h4><a href="single.html">Using Javascript</a></h4>
-                                                                                <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
-                                                                                <span class="like-count">18</span>
-                                                                        </li>
-                                                                        <li class="article-entry image">
-                                                                                <h4><a href="single.html">Using Images</a></h4>
-                                                                                <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
-                                                                                <span class="like-count">7</span>
-                                                                        </li>
                                                                         <li class="article-entry video">
                                                                                 <h4><a href="single.html">Using Video</a></h4>
-                                                                                <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in WordPress Plugins">WordPress Plugins</a></span>
+                                                                                <span class="article-meta">24 Feb, 2013 in <a href="single.html" title="View all posts in WordPress Plugins">WordPress Plugins</a></span>
                                                                                 <span class="like-count">7</span>
                                                                         </li>
                                                                         <li class="article-entry standard">
-                                                                                <h4><a href="single.html">WordPress Site Maintenance</a></h4>
-                                                                                <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
-                                                                                <span class="like-count">15</span>
+                                                                                <h4><a href="single.html">Photoblogs and Galleries</a></h4>
+                                                                                <span class="article-meta">23 Feb, 2013 in <a href="single.html" title="View all posts in WordPress Plugins">WordPress Plugins</a></span>
+                                                                                <span class="like-count">2</span>
+                                                                        </li>
+                                                                        <li class="article-entry video">
+                                                                                <h4><a href="single.html">Plugin Resources</a></h4>
+                                                                                <span class="article-meta">22 Feb, 2013 in <a href="single.html" title="View all posts in WordPress Plugins">WordPress Plugins</a></span>
+                                                                                <span class="like-count">1</span>
                                                                         </li>
                                                                         <li class="article-entry standard">
-                                                                                <h4><a href="single.html">WordPress CSS Information and Techniques</a></h4>
-                                                                                <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Theme Development">Theme Development</a></span>
+                                                                                <h4><a href="single.html">Managing Plugins</a></h4>
+                                                                                <span class="article-meta">21 Feb, 2013 in <a href="single.html" title="View all posts in WordPress Plugins">WordPress Plugins</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                </ul>
+                                                        </section>
+
+                                                        <section class="span4 articles-list">
+                                                                <h3><a href="single.html">Advanced Techniques</a> <span>(4)</span></h3>
+                                                                <ul class="articles">
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Using Javascript</a></h4>
+                                                                                <span class="article-meta">25 Feb, 2013 in <a href="single.html" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
+                                                                                <span class="like-count">18</span>
+                                                                        </li>
+                                                                        <li class="article-entry video">
+                                                                                <h4><a href="single.html">Editing Files</a></h4>
+                                                                                <span class="article-meta">24 Feb, 2013 in <a href="single.html" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
                                                                                 <span class="like-count">1</span>
+                                                                        </li>
+                                                                        <li class="article-entry standard">
+                                                                                <h4><a href="single.html">Importing Content</a></h4>
+                                                                                <span class="article-meta">23 Feb, 2013 in <a href="single.html" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
+                                                                                <span class="like-count">0</span>
+                                                                        </li>
+                                                                        <li class="article-entry image">
+                                                                                <h4><a href="single.html">WordPress in Your Language</a></h4>
+                                                                                <span class="article-meta">22 Feb, 2013 in <a href="single.html" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
+                                                                                <span class="like-count">6</span>
                                                                         </li>
                                                                 </ul>
                                                         </section>
                                                 </div>
+
                                         </div>
                                         <!-- end of page content -->
 
@@ -212,25 +309,25 @@
                                                 <section class="widget">
                                                         <h3 class="title">Tags</h3>
                                                         <div class="tagcloud">
-                                                                <a href="#" class="btn-flat btn-small">basic</a>
-                                                                <a href="#" class="btn-flat btn-small">beginner</a>
-                                                                <a href="#" class="btn-flat btn-small">blogging</a>
-                                                                <a href="#" class="btn-flat btn-small">colour</a>
-                                                                <a href="#" class="btn-flat btn-small">css</a>
-                                                                <a href="#" class="btn-flat btn-small">date</a>
-                                                                <a href="#" class="btn-flat btn-small">design</a>
-                                                                <a href="#" class="btn-flat btn-small">files</a>
-                                                                <a href="#" class="btn-flat btn-small">format</a>
-                                                                <a href="#" class="btn-flat btn-small">header</a>
-                                                                <a href="#" class="btn-flat btn-small">images</a>
-                                                                <a href="#" class="btn-flat btn-small">plugins</a>
-                                                                <a href="#" class="btn-flat btn-small">setting</a>
-                                                                <a href="#" class="btn-flat btn-small">templates</a>
-                                                                <a href="#" class="btn-flat btn-small">theme</a>
-                                                                <a href="#" class="btn-flat btn-small">time</a>
-                                                                <a href="#" class="btn-flat btn-small">videos</a>
-                                                                <a href="#" class="btn-flat btn-small">website</a>
-                                                                <a href="#" class="btn-flat btn-small">wordpress</a>
+                                                                <a href="#" class="btn btn-mini">basic</a>
+                                                                <a href="#" class="btn btn-mini">beginner</a>
+                                                                <a href="#" class="btn btn-mini">blogging</a>
+                                                                <a href="#" class="btn btn-mini">colour</a>
+                                                                <a href="#" class="btn btn-mini">css</a>
+                                                                <a href="#" class="btn btn-mini">date</a>
+                                                                <a href="#" class="btn btn-mini">design</a>
+                                                                <a href="#" class="btn btn-mini">files</a>
+                                                                <a href="#" class="btn btn-mini">format</a>
+                                                                <a href="#" class="btn btn-mini">header</a>
+                                                                <a href="#" class="btn btn-mini">images</a>
+                                                                <a href="#" class="btn btn-mini">plugins</a>
+                                                                <a href="#" class="btn btn-mini">setting</a>
+                                                                <a href="#" class="btn btn-mini">templates</a>
+                                                                <a href="#" class="btn btn-mini">theme</a>
+                                                                <a href="#" class="btn btn-mini">time</a>
+                                                                <a href="#" class="btn btn-mini">videos</a>
+                                                                <a href="#" class="btn btn-mini">website</a>
+                                                                <a href="#" class="btn btn-mini">wordpress</a>
                                                         </div>
                                                 </section>
 
@@ -241,12 +338,13 @@
                 </div>
                 <!-- End of Page Container -->
 
+
                 <!-- Start of Footer -->
                 <footer id="footer-wrapper">
                         <div id="footer" class="container">
                                 <div class="row">
 
-                                        <div class="span3">
+                                        <div class="span4">
                                                 <section class="widget">
                                                         <h3 class="title">How it works</h3>
                                                         <div class="textwidget">
@@ -256,7 +354,7 @@
                                                 </section>
                                         </div>
 
-                                        <div class="span3">
+                                        <div class="span4">
                                                 <section class="widget"><h3 class="title">Categories</h3>
                                                         <ul>
                                                                 <li><a href="#" title="Lorem ipsum dolor sit amet,">Advanced Techniques</a> </li>
@@ -270,7 +368,7 @@
                                                 </section>
                                         </div>
 
-                                        <div class="span3">
+                                        <div class="span4">
                                                 <section class="widget">
                                                         <h3 class="title">Latest Tweets</h3>
                                                         <div id="twitter_update_list">
@@ -289,14 +387,6 @@
                                                                         template: "%text% <span>%time%</span>"
                                                                 });
                                                         </script>
-                                                </section>
-                                        </div>
-
-                                        <div class="span3">
-                                                <section class="widget">
-                                                        <h3 class="title">Flickr Photos</h3>
-                                                        <div class="flickr-photos" id="basicuse">
-                                                        </div>
                                                 </section>
                                         </div>
 
@@ -342,7 +432,7 @@
                 <script type='text/javascript' src='js/jquery.easing.1.3.js'></script>
                 <script type='text/javascript' src='js/prettyphoto/jquery.prettyPhoto.js'></script>
                 <script type='text/javascript' src='js/jflickrfeed.js'></script>
-				<script type='text/javascript' src='js/jquery.liveSearch.js'></script>
+                <script type='text/javascript' src='js/jquery.liveSearch.js'></script>
                 <script type='text/javascript' src='js/jquery.form.js'></script>
                 <script type='text/javascript' src='js/jquery.validate.min.js'></script>
                 <script type='text/javascript' src="js/jquery-twitterFetcher.js"></script>
