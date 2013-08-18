@@ -25,6 +25,7 @@ public class Global extends GlobalSettings {
 	@Override
 	public void onStart(Application arg0) {
 		checkAndCreateBasicRoles();
+		
 		DS.initStore();
 		
 //		JobScheduler.getInstance().startTestJob();
@@ -40,31 +41,31 @@ public class Global extends GlobalSettings {
 			States.DAS_ON = false;
 		}
 	}
-
+	
 	private void checkAndCreateBasicRoles() {
 		EntityManager em = JPA.em("default");
-		UserRole admin = em.find(UserRole.class, 1l);
-		UserRole agent = em.find(UserRole.class, 2l);
+		UserRole adminRole = em.find(UserRole.class, 1l);
+		UserRole agentRole = em.find(UserRole.class, 2l);
 		em.getTransaction().begin();
-		if (admin == null) {
-			admin = new UserRole();
-			admin.permissions = new HashSet<Permissions>();
-			admin.permissions.add(Permissions.ALL);
-			admin.name = RoleName.ADMIN;
-			em.persist(admin);
+		if (adminRole == null) {
+			adminRole = new UserRole();
+			adminRole.permissions = new HashSet<Permissions>();
+			adminRole.permissions.add(Permissions.ALL);
+			adminRole.name = RoleName.ADMIN;
+			em.persist(adminRole);
 		}
-		if (agent == null) {
-			agent = new UserRole();
-			agent.name = RoleName.AGENT;
-			agent.permissions = new HashSet<Permissions>();
-			agent.permissions.add(Permissions.VIEW_INTERACTIONS);
-			agent.permissions.add(Permissions.VIEW_MONITORED_TERMS);
-			agent.permissions.add(Permissions.VIEW_MEDIA_CHANNELS);
-			agent.permissions.add(Permissions.VIEW_STREAM);
-			agent.permissions.add(Permissions.ADD_INTERACTION);
-			agent.permissions.add(Permissions.ADD_MONITORED_TERM);
-			agent.permissions.add(Permissions.ADD_DYNAMIC_FORM);
-			em.persist(agent);
+		if (agentRole == null) {
+			agentRole = new UserRole();
+			agentRole.name = RoleName.AGENT;
+			agentRole.permissions = new HashSet<Permissions>();
+			agentRole.permissions.add(Permissions.VIEW_INTERACTIONS);
+			agentRole.permissions.add(Permissions.VIEW_MONITORED_TERMS);
+			agentRole.permissions.add(Permissions.VIEW_MEDIA_CHANNELS);
+			agentRole.permissions.add(Permissions.VIEW_STREAM);
+			agentRole.permissions.add(Permissions.ADD_INTERACTION);
+			agentRole.permissions.add(Permissions.ADD_MONITORED_TERM);
+			agentRole.permissions.add(Permissions.ADD_DYNAMIC_FORM);
+			em.persist(agentRole);
 		}
 		em.getTransaction().commit();
 		em.close();

@@ -459,27 +459,29 @@ public final class UserService {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	/**
+	 * This method is responsible for querying the mongodb for for sessions that are stored at login time.
+	 * If another browser opens a session by logging in to the system then the current session in the current
+	 * browser is invalidated.    
+	 * */
 	public void validateDistributedSession(UserSession userSession) {
-		Logger.warn("MY SESSION SESSION " + userSession.getUUID() + ": " + userSession.isValidSession() );
-
 		try{
 			Date date = new Date();
-			if(MongoConfig.isOnline()){
-				if(userSession.getAgentId() != null){
+			if(MongoConfig.isOnline()){  // if mongodb is online
+				if(userSession.getAgentId() != null){ // if user is logged in.
 					//DS.mop.remove(new BasicQuery("{ agentId : " + userSession.getAgentId() + " ,  UUID: {$ne: \"" + userSession.getUUID() + "\"}}"), UserSession.class);
-					UserSession us = DS.mop.findOne(new BasicQuery("{ agentId : " + userSession.getAgentId() + "}"), UserSession.class);
-
+					UserSession us = DS.mop.findOne(new BasicQuery("{ agentId : " + userSession.getAgentId() + "}"), UserSession.class); // find users session for the current user
 					if(us != null && us.getLastRequest().after(userSession.getLastRequest()) && !us.getUUID().equals(userSession.getUUID())){
-						userSession.setValidSession(false);
-						updateExistingUserSession(userSession);
+						// if a session in mongodb is found and that session has a {lastRequest} date greater than the current session's {lastRequest} and the its UUID in different then the current 
+						userSession.setValidSession(false);// invalidate the current session
+						updateExistingUserSession(userSession); // update in cache userSession
 					}else{// save in mongoDB only if its a valid distributed sessuion;
-						userSession.setLastRequest(date);
-						DS.mop.save(userSession);
+						userSession.setLastRequest(date); // update last request
+						DS.mop.save(userSession); // save session in mongodb
 					}
 				}
 			}else{
-				Logger.warn("Not using mongodb cache.");
+				Logger.warn("Not using mongodb cache."); // mongodb is offline
 			}
 		}catch(RuntimeException e){
 			e.printStackTrace();

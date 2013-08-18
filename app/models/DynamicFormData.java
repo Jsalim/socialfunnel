@@ -16,7 +16,7 @@ public class DynamicFormData {
 	private Long id;
 
 	@OneToMany(mappedBy = "form_id")
-	private DynamicForm form;
+	private BrandDynamicForm form;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Map<String, String> content;
@@ -29,11 +29,11 @@ public class DynamicFormData {
 		this.id = id;
 	}
 
-	public DynamicForm getForm() {
+	public BrandDynamicForm getForm() {
 		return form;
 	}
 
-	public void setForm(DynamicForm form) {
+	public void setForm(BrandDynamicForm form) {
 		this.form = form;
 	}
 

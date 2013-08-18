@@ -5,6 +5,10 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+# API
+
+GET /api/sysinfo					controllers.Api.sysInfos()
+
 GET		/killwindow							controllers.Application.killwindow()
 
 # Application

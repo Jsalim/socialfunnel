@@ -9,8 +9,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class DynamicForm  {
-
+public class BrandDynamicForm  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +20,8 @@ public class DynamicForm  {
 
 	@Lob
 	private String html;
+	
+	private String formName;
 
 	public Long getId() {
 		return id;
@@ -44,6 +45,14 @@ public class DynamicForm  {
 
 	public void setHtml(String html) {
 		this.html = html;
+	}
+
+	public String getFormName() {
+		return formName;
+	}
+
+	public void setFormName(String formName) {
+		this.formName = formName;
 	}
 
 }
