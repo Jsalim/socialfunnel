@@ -450,11 +450,21 @@ li.comment > article .avatar {
 }
 
 .support-widget {
-  border: 1px solid #e9e6c4;
   padding: 10px 100px 10px 20px;
+}
+
+.support-widget-wrapper{
+	border: 1px solid #e9e6c4;
   background: #fefbdc url("../images/support.png") no-repeat 95% 20px;
   margin-bottom: 20px;
 }
+
+.contact-button-wrapper{
+	padding: 10px;
+	text-align: right;
+	
+}
+
 .support-widget h3 {
   margin: 0;
   padding: 0;
