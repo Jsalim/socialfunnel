@@ -17,4 +17,16 @@
 			});
 		}
 	});
+	
+	$("li.tab").on('click', function(){
+		$('div.pointer').remove();
+		$("li.tab").removeClass("active");
+		$(this).addClass("active");
+		$(this).prepend(
+			'<div class="pointer">' +
+                '<div class="arrow"></div>' +
+                '<div class="arrow_border"></div>' +
+            '</div>'	
+		);
+	});
 })(jQuery);

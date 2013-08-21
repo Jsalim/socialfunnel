@@ -29,6 +29,9 @@ import util.MyUtil;
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = "username") })
 public class Agent {
+	
+	public Agent() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -89,8 +92,19 @@ public class Agent {
 	 * If a non-default controller is present there is a need for a
 	 * default constructor to be explicitly written.in order for 
 	 * the Play!framework Form to work 
+	 * @param phone2 
+	 * @param password2 
+	 * @param username2 
+	 * @param email2 
+	 * @param name2 
 	 * */
-	public Agent(){}
+	public Agent(String name2, String email2, String username2, String password2, String phone2){
+		this.name = name2;
+		this.email = email2;
+		this.username = username2;
+		this.phone = phone2;
+		setPassword(password);
+	}
 	
 	private void setGravatarLink(String email) {
 		String gravatarUrl = "http://www.gravatar.com/avatar/";

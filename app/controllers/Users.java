@@ -5,6 +5,7 @@ import static play.data.Form.form;
 //import interceptors.DefaultInterceptor;
 //import interceptors.UserSessionInterceptor;
 
+import interceptors.AjaxAuthCheckInterceptor;
 import interceptors.DefaultInterceptor;
 import interceptors.UserSessionInterceptor;
 
@@ -97,6 +98,64 @@ public class Users extends Controller {
 			}
 		}
 //		return ok();
+	}
+	
+	@Transactional
+	@With(AjaxAuthCheckInterceptor.class)
+	public static Result ajaxEdit(){
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			DynamicForm params = form().bindFromRequest();
+			
+			String name = params.get("name");
+			String email = params.get("email");
+			String username = params.get("username");
+			String phone = params.get("phone");
+			String details = params.get("details");
+			String password = params.get("password");
+			
+			if(password == null || password.trim().isEmpty()){
+				password = "Misa99zz"; // dumb password for validation. 
+			}
+
+			Form<Agent> agentForm = userService.validateAgentForm(name, email, username, password);
+
+			Agent user = userSession.getUser();
+			
+			user.setEmail(email);
+			user.setDetails(details);
+			user.setName(name);
+			user.setUsername(username);
+			user.setPhone(phone);
+			if(password != null || !password.trim().isEmpty()){
+				user.setPassword(password);
+			}
+			
+			if(agentForm.hasErrors()){
+				InvalidParameterException paramException = new InvalidParameterException(Json.toJson(form().errorsAsJson()).toString());
+				
+				return badRequest(views.html.home.signup.render(agentForm, user, null, null));
+			}else{
+//				user.setStatus(UserStatus.STATUS_ACTIVE);
+				boolean saved = false;
+
+				if(saved) {
+					flash("registered", "true");
+					return redirect(routes.Application.login());
+				}else{
+					ObjectNode result = Json.newObject();
+					result.put("success", false);
+					result.put("error", "Convite inválido.");
+					badRequest(result);
+					return badRequest(views.html.home.signup.render(null, null, null, null));
+				}
+			}
+
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
 	}
 
 	/**

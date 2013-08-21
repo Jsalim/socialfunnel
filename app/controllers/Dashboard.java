@@ -14,6 +14,7 @@ import interceptors.BrandDashboardInterceptor;
 import interceptors.DefaultInterceptor;
 import interceptors.Secured;
 import interceptors.UserSessionInterceptor;
+import play.Logger;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.*;
@@ -159,6 +160,7 @@ public class Dashboard extends Controller {
 	@Transactional(readOnly = true)
 	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
 	public static Result helpdesk() {
+		Logger.debug(flash().get("tab") + "");
 		try {
 			UserSession userSession = userService.getUserSession(session());
 			// the brand address name passed by the frontend
@@ -172,6 +174,8 @@ public class Dashboard extends Controller {
 ////				return badRequest(result);
 //				return redirect(controllers.landing.routes.Home.signin().url());
 //			}
+				
+				
 
 		} catch (NoUUIDException e) {
 			e.printStackTrace();

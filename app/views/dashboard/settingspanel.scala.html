@@ -106,16 +106,6 @@
 	<!-- main container -->
     <div class="content">
         
-        <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default</span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"></span><span class="text">Dark skin</span>
-            </a>
-        </div>
-        
         <div class="container-fluid">
             <div id="pad-wrapper" class="new-user">
                 <div class="row-fluid header">
@@ -124,7 +114,7 @@
 
                 <div class="row-fluid form-wrapper">
                     <!-- left column -->
-                    <div class="span7 with-sidebar">
+                    <div class="span6 with-sidebar">
                         <div class="container">
                             <form class="new_user_form inline-input">
                                 <div class="span12 field-box">
@@ -190,22 +180,28 @@
 
                     <!-- side right column -->
                     <div class="span3 form-sidebar">
-                        <div class="btn-group toggle-inputs hidden-tablet">
-                            <button class="glow left active" data-input="inline">INLINE INPUTS</button>
-                            <button class="glow right" data-input="normal">NORMAL INPUTS</button>
-                        </div>
+	                    <div class="personal-image">
+	                    	@if(userSession.getUser().getImgLink() != null){
+	                    		<img src="@userSession.getUser().getImgLink()" class="avatar img-polaroid">
+	                    	}else{
+	                        	<img src="@routes.Assets.at("img/personal-info.png")" class="avatar img-circle">
+	                    	}
+	                        <p>Mudar a imagem...</p>
+	                        
+	                        <input type="file">
+	                    </div>
                         <div class="alert alert-info hidden-tablet">
                             <i class="icon-lightbulb pull-left"></i>
-                            Click above to see difference between inline and normal inputs on a form
+                            Para usar uma imágem do <i>gravatar.com</i> clique <a>aqui</a>. Ou clique em  transferir.
                         </div>                        
-                        <h6>Sidebar text for instructions</h6>
+                        <!-- <h6>Sidebar text for instructions</h6>
                         <p>Add multiple users at once</p>
                         <p>Choose one of the following file types:</p>
                         <ul>
                             <li><a href="#">Upload a vCard file</a></li>
                             <li><a href="#">Import from a CSV file</a></li>
                             <li><a href="#">Import from an Excel file</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>

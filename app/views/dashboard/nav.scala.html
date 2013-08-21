@@ -19,7 +19,7 @@
 						<a href="@routes.Dashboard.apps()"><!-- <i class="icon-large icon-sign-blank"></i>  --><span class="tab-name">APLICATIVOS</span></a>
 		            </li>
 		             <li @if(tab.equals("interactions")){ class="active"}>
-                		<a href="@routes.Dashboard.interactions()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">INTERAÇÕES</span></a>
+                		<a href="@routes.Dashboard.interactions()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">REDES SOCIAIS</span></a>
                		</li>
                		<li @if(tab.equals("helpdesk")){ class="active"}>
                 		<a href="@routes.Dashboard.helpdesk()"><!-- <i class="icon-large icon-group"></i>  --><span class="tab-name">ATENDIMENTO</span></a>
@@ -151,11 +151,11 @@
                    		<li><a href="#">Suporte</a></li>
                    </ul>
                 </li>
-                <li class="settings hidden-phone @if(tab.equals("settings")){ active }">
+                <!-- <li class="settings hidden-phone @if(tab.equals("settings")){ active }">
                     <a href="@routes.Dashboard.settings()" role="button">
                         <i class="icon-cog"></i>
                     </a>
-                </li>
+                </li> -->
                 <!-- 
                 <li class="settings hidden-phone">
                     <a href="signin.html" role="button">
@@ -196,6 +196,7 @@
               		
 	              	// remotely get unseen notifications for count pupose
 	              	function getUnseenNotifications(){
+	              		
               			$.ajax({
               				url:'@routes.Users.getNotifications()?unseen=true',
               				contentType: 'application/json',

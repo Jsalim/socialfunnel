@@ -1,5 +1,7 @@
 package interceptors;
 
+import java.util.Map;
+
 import play.Logger;
 import play.mvc.Action;
 import play.mvc.Http.Context;
@@ -30,6 +32,12 @@ public class DefaultInterceptor extends Action.Simple{
 		// execute this method before the action is run
 		this.before(ctx);
 		// action is run here
+		Map<String, String[]> param = ctx.request().queryString();
+		if(param != null && param.get("tab") != null){
+			ctx.flash().remove("tab");
+			ctx.flash().put("tab", param.get("tab")[0]);
+		}
+		
 		result = delegate.call(ctx);
 		// execute this method after the action is run
 		this.after(ctx);

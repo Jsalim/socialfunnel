@@ -43,11 +43,11 @@ public class MongoConfig extends AbstractMongoConfiguration{
 			online = true;
 			return ret;
 		} catch (MongoException e) {
-			e.printStackTrace();
+			Logger.error(e.getMessage());
 			online = false;
 			return "No mongo servers connections";
 		} catch (Exception e){
-			e.printStackTrace();
+			Logger.error(e.getMessage());
 			online = false;
 			return "No mongo servers connections";
 		}
@@ -120,7 +120,7 @@ public class MongoConfig extends AbstractMongoConfiguration{
 			}
 			Logger.debug(strings  + "");
 		} catch (MongoException e) {// if connection times out that means that the server cant be reached
-			e.printStackTrace();
+			Logger.error(e.getMessage());
 		}
 
 		return mongo;

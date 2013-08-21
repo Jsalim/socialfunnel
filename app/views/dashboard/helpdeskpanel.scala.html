@@ -11,7 +11,7 @@
     <!-- sidebar -->
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            <li class="active">
+            <li class="active tab">
                 <div class="pointer">
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
@@ -21,18 +21,13 @@
                     <span>Atendimento</span>
                 </a>
             </li>            
-            
-            <li class="active">
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
-                <a href="index.html">
+            <li class="tab">
+                <a id="" class="sidebar-tab" href="" data-source="@routes.HelpDesk.tickets()" data-target="ajaxcontainer">
                     <i class="icon-group"></i>
                     <span>Contatos</span>
                 </a>
             </li>     
-            <li>
+            <li class="tab">
                 <a href="chart-showcase.html">
                     <i class="icon-user"></i>
                     <span>Misael</span>
@@ -52,11 +47,18 @@
 }
 
 @footer = {
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#tickets-tab").trigger('click');
-});
-</script>
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			@if(flash.get("tab") == null){
+			   $("#tickets-tab").trigger('click');
+			}
+			@if(flash.get("tab") != null){
+				$('#@flash.get("tab")').trigger('click');
+			}
+		});
+		
+	</script>
 }
 
 @main("Social Funnel - Estatísticas")(content)(header)(footer)

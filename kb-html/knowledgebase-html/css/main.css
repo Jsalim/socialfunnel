@@ -112,7 +112,8 @@ span.tag-line {
 }
 .main-nav .sub-menu {
   position: absolute;
-  top: 56px;
+  /* top: 56px; */
+  top: 55px;
   left: 0px;
   list-style: none;
   margin: 0;
@@ -120,7 +121,7 @@ span.tag-line {
 }
 .main-nav .sub-menu li {
   position: relative;
-  background-color: #3b4348;
+  background-color: #2C3742;
   padding: 6px 10px;
   width: 150px;
   cursor: pointer;
@@ -143,14 +144,14 @@ span.tag-line {
 /* Header - Search ---------------------------------------------------------------------------------------------------*/
 .search-area-wrapper {
   /* background: #353b65 url("../images/main-bg.jpg") center top no-repeat; */
-  background-color: #ccc;
+  background-color: #eff0f3;
   background-size: 100%;
   /*min-height: 279px;*/
   height: auto !important;
   /*height: 279px;*/
 }
 .search-area-wrapper .search-area {
-  padding: 50px 0;
+  padding: 35px 0;
 }
 
 h3.search-header {
@@ -193,6 +194,7 @@ form.search-form input.search-term {
   color: #858c91;
   margin-right: 10px;
   margin-bottom: 0;
+  border: 1px solid #ccc; 
 }
 form.search-form input.search-term.loading {
   background-image: url("../images/search-loader.gif");
@@ -460,7 +462,7 @@ li.comment > article .avatar {
 }
 
 .contact-button-wrapper{
-	padding: 10px;
+	padding: 0 20px 20px 0;
 	text-align: right;
 	
 }
