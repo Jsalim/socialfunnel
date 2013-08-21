@@ -58,12 +58,62 @@
     <script src="@routes.Assets.at("js/theme.js")"></script>
 
     <script type="text/javascript">
+    
+ // MESSAGE SCHEDULER SEE nav.scala.html
+	
+	// message publication function
+	function openMessageModal(){
+		$("#messageModal").modal();
+	}
+	//message publication function
+	function toggleCalendar(){
+		var toggled = $("#calendar-toggler").hasClass("active");
+		if(!toggled){
+			/* $("#scheduler").fadeIn(); */
+			$("#scheduler").animate({opacity : 1,height  : 250},'swing');
+			$("#send-button").html("Agendar");
+		}else{
+			/* $("#scheduler").fadeOut(); */
+			$("#scheduler").animate({opacity : 0,height  : 0},'swing');
+			$("#send-button").html("Enviar");
+		}
+	}
+	//message publication function
+	function toggleLocation(){
+		if (navigator.geolocation) {
+		   var elem = navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+		}else{
+		   errorFunction();
+		}
+	}
+	//message publication function
+	function successFunction(position) { //uses HTML5 if available
+	    var lat = position.coords.latitude;
+	    var lng = position.coords.longitude;
+	}
+	//message publication function
+	function errorFunction(){ //uses IP if no HTML5
+	   $.ajax({
+		   type: "GET",   
+		   url: "http://freegeoip.net/json/", 
+		   success: function(result){
+		        var lat = res.latitude;
+		        var lng = res.longitude;
+	   	   }
+	   	});
+	}
+	
+	$('#datechooser div').datepicker({
+		    format: "dd/mm/yyyy",
+		    language: "pt-BR"
+		});
+
+	// END OF MESSAGE SCHEDULER
+    
         $(function () {
 
             // jQuery Knobs
             $(".knob").knob();
-
-
 
             // jQuery UI Sliders
             $(".slider-sample1").slider({

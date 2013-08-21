@@ -181,6 +181,55 @@
 	  </div>
 	</div>
 	<!-- end of session close modal -->
+	
+	<!-- publish message modal -->
+	<div id="messageModal" class="modal hide fade">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h4>Publicar conteúdo</h4>
+	  </div>
+	  <div class="modal-body">
+	  	<div id="message-creator">
+		    <div id="message-container">
+				<img src="@{userSession.getUser().getImgLink()}" alt="" class="img-polaroid">
+				<div class="text-area">
+					<textarea class="text-content" placeholder="Publique contenúdos aqui..."></textarea>
+				</div>
+			</div>
+			
+		  	<div id="scheduler" class="scheduler" style="opacity: 0; height: 0px; overflow: hidden;">
+		  		<div id="datechooser">
+		  			<div class="calendar-wrapper"></div>
+		  		</div>
+		  	</div> <!-- end of scheduler -->
+	  	</div> <!-- message creator -->
+	  </div> <!-- message creator -->
+	  
+	  <div class="modal-footer">
+	  	<div class="options">
+				<!-- <div class="message-counter">
+					<div class="counter">180</div>
+				</div> -->
+				<div class="url-shortner  input-prepend input-append btn-group large">
+				  <span class="add-on"><i class="icon-link"></i></span>
+				  <input id="myurl" size="16" type="text" placeholder="Adicione um link... ">
+				  <button class="btn glow" style="height: 30px;">ENCURTAR</button>
+				</div>
+				<div class="actions">
+				<!-- 
+					<button class="btn"><i class="icon-paper-clip"></i></button>
+					<button class="btn"><i class="icon-calendar"></i></button> -->
+					<div class="btn-group publish-options large" data-toggle="buttons-checkbox">
+					  <button type="button" class="glow left large" onclick="toggleLocation()"><i class="icon-map-marker"></i></button>
+					  <button id="calendar-toggler" onclick="toggleCalendar()" type="button" class="glow right large"><i class="icon-calendar"></i></button>
+					</div>
+					<!-- <button id="send-button" class="btn btn-sf">Enviar</button> -->
+					<button id="send-button" class="btn-flat">ENVIAR</button>
+				</div>
+			</div>
+	  </div>
+	</div>
+	<!-- end publish message modal -->
     
     <!-- end navbar -->
     <script type="text/javascript">

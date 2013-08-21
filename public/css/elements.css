@@ -1,9 +1,15 @@
 /* THIS ARE ALL NEW EXTRA ELEMENTS BESIDE TWITTER BOOTSTRAP */
 
+.btn{
+filter: none;
+-moz-box-shadow: none;
+box-shadow: none;
+}
 
 /* glow btn group */
 .btn-group.large button.glow {
-	padding: 6px 15px;
+	/* padding: 6px 15px; */
+	padding: 7px 15px; 
 	font-size: 13px;
 }
 .btn-group button.glow.large {
@@ -38,7 +44,8 @@
 	-webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2) inset;
 	-moz-box-shadow:0 1px 0 rgba(0,0,0,0.2) inset;
 	box-shadow:0 1px 0 rgba(0,0,0,0.2) inset;
-	color: #a8b5c7;
+	/* color: #a8b5c7; */
+	color: #313D4C
 }
 .btn-group button.glow.left{
 	border-radius: 4px 0 0 4px;
@@ -51,7 +58,8 @@
 	border-radius: 0 4px 4px 0;
 }
 .btn-group button.glow:hover{
-	color: #a8b5c7;
+	/* color: #a8b5c7; */
+	color: #313D4C
 }
 .btn-group > .btn.glow {
 	font-size: 12px;
@@ -96,7 +104,7 @@
 .btn-flat, .btn-flat.default{	
 	display: inline-block;
 	margin: 0;
-	line-height: 15px;
+	line-height: 14px;
 	 vertical-align: middle;
 	font-size: 12px;
 	text-shadow: none;

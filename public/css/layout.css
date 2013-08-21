@@ -572,7 +572,7 @@ input.search{
 
 /*MISAEL*/
 
-@font-face {
+/* @font-face {
 	font-family: HelveticaNeue-Condensed;
 	src: url('../font/HelveticaNeue-Condensed.otf');
 	font-weight:400;
@@ -580,4 +580,38 @@ input.search{
 
 .navbar-inner span.tab-name{font-size:14px!important}
 
-.helvetica {font-family: HelveticaNeue-condensed, sans-serif!important; text-transform:uppercase; }
+.helvetica {font-family: HelveticaNeue-condensed, sans-serif!important; text-transform:uppercase; } */
+
+/* ALL LAYOUT */
+
+div#message-container img.img-polaroid{
+	height: 50px;
+	width: 50px;
+	float: left;
+}
+
+div.url-shortner {
+	float: left;
+	margin: 0;
+}
+
+div.text-area{
+	float: left;
+	margin-left: 15px;
+}
+div.text-area {
+	width:84%;
+	display: block;
+}
+div.text-area textarea.text-content{
+	-moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    display:block;/*reset from inline*/
+    width:100%;
+    margin:0;/*remove defaults*/
+    padding:4px;
+    overflow-y:auto;/*resets IE*/
+    overflow-x:hidden;/*resets IE*/
+}
+/* END OF ALL LAYOUT */
