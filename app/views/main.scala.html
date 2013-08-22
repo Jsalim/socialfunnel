@@ -15,6 +15,10 @@
     <!-- libraries -->
     <link href="@routes.Assets.at("css/lib/jquery-ui-1.10.2.custom.css")" rel="stylesheet" type="text/css" />
     <link href="@routes.Assets.at("css/lib/font-awesome.min.css")" type="text/css" rel="stylesheet" />
+    <link href="@routes.Assets.at("css/lib/select2.css")" type="text/css" rel="stylesheet" />
+    <link href="@routes.Assets.at("css/lib/bootstrap-wysihtml5.css")" type="text/css" rel="stylesheet" />
+    <link href="@routes.Assets.at("css/lib/bootstrap.datepicker.css")" type="text/css" rel="stylesheet" />
+    <link href="@routes.Assets.at("css/lib/uniform.default.css")" type="text/css" rel="stylesheet">
 
     <!-- global styles -->
     <link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/layout.css")">
@@ -23,7 +27,7 @@
 
     <!-- this page specific styles -->
     <link rel="stylesheet" href="@routes.Assets.at("css/index.css")" type="text/css" media="screen" />    
-
+	<link rel="stylesheet" href="@routes.Assets.at("css/form-wizard.css")" type="text/css" media="screen" />
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -49,6 +53,10 @@
     <script src="@routes.Assets.at("js/ajaxscript.js")"></script>
     <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
     <script src="@routes.Assets.at("js/jquery-ui-1.10.2.custom.min.js")"></script>
+    <script src="@routes.Assets.at("js/wysihtml5-0.3.0.js")"></script>
+    <script src="@routes.Assets.at("js/select2.min.js")"></script>
+    <script src="@routes.Assets.at("js/bootstrap-wysihtml5-0.0.2.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.uniform.min.js")"></script>
     <!-- knob -->
     <script src="@routes.Assets.at("js/jquery.knob.js")"></script>
     <!-- flot charts -->
@@ -59,56 +67,6 @@
 
     <script type="text/javascript">
     
- // MESSAGE SCHEDULER SEE nav.scala.html
-	
-	// message publication function
-	function openMessageModal(){
-		$("#messageModal").modal();
-	}
-	//message publication function
-	function toggleCalendar(){
-		var toggled = $("#calendar-toggler").hasClass("active");
-		if(!toggled){
-			/* $("#scheduler").fadeIn(); */
-			$("#scheduler").animate({opacity : 1,height  : 250},'swing');
-			$("#send-button").html("Agendar");
-		}else{
-			/* $("#scheduler").fadeOut(); */
-			$("#scheduler").animate({opacity : 0,height  : 0},'swing');
-			$("#send-button").html("Enviar");
-		}
-	}
-	//message publication function
-	function toggleLocation(){
-		if (navigator.geolocation) {
-		   var elem = navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
-		}else{
-		   errorFunction();
-		}
-	}
-	//message publication function
-	function successFunction(position) { //uses HTML5 if available
-	    var lat = position.coords.latitude;
-	    var lng = position.coords.longitude;
-	}
-	//message publication function
-	function errorFunction(){ //uses IP if no HTML5
-	   $.ajax({
-		   type: "GET",   
-		   url: "http://freegeoip.net/json/", 
-		   success: function(result){
-		        var lat = res.latitude;
-		        var lng = res.longitude;
-	   	   }
-	   	});
-	}
-	
-	$('#datechooser div').datepicker({
-		    format: "dd/mm/yyyy",
-		    language: "pt-BR"
-		});
-
-	// END OF MESSAGE SCHEDULER
     
         $(function () {
 

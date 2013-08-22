@@ -615,3 +615,32 @@ div.text-area textarea.text-content{
     overflow-x:hidden;/*resets IE*/
 }
 /* END OF ALL LAYOUT */
+
+/* NAVBAR */
+/* END OF NAVBAR */
+
+/* NEW TICKET */
+#newTicketModal{
+  width: 60%; /* desired relative width */
+  left: 20%; /* (100%-width)/2 */
+  /* place center */
+  margin-left:auto;
+  margin-right:auto; 
+}
+
+#newTicketModal .case-body input, #newTicketModal .case-body textarea {width: 385px;}
+#newTicketModal .case-body{	border-left: 1px solid #edeff1;	box-shadow: inset 3px 0px 4px -1px #fafafa; min-height: 310px;}
+#newTicketModal .case-body {padding-left: 15px; padding-top: 22px;}
+#newTicketModal .case-body label{width: 85px;}
+#newTicketModal .case-body label, #newTicketModal .case-body input, #newTicketModal .case-body textarea{font-size: 14px!important;}
+
+#newTicketModal .ticket-info {font-weight: normal!important;}
+#newTicketModal .ticket-info .field-box {margin-bottom: 10px;}
+#newTicketModal .ticket-info .field-box input{width: 236px; margin: 0;}
+#newTicketModal .ticket-info .field-box .ui-select{width: 250px;}
+
+#newTicketModal #send-button{font-size: 16px;}
+
+#newTicketModal, #newTicketModal .select2-default, #newTicketModal .ui-select select{color: #333!important}
+
+/* END OF NEW TICKET*/
