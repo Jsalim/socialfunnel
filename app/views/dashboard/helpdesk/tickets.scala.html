@@ -1,7 +1,10 @@
 @(userSession: util.UserSession, brand: Brand)
 			<div class="container-fluid">
 			<div id="pad-wrapper" class="users-list">
-                <div class="row-fluid header">
+                
+
+                <div class="table-products">
+                    <div class="row-fluid header">
                     <div class="span12">
                         <input type="text" class="span3 search" placeholder="Type a user's name...">
                         
@@ -44,199 +47,145 @@
                             </div>
                         </div>
 
-                        <a href="new-user.html" class="btn-flat success pull-right">
+                        <a href="#" onclick="openNewTicketModal()" class="btn-flat success pull-right">
                             <span>&#43;</span>
                             NOVO CASO
                         </a>
                     </div>
                 </div>
 
-                <!-- Users table -->
-                <div class="row-fluid table">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="span4 sortable">
-                                    Name
-                                </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>Signed up
-                                </th>
-                                <th class="span2 sortable">
-                                    <span class="line"></span>Total spent
-                                </th>
-                                <th class="span3 sortable align-right">
-                                    <span class="line"></span>Email
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <!-- row -->
-                        <tr class="first">
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Mar 13, 2012
-                            </td>
-                            <td>
-                                $ 4,500.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Jun 03, 2012
-                            </td>
-                            <td>
-                                $ 549.99
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Mar 01, 2013
-                            </td>
-                            <td>
-                                $ 30.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Jan 28, 2012
-                            </td>
-                            <td>
-                                $ 1,320.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                May 16, 2012
-                            </td>
-                            <td>
-                                $ 89.99
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Sep 06, 2012
-                            </td>
-                            <td>
-                                $ 344.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Jul 13, 2012
-                            </td>
-                            <td>
-                                $ 800.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Feb 13, 2013
-                            </td>
-                            <td>
-                                $ 250.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Feb 27, 2013
-                            </td>
-                            <td>
-                                $ 1,300.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@@canvas.com</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="pagination pull-right">
-                    <ul>
+                    <div class="row-fluid">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="span3">
+                                        <input type="checkbox">
+                                        Product
+                                    </th>
+                                    <th class="span3">
+                                        <span class="line"></span>Description
+                                    </th>
+                                    <th class="span3">
+                                        <span class="line"></span>Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- row -->
+                                <tr class="first">
+                                    <td>
+                                        <input type="checkbox">
+                                        <div class="img">
+                                            <img src="img/table-img.png">
+                                        </div>
+                                        <a href="#">There are many variations </a>
+                                    </td>
+                                    <td class="description">
+                                        if you are going to use a passage of Lorem Ipsum.
+                                    </td>
+                                    <td>
+                                        <span class="label label-success">Active</span>
+                                        <ul class="actions">
+                                            <li><i class="table-edit"></i></span></li>
+                                            <li><i class="table-settings"></i></li>
+                                            <li class="last"><i class="table-delete"></i></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <!-- row -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox">
+                                        <div class="img">
+                                            <img src="img/table-img.png">
+                                        </div>
+                                        <a href="#">Internet tend</a>
+                                    </td>
+                                    <td class="description">
+                                        There are many variations of passages.
+                                    </td>
+                                    <td>
+                                        <ul class="actions">
+                                            <li><i class="table-edit"></i></span></li>
+                                            <li><i class="table-settings"></i></li>
+                                            <li class="last"><i class="table-delete"></i></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <!-- row -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox">
+                                        <div class="img">
+                                            <img src="img/table-img.png">
+                                        </div>
+                                        <a href="#">Many desktop publishing </a>
+                                    </td>
+                                    <td class="description">
+                                        if you are going to use a passage of Lorem Ipsum.
+                                    </td>
+                                    <td>
+                                        <ul class="actions">
+                                            <li><i class="table-edit"></i></span></li>
+                                            <li><i class="table-settings"></i></li>
+                                            <li class="last"><i class="table-delete"></i></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <!-- row -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox">
+                                        <div class="img">
+                                            <img src="img/table-img.png">
+                                        </div>
+                                        <a href="#">Generate Lorem </a>
+                                    </td>
+                                    <td class="description">
+                                        There are many variations of passages.
+                                    </td>
+                                    <td>
+                                        <span class="label label-info">Standby</span>
+                                        <ul class="actions">
+                                            <li><i class="table-edit"></i></span></li>
+                                            <li><i class="table-settings"></i></li>
+                                            <li class="last"><i class="table-delete"></i></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <!-- row -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox">
+                                        <div class="img">
+                                            <img src="img/table-img.png">
+                                        </div>
+                                        <a href="#">Internet tend</a>
+                                    </td>
+                                    <td class="description">
+                                        There are many variations of passages.
+                                    </td>
+                                    <td>                                        
+                                        <ul class="actions">
+                                            <li><i class="table-edit"></i></span></li>
+                                            <li><i class="table-settings"></i></li>
+                                            <li class="last"><i class="table-delete"></i></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                      <ul>
                         <li><a href="#">&#8249;</a></li>
                         <li><a class="active" href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                         <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
                         <li><a href="#">&#8250;</a></li>
-                    </ul>
+                      </ul>
+                    </div>
                 </div>
                 <!-- end users table -->
             </div>

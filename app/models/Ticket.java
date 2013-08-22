@@ -31,7 +31,7 @@ public class Ticket {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Brand brand;
 
-	@JoinColumn(name = "created_by", nullable = false)
+	@JoinColumn(name = "created_by", nullable = true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Agent createdBy;
 
@@ -58,7 +58,10 @@ public class Ticket {
 	@Lob
 	@Column(nullable = false)
 	private String description;
-
+	
+	@ManyToOne
+	private Contact contact;
+	
 	public Long getId() {
 		return id;
 	}

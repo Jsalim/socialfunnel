@@ -3,6 +3,7 @@ package controllers;
 import org.codehaus.jackson.node.ObjectNode;
 
 import exceptions.NoUUIDException;
+import interceptors.AjaxAuthCheckInterceptor;
 import interceptors.DefaultInterceptor;
 import interceptors.Secured;
 import interceptors.UserSessionInterceptor;
@@ -66,4 +67,15 @@ public class HelpDesk extends Controller{
 //			return internalServerError(e.getJson());
 //		}
 //	}
+	@With(AjaxAuthCheckInterceptor.class)
+	public static Result createTicket(){
+		try {
+			UserSession userSession = userService.getUserSession(session());
+			return ok();
+		} catch (NoUUIDException e) {
+			e.printStackTrace();
+			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
+			return internalServerError(e.getJson());
+		}
+	}
 }
