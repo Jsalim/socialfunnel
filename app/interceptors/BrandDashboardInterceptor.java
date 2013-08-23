@@ -25,6 +25,9 @@ public class BrandDashboardInterceptor extends Action.Simple{
 	private static final BrandService brandService = BrandService.getInstance();
 	
 	public Result before(Context ctx) {
+		
+		Logger.info(ctx.request().host());
+		
 		Logger.debug("BrandDashboardInterceptor.before:\n------------------------------ begining action " + ctx.request().path() + " ------------------------------\n");
 		try {
 			UserSession userSession = userService.getUserSession(ctx.session());

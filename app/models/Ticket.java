@@ -14,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
+
+import play.db.jpa.JPA;
 
 import constants.MediaChannels;
 
@@ -35,13 +39,10 @@ public class Ticket {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Agent createdBy;
 
-	@JoinColumn(name = "assigned_to", nullable = false)
+	@JoinColumn(name = "assigned_to", nullable = true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Agent assignedTo;
 
-//	@JoinColumn(name = "account_used", nullable = false)
-	@JoinColumns ( {@JoinColumn(nullable=false, name="account_id"),
-		@JoinColumn(nullable=false, name="account_oauthtoken")})
 	@ManyToOne(fetch = FetchType.LAZY)
 	private AbstractAccountInfo account;
 
@@ -58,6 +59,12 @@ public class Ticket {
 	@Lob
 	@Column(nullable = false)
 	private String description;
+	
+	@Lob
+	@Column(nullable = false)
+	private String subject;
+	
+	private long ticketNumber;
 	
 	@ManyToOne
 	private Contact contact;
@@ -82,8 +89,9 @@ public class Ticket {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	@PrePersist
+	private void setCreatedAt() {
+		this.createdAt = new Date();
 	}
 
 	public Date getLastUpdated() {
@@ -132,6 +140,33 @@ public class Ticket {
 
 	public void setChannel(MediaChannels channel) {
 		this.channel = channel;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	public long getTicketNumber() {
+		return ticketNumber;
+	}
+
+	public void setTicketNumber() {
+		if(ticketNumber <= 0 && brand != null && id > 0){
+			JPA.em().createNativeQuery("UPDATE ticket as t SET t.ticketNumber = (SELECT count(*) FROM (SELECT * FROM ticket tki where tki.id <= :id ) as tk where brand_id = :brand) where t.id = :sameid ").setParameter("id", this.id).setParameter("brand", brand.getId()).setParameter("sameid", this.id) .executeUpdate();
+			JPA.em().refresh(this);
+		}
 	}
 
 }

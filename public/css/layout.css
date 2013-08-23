@@ -630,16 +630,23 @@ div.text-area textarea.text-content{
 
 #newTicketModal .case-body input, #newTicketModal .case-body textarea {width: 390px;}
 #newTicketModal .case-body {border-left: 1px solid #edeff1;	box-shadow: inset 3px 0px 4px -1px #fafafa; min-height: 310px; padding-left: 15px; padding-top: 22px; margin-left: 0}
-#newTicketModal .case-body label{width: 85px;}
+#newTicketModal .case-body label{width: 85px; line-height: 26px;}
 #newTicketModal .case-body label, #newTicketModal .case-body input, #newTicketModal .case-body textarea{font-size: 14px!important;}
 
-#newTicketModal .ticket-info {font-weight: normal!important;}
+#newTicketModal .ticket-info label{margin-bottom: 3px; color: #555; font-weight: normal!important;}
 #newTicketModal .ticket-info .field-box {margin-bottom: 10px;}
 #newTicketModal .ticket-info .field-box input{width: 206px; margin: 0;}
 #newTicketModal .ticket-info .field-box .ui-select,#newTicketModal .ticket-info .field-box .ui-select .select2-container{width: 220px!important;}
 #newTicketModal .ticket-info .ui-select select{width: 125%!important;}
 #newTicketModal #send-button{font-size: 16px;}
-
 #newTicketModal, #newTicketModal .select2-default, #newTicketModal .ui-select select{color: #333!important}
 
+form.modal-form {margin: 0;}
+
 /* END OF NEW TICKET*/
+
+/* HELPDESK LIST OF CASES*/
+ul.sidebar-filter{list-style-type: none; margin: 0}
+div.helpdesk-container { padding-left: 0!important;}
+div.helpdesk-pane { border-right: 1px solid #edeff1; box-shadow: 3px 0px 4px -1px #fafafa; -moz-box-shadow: 3px 0px 4px -1px #fafafa; -webkit-box-shadow: 3px 0px 4px -1px #fafafa; min-height: 400px!important}
+/* END HELPDESK LIST OF CASES*/

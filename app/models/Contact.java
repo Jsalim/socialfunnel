@@ -1,8 +1,11 @@
 package models;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
+
+import util.MyUtil;
+
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 
 @Entity
 public class Contact {
@@ -24,6 +27,10 @@ public class Contact {
 	private String twitterId;
 	@Column(unique = false)
 	private String twitterName;
+	@Column(unique = false)
+	private String imgLink;
+	
+	public Contact() {}
 	
 	public Brand getBrand() {
 		return brand;
@@ -76,6 +83,31 @@ public class Contact {
 	}
 	public void setEmails(String emails) {
 		this.emails = emails;
+	}
+	public String getImgLink() {
+		return imgLink;
+	}
+	public void setImgLink(String imgLink) {
+		this.imgLink = imgLink;
+	}
+	
+	public void setGravatarLink(String email) {
+		String gravatarUrl = "http://www.gravatar.com/avatar/";
+		gravatarUrl = gravatarUrl + encryptMd5(email.trim().toLowerCase());
+		if(MyUtil.httpResourceExists(gravatarUrl)){
+			this.imgLink = gravatarUrl;
+		}else{
+			this.imgLink = null;
+		}
+	}
+	
+	public static String encryptMd5(String string) {
+		try {
+			return MyUtil.stringToMD5(string);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

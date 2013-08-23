@@ -1,9 +1,18 @@
 @(userSession: util.UserSession, brand: Brand)
-			<div class="container-fluid">
-			<div id="pad-wrapper" class="users-list">
-                
-
-                <div class="table-products">
+		<div class="container-fluid">
+			<div id="pad-wrapper" class="users-list helpdesk-container">
+                <div class="row-fluid">
+                	<div class="span3 helpdesk-pane">
+                		<ul class="sidebar-filter">
+                			<li>Meus casos não resolvidos</li>
+                			<li>Casos não atribuídos</li>
+                			<li>Todos não resolvidos</li>
+                			<li>Pendentes</li>
+                			<li>Resolvidos</li>
+                		</ul>
+                	</div>
+                	<div class="span9 helpdesk-case-list">
+                		<div class="table-products">
                     <div class="row-fluid header">
                     <div class="span12">
                         <input type="text" class="span3 search" placeholder="Type a user's name...">
@@ -188,6 +197,8 @@
                     </div>
                 </div>
                 <!-- end users table -->
+                	</div>
+                </div>
             </div>
         </div>
 <script type='text/javascript'>
