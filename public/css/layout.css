@@ -646,7 +646,31 @@ form.modal-form {margin: 0;}
 /* END OF NEW TICKET*/
 
 /* HELPDESK LIST OF CASES*/
-ul.sidebar-filter{list-style-type: none; margin: 0}
-div.helpdesk-container { padding-left: 0!important;}
-div.helpdesk-pane { border-right: 1px solid #edeff1; box-shadow: 3px 0px 4px -1px #fafafa; -moz-box-shadow: 3px 0px 4px -1px #fafafa; -webkit-box-shadow: 3px 0px 4px -1px #fafafa; min-height: 400px!important}
+div.helpdesk-pane ul.sidebar-filter{list-style-type: none; margin: 0;}
+div.helpdesk-pane ul.sidebar-filter span.badge {float: right; margin-right: 3px;}
+div.helpdesk-pane ul.sidebar-filter li {padding: 10px;}
+div.helpdesk-pane ul.sidebar-filter li:hover, ul.sidebar-filter li.active{background-color: #f5fafc; cursor: pointer;}
+div#helpdesk-pane-trigger{height: 30px;}
+
+ div.helpdesk-pane { border-radius:5px; border: 1px solid #dddfe1; box-shadow: 0px 0px 9px 0px #eaeaea; -moz-box-shadow: 0px 0px 9px 0px #eaeaea; -webkit-box-shadow: 0px 0px 9px 0px #eaeaea;}
+ div.users-list h4.title{margin: 5px 0px 0px 0px!important;}
 /* END HELPDESK LIST OF CASES*/
+
+div.top-tabs{
+	position: fixed;
+	width: 100%;
+	z-index: 1003;
+}
+
+div.content{
+	left: 0!important;
+	right: 0!important;
+	top: 48px;
+	position: absolute;
+}
+
+#sidebar-nav{
+	z-index: 1;
+	top: 48px;
+	position: fixed;
+}
