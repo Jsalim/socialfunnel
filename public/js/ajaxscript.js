@@ -19,7 +19,7 @@
 	});
 	
 	$("li.tab").on('click', function(){
-		$('div.pointer').remove();
+		$('div#sidebar-nav div.pointer').remove();
 		$("li.tab").removeClass("active");
 		$(this).addClass("active");
 		$(this).prepend(
