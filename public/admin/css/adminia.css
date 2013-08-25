@@ -27,9 +27,9 @@
 */
 
 body {	
-	font: 13px/1.7em 'Open Sans', arial, sans-serif;
+	font: 13px/1.7em 'Open Sans', sans-serif;
 	
-	background: url(../img/body-bg.png) repeat 0 0;
+	background: #f7f7f7;
 }
 
 p {	
@@ -120,8 +120,8 @@ input {
 #main-nav.nav-tabs.nav-stacked > li.active > a,
 #main-nav.nav-tabs.nav-stacked > li > a:hover {	
 	color: #FFF;
-	background: #444;
-	border: 1px solid #444;
+	background: #2c3742;
+	border: 1px solid #2c3742;
 }
 
 #main-nav.nav-tabs.nav-stacked > li:first-child > a,
@@ -380,7 +380,7 @@ input {
 	font-weight: 600;
 	color: #FFF;
 	
-	background: #444;
+	background: #2c3742;
 	border-radius: 4px;
 	
 	text-shadow: 1px 1px 2px rgba(0,0,0,.5);
@@ -399,7 +399,7 @@ input {
 }
 
 .navbar-inner{
-	background: #444!important;
+	background: #2c3742!important;
 	background-image: none!important
 }
 
