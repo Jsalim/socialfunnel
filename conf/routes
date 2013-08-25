@@ -58,6 +58,9 @@ GET     /home/reset					controllers.landing.Home.reset()
 POST    /home/reset 				controllers.landing.Home.doReset()
 POST	/home/resetpassword			controllers.landing.Home.resetPassword()
 
+# KnowledgeBase
+GET		/kb							controllers.knowledgebase.KnowledgeBase.home()
+
 # Users
 
 POST	/users/register				controllers.Users.register()

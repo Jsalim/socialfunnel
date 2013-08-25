@@ -26,8 +26,6 @@ public class BrandDashboardInterceptor extends Action.Simple{
 	
 	public Result before(Context ctx) {
 		
-		Logger.info(ctx.request().host());
-		
 		Logger.debug("BrandDashboardInterceptor.before:\n------------------------------ begining action " + ctx.request().path() + " ------------------------------\n");
 		try {
 			UserSession userSession = userService.getUserSession(ctx.session());

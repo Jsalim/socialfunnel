@@ -1,5 +1,7 @@
 package services;
 
+import interceptors.DefaultInterceptor;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +28,7 @@ import play.data.Form;
 import play.data.validation.ValidationError;
 import play.Logger;
 import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 import play.libs.Json;
 import util.MyUtil;
 
@@ -45,7 +48,7 @@ public class BrandService {
 
 	private static final UserService userService = UserService.getInstance();
 	//	private static final EmailService emailService = EmailService.getInstance(); 
-
+	private final HashSet<String> brandSubdomains = new HashSet<String>();
 
 	public BrandService() {}
 
@@ -56,9 +59,50 @@ public class BrandService {
 		return instance;
 	}
 
+	public void addBrandSubdomains(HashSet<String> brandAddresses){
+		brandSubdomains.addAll(brandAddresses);
+	}
+
+	/**
+	 * This method should only be called by {@link DefaultInterceptor}
+	 * @see {@link DefaultInterceptor}
+	 * */
+	public boolean checkBrandSubdomain (String subDomain){
+		EntityManager em = JPA.em();
+		if (subDomain != null) {
+			if(subDomain.equals("test")){
+				brandSubdomains.add(subDomain);
+				return true;
+			}
+			if(brandSubdomains.contains(subDomain)){
+				return true;
+			}else{
+
+				Query query = em.createNativeQuery("SELECT b.* FROM Brand b WHERE nameAddress = :nameAddress AND b.active = :bool", Brand.class);
+				query.setParameter("nameAddress", subDomain);
+				query.setParameter("bool", true);
+
+				Brand brand = null;
+				try {
+					brand = (Brand) query.getSingleResult();
+				}catch(Exception e){
+					Logger.error("Cant findo a brand: " + e.getMessage());
+				}
+				
+				if(brand != null){ //TODO implement validation for forum and knowledge base apps active  
+					Logger.debug("adding new brand: " + subDomain);
+					brandSubdomains.add(subDomain);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public Brand findById(Long id) {
 		return JPA.em().find(Brand.class, id);
 	}
+
 
 	public Brand createBrand(String myBrandName, String myBrandDescirption, String myNameAddress, Agent owner, Set<FacebookAccountInfo> facebookAccounts, Set<TwitterAccountInfo> twitterAccounts, Set<Invitation> invitations){
 
@@ -187,12 +231,16 @@ public class BrandService {
 			return false;
 		}
 	}
-
-	public Brand getBrandByNameAddress(String id) {
+	
+	public Brand getBrandByNameAddress(String address) {
 		EntityManager em = JPA.em();
+		
+		if(em.getTransaction().isActive()){
+			em.getTransaction().begin();
+		}
 
 		Query query = em.createNativeQuery("SELECT b.* FROM Brand b WHERE nameAddress = :nameAddress AND b.active = :bool", Brand.class);
-		query.setParameter("nameAddress", id);
+		query.setParameter("nameAddress", address);
 		query.setParameter("bool", true);
 
 		Brand brand = null;

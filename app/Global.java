@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import jobs.JobScheduler;
 
+import bootstrap.Constants;
 import bootstrap.DS;
 
 import constants.Permissions;
@@ -21,7 +22,7 @@ import play.libs.F.Promise;
 import play.libs.WS;
 
 public class Global extends GlobalSettings {
-
+	
 	@Override
 	public void onStart(Application arg0) {
 		checkAndCreateBasicRoles();
@@ -44,6 +45,7 @@ public class Global extends GlobalSettings {
 	
 	private void checkAndCreateBasicRoles() {
 		EntityManager em = JPA.em("default");
+		
 		UserRole adminRole = em.find(UserRole.class, 1l);
 		UserRole agentRole = em.find(UserRole.class, 2l);
 		em.getTransaction().begin();
