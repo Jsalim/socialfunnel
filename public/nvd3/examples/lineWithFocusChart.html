@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+svg {
+  display: block;
+}
+
+#chart1 svg {
+  height: 500px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  margin: 50px;
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
+
+</style>
+<body>
+
+  <div id="chart" class='with-3d-shadow with-transitions'>
+    <svg style="height: 400px;"></svg>
+  </div>
+
+<script src="../lib/d3.v3.js"></script>
+<script src="../nv.d3.js"></script>
+
+
+<script src="../src/models/lineWithFocusChart.js"></script>
+<script src="stream_layers.js"></script>
+<script>
+
+//var map = new Object();
+/*
+var series1 = [{series:0, x: 1, y: 0.234}, {series:0, x: 2, y: 1.234}, {series:0, x: 3, y: 2.234}, {series:0, x: 4, y: 3.234}, {series:0, x: 5, y: 4.234}];
+var series2 = [{series:1, x: 1, y: 1.234}, {series:1, x: 2, y: 2.234}, {series:1, x: 3, y: 3.234}, {series:1, x: 4, y: 4.234}, {series:1, x: 5, y: 5.234}];
+*/
+var series1 = [{series:0, x: 1377489600000, y: 0.234}, {series:0, x: 1377576000000, y: 1.234}, {series:0, x: 1377662400000, y: 2.234}, {series:0, x: 1377748800000, y: 3.234}, {series:0, x: 1377835200000, y: 4.234}];
+var series2 = [{series:1, x: 1377489600000, y: 1.234}, {series:1, x: 1377576000000, y: 2.234}, {series:1, x: 1377662400000, y: 3.234}, {series:1, x: 1377748800000, y: 4.234}, {series:1, x: 1377835200000, y: 5.234}];
+
+var myData = [{"key": "line1" , "values": series1}, {"key": "line2", "values": series2}]
+
+
+nv.addGraph(function() {
+  var chart = nv.models.lineWithFocusChart();
+
+ // chart.transitionDuration(500);
+  chart.xAxis
+      .tickFormat(function(d) {
+		return d3.time.format('%d/%m/%Y')(new Date(d))
+		}
+	);
+	  
+  chart.x2Axis
+      .tickFormat(function(d) {
+		return d3.time.format('%d/%m/%Y')(new Date(d))
+		}
+	);
+
+  chart.yAxis
+      .tickFormat(d3.format(',.2f'));
+  chart.y2Axis
+      .tickFormat(d3.format(',.2f'));
+
+  d3.select('#chart svg')
+      .datum(myData)
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+
+/*
+nv.addGraph(function() {
+  var chart = nv.models.lineWithFocusChart();
+
+ // chart.transitionDuration(500);
+  chart.xAxis
+      .tickFormat(d3.format(',f'));
+  chart.x2Axis
+      .tickFormat(d3.format(',f'));
+
+  chart.yAxis
+      .tickFormat(d3.format(',.2f'));
+  chart.y2Axis
+      .tickFormat(d3.format(',.2f'));
+
+  d3.select('#chart svg')
+      .datum(myData)
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+
+function testData() {
+  var myData = stream_layers(2,10,.1).map(function(data, i) {
+	console.log(data);
+    return { 
+      key: 'Stream' + i,
+      values: data
+    };
+  });
+  
+  console.log(myData);
+  return myData;	
+}
+
+/*
+function testData() {
+  return stream_layers(3,128,.1).map(function(data, i) {
+    return { 
+      key: 'Stream' + i,
+      values: data
+    };
+  });
+}
+*/
+
+</script>

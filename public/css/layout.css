@@ -595,6 +595,13 @@ tr.next > td {padding-left:5px!important; }
 
  div.users-list h4.title{margin: 5px 0px 0px 0px!important;}
 /* END HELPDESK LIST OF CASES*/
+
+/* HELPDESK REPORTS*/
+
+div.chart{margin-left: 0!important}
+
+/* END HELPDESK REPORTS*/
+
 /* END OF CUSTOMIZATION */
 
 /* responsive */
