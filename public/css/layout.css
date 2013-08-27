@@ -598,7 +598,12 @@ tr.next > td {padding-left:5px!important; }
 
 /* HELPDESK REPORTS*/
 
-div.chart{margin-left: 0!important}
+div.helpdesk-container-fiter {margin-bottom: 15px;}
+div.helpdesk-reports-container h4.title { margin: 5px 0px 0px 0px!important; }
+
+div.chart{margin-left: 0!important;}
+ticket-volume-chart h4{margin-bottom: 5px;}
+div.ticket-volume-chart text{color:#444;}
 
 /* END HELPDESK REPORTS*/
 

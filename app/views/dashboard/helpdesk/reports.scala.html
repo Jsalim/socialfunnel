@@ -31,11 +31,54 @@
             </div>
             <!-- end upper main stats -->
 
-            <div id="pad-wrapper">
+            <div id="pad-wrapper" class="helpdesk-reports-container">
+            
+            <!-- UI Elements section -->
+                <div class="row-fluid helpdesk-container-fiter">
+                	<div class="span3">
+                   		<h4 class="title">Volume de casos</h4>
+                    </div>
+                    <div class="span9 chart">                        
+                        <div class="ui-dropdown">
+                            <div class="head" data-toggle="tooltip" title="Click me!">
+                                Filtro
+                                <i class="arrow-down"></i>
+                            </div>  
+                            <div class="dialog">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <div class="body">
+                                    <p class="title">
+                                        Show users where:
+                                    </p>
+                                    <div class="form">
+                                        <select>
+                                            <option>Name</option>
+                                            <option>Email</option>
+                                            <option>Number of orders</option>
+                                            <option>Signed up</option>
+                                            <option>Last seen</option>
+                                        </select>
+                                        <select>
+                                            <option>is equal to</option>
+                                            <option>is not equal to</option>
+                                            <option>is greater than</option>
+                                            <option>starts with</option>
+                                            <option>contains</option>
+                                        </select>
+                                        <input type="text" />
+                                        <a class="btn-flat small">Add filter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- UI Elements section -->
                 <div class="row-fluid">
-                    <h4 class="title">Volume de casos</h4>
                     <div class="span12 chart">                        
                         <div class='chart full' id='chart1' style="height: 350px;">
 					        <svg></svg>
