@@ -399,7 +399,7 @@ input.search{
 
 
 #pad-wrapper {
-	padding: 0px 25px;
+	/* padding: 0px 25px; */
 	/* margin-top: 55px; misael */
 	margin-top: 35px
 }
@@ -591,7 +591,8 @@ div.helpdesk-pane { background-color:#fdfdfd; border-radius:5px; border: 1px sol
 div#helpdesk-pane-trigger{height: 30px;}
 
 tr.next{border-left: 3px solid #3C5B79;}
-tr.next > td {padding-left:5px!important; }
+tr.next > td {padding-left:7px!important; }
+
 
  div.users-list h4.title{margin: 5px 0px 0px 0px!important;}
 /* END HELPDESK LIST OF CASES*/
@@ -687,3 +688,6 @@ div.ticket-volume-chart text{color:#444;}
 	}
 }
 
+.tick:not(.zero) {
+  opacity: 0;
+}

@@ -151,7 +151,8 @@
 .table-products .table input[type="checkbox"]{
 	float: left;
 	margin-top: 11px;
-	margin-right: 23px;
+	/* margin-right: 23px; */
+	 margin-right: 10px;
 }
 .table-products .table .img{
 	height: 31px;

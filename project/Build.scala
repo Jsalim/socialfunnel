@@ -36,6 +36,7 @@ object ApplicationBuild extends Build {
     "org.apache.httpcomponents" % "httpclient" % "4.2.5",
     "org.apache.httpcomponents" % "httpmime" % "4.2.5",
     "org.apache.httpcomponents" % "httpcore-nio" % "4.2.4",
+    "com.paypal.sdk" % "rest-api-sdk" % "0.7.1",
     "commons-codec" % "commons-codec" % "1.8"
   )
 
