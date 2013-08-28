@@ -11,25 +11,30 @@
 <!-- sidebar -->
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-        	<li>
-        		<a href="index.html">
+        	<li class="tab active">
+        		<a id="general-tab" class="sidebar-tab" href="" data-source="@routes.Settings.generalSettings()" data-target="ajaxcontainer">
                     <i class="icon-cog"></i>
                     <span>Geral</span>
                 </a>
         	</li>
-            <li>
-                <a href="index.html">
+            <li class="tab">
+                <a id="profile-tab" class="sidebar-tab" href="" data-source="@routes.Settings.editProfile()" data-target="ajaxcontainer">
                     <i class="icon-user"></i>
                     <span>Perfil</span>
                 </a>
             </li>            
-            <li>
-                <a href="chart-showcase.html">
+            <li class="tab">
+                <a id="groups-tab" class="sidebar-tab" href="" data-source="@routes.Settings.groups()" data-target="ajaxcontainer">
                     <i class="icon-group"></i>
                     <span>Equipe</span>
                 </a>
             </li>
-
+			<li class="tab">
+                <a id="channels-tab" class="sidebar-tab" href="" data-source="@routes.Settings.channels()" data-target="ajaxcontainer">
+                    <i class="icon-sitemap"></i>
+                    <span>Canais</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- end sidebar -->
@@ -42,6 +47,18 @@
 }
 
 @footer = {
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			@if(flash.get("tab") == null){
+			   $("#general-tab").trigger('click');
+			}
+			@if(flash.get("tab") != null){
+				$('#@flash.get("tab")').trigger('click');
+			}
+		});
+		
+	</script>
 }
 
 @main("Social Funnel - Configurações")(content)(header)(footer)

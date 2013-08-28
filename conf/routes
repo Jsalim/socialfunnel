@@ -31,6 +31,14 @@ GET		/dashboard/reports					controllers.Dashboard.reports()
 GET		/dashboard/configurations			controllers.Dashboard.configurations()
 GET		/dashboard/settings					controllers.Dashboard.settings()
 
+
+#Settings
+GET		/dashboard/settings/general			controllers.Settings.generalSettings()
+GET		/dashboard/settings/profile			controllers.Settings.editProfile()
+GET		/dashboard/settings/groups			controllers.Settings.groups()
+GET		/dashboard/settings/channels		controllers.Settings.channels()
+
+
 # HelpDesk
 GET		/dashboard/helpdesk/tickets			controllers.HelpDesk.tickets()
 GET		/dashboard/helpdesk/contacts		controllers.HelpDesk.contacts()
