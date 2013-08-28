@@ -1,3 +1,73 @@
+function defaultHorizontalBarChart(containerId, data) {
+	nv.addGraph(function() {
+		 var chart = nv.models.multiBarHorizontalChart()
+		 	.x(function(d) { return d.label })
+		 	.y(function(d) { return d.value })
+		 	.showValues(true)
+		 	.tooltips(true)
+		 	.showControls(false)
+		 	.showLegend(true);
+		 	
+		 	chart.yAxis
+		 	.tickFormat(d3.format(',.2f'));
+
+		 	d3.select('#'+ containerId + ' svg')
+		 	.datum(data)
+		 	.transition().duration(500)
+		 	.call(chart);
+
+		 	nv.utils.windowResize(chart.update);
+		 	return chart;
+		});
+}
+
+function defaultBarChart(containerId, data) {
+	nv.addGraph(function() {
+		 var chart = nv.models.discreteBarChart()
+		 .x(function(d) { return d.label })
+		 .y(function(d) { return d.value })
+		 .tooltips(true)
+		 .valueFormat(d3.format('.0%'))
+		 .showValues(true)
+		 
+		 chart.yAxis
+		 .tickFormat(d3.format(".0%"));
+		  
+		 d3.select('#' + containerId + ' svg')
+		 .datum(data)
+		 .transition().duration(500)
+		 .call(chart);
+		 
+		 nv.utils.windowResize(chart.update);
+		 
+		return chart;
+	});
+}
+
+function defaultPieChart(containerId, data, labelType) {
+  nv.addGraph(function() {
+      var width = 500,
+          height = 500;
+
+      var chart = nv.models.pieChart()
+          .x(function(d) { return d.key })
+          .y(function(d) { return d.y })
+          .color(d3.scale.category10().range())
+          .valueFormat(d3.format('.0%'))
+          .labelType(labelType);
+      
+      chart.margin({right: 80});
+
+        d3.select("#" + containerId + " svg")
+            .datum(data)
+          .transition().duration(1200)
+            .call(chart);
+
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+}
+
 function defaultChartConfig(containerid, data, guideline, useDates, auxOptions, xLabel, yLabel) {
   if (auxOptions === undefined) auxOptions = {};
   if (guideline === undefined) guideline = true;
@@ -41,7 +111,7 @@ function defaultChartConfig(containerid, data, guideline, useDates, auxOptions, 
 
     chart.yAxis
         .axisLabel(yLabel)
-        .tickFormat(d3.format(',.2f'));
+        .tickFormat(d3.format('d'));
 
     d3.select('#' + containerid + ' svg')
         .datum(data)
@@ -49,9 +119,6 @@ function defaultChartConfig(containerid, data, guideline, useDates, auxOptions, 
         .call(chart);
 
     nv.utils.windowResize(chart.update);
-    if($){
-    	$("g.nv-y g.nv-wrap text.nv-axislabel").attr("y", -40);
-    }
     return chart;
   });
 }

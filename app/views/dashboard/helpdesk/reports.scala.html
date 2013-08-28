@@ -34,7 +34,7 @@
             <div id="pad-wrapper" class="helpdesk-reports-container">
             
             <!-- UI Elements section -->
-                <div class="row-fluid helpdesk-container-fiter">
+                <div class="row-fluid report-fiter">
                 	<div class="span3">
                    		<h4 class="title">Volume de casos</h4>
                     </div>
@@ -80,15 +80,46 @@
                 <!-- UI Elements section -->
                 <div class="row-fluid">
                     <div class="span12 chart">                        
-                        <div class='chart full' id='chart1' style="height: 350px;">
+                        <div class='chart full' id=ticket-volume style="height: 350px;">
 					        <svg></svg>
-					      </div>
+					    </div>
+                    </div>
+                </div>
+                <!-- UI Elements section -->
+                <div class="row-fluid section helpdesk-charts">
+                    <div class="span6 chart">                        
+	                	<h4 class="title">Casos por canal</h4>
+                        <div class='chart full' id='tickets-by-channel' style="height: 350px;">
+					        <svg></svg>
+					    </div>
+                    </div>
+                    <div class="span5 chart">                        
+	                	<h4 class="title">Tempo para 1ª resposta</h4>
+	                	<div class='chart full' id='ticket-response-time' style="height: 350px;">
+                        	<svg></svg>
+					    </div>
+                    </div>
+                </div>
+                <!-- UI Elements section -->
+                <div class="row-fluid section helpdesk-charts">
+                    <div class="span6 chart">                        
+	                	<h4 class="title">Volume de casos por turno</h4>
+	                	<div class='chart full' id='tickets-by-shift' style="height: 350px;">
+                        	<svg></svg>
+					    </div>
+                    </div>
+                    <div class="span5 chart">                        
+	                	<h4 class="title">Novos casos por hora do dia</h4>
+                        <div class='chart full' id='tickets-by-time' style="height: 350px;">
+                        	<svg></svg>
+					    </div>
                     </div>
                 </div>
                 <!-- end UI elements section -->
 
                 <!-- table sample -->
                 <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+                <!-- 
                 <div class="table-products section">
                     <div class="row-fluid head">
                         <div class="span12">
@@ -127,7 +158,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- row -->
                                 <tr class="first">
                                     <td>
                                         <input type="checkbox">
@@ -148,7 +178,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <!-- row -->
                                 <tr>
                                     <td>
                                         <input type="checkbox">
@@ -168,7 +197,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <!-- row -->
                                 <tr>
                                     <td>
                                         <input type="checkbox">
@@ -188,7 +216,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <!-- row -->
                                 <tr>
                                     <td>
                                         <input type="checkbox">
@@ -209,7 +236,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <!-- row -->
                                 <tr>
                                     <td>
                                         <input type="checkbox">
@@ -243,6 +269,7 @@
                       </ul>
                     </div>
                 </div>
+                -->
                 <!-- end table sample -->
             </div>
         </div>
@@ -391,7 +418,143 @@
 	  return stocks;
 	}
  
- defaultChartConfig("chart1", dummyStocks(),true, true, {forceY:false}, "Data dos casos", "Volume de casos");
+ 
+ var channelData = [{key: "Email",y: 5},{key: "Facebook",y: 2},{key: "Twitter",y: 9},{key: "Suporte",y: 7}];
+ var histoData = [ 
+                  {
+                	    key: "Volume por hora",
+                	    values: [
+						  { 
+						    "label" : "0h" , 
+						    "value" : 32.807804682612
+						  }, 
+                	      { 
+                	        "label" : "1h" ,
+                	        "value" : 29.765957771107
+                	      } , 
+                	      { 
+                	        "label" : "2h" , 
+                	        "value" : 0
+                	      } , 
+                	      { 
+                	        "label" : "3h" , 
+                	        "value" : 32.807804682612
+                	      } , 
+                	      { 
+                	        "label" : "4h" , 
+                	        "value" : 196.45946739256
+                	      } , 
+                	      { 
+                	        "label" : "5h" ,
+                	        "value" : 0.19434030906893
+                	      } , 
+                	      { 
+                	        "label" : "6h" , 
+                	        "value" : 98.079782601442
+                	      } , 
+                	      { 
+                	        "label" : "7h" , 
+                	        "value" : 13.925743130903
+                	      } , 
+                	      { 
+                	        "label" : "8h" , 
+                	        "value" : 5.1387322875705
+                	      },
+						  { 
+                	        "label" : "9h" , 
+                	        "value" : 5.1387322875705
+                	      },
+                	      { 
+                  	        "label" : "10h" , 
+                  	        "value" : 32.807804682612
+                  	      },
+                  	      { 
+                  	        "label" : "11h" , 
+                  	        "value" : 32.807804682612
+                  	      },
+                  	      { 
+                  	        "label" : "12h" , 
+                  	        "value" : 32.807804682612
+                  	      },
+                  	      { 
+                  	        "label" : "13h" , 
+                  	        "value" : 32.807804682612
+                  	      },
+                  	      { 
+                  	        "label" : "14h" , 
+                  	        "value" : 32.807804682612
+                  	      },
+                  	      { 
+                    	     "label" : "15h" , 
+                    	     "value" : 32.807804682612
+                    	  },
+                    	  { 
+                     	     "label" : "16h" , 
+                     	     "value" : 32.807804682612
+                     	  },
+                     	  { 
+                     	     "label" : "17h" , 
+                     	     "value" : 32.807804682612
+                     	  },
+                     	  { 
+                    	     "label" : "18h" , 
+                    	     "value" : 32.807804682612
+                    	  },
+                     	  { 
+                    	     "label" : "19h" , 
+                    	     "value" : 32.807804682612
+                    	  },
+                     	  { 
+                    	     "label" : "20h" , 
+                    	     "value" : 32.807804682612
+                    	  },
+                    	  { 
+                     	     "label" : "21h" , 
+                     	     "value" : 32.807804682612
+                     	  },
+                     	  { 
+                     	     "label" : "22h" , 
+                     	     "value" : 32.807804682612
+                     	  },
+                     	  { 
+                     	     "label" : "23h" , 
+                     	     "value" : 32.807804682612
+                     	  }
+                	    ]
+                	  }
+                	];
+ 
+ var ticketVolumeData = [{key: "Manhã",y: 5},{key: "Tarde",y: 2},{key: "Pós expediente",y: 9}];
+ 
+ var reponseTimeData = [ 
+       {
+	       key: "Tempo médio de resposta",
+	       values: [
+	         { 
+	           "label" : "0-1h" ,
+	           "value" : 0.123
+	         }, 
+	         { 
+	           "label" : "1-8h" , 
+	           "value" : 0.345
+	         } , 
+	         { 
+	          "label" : "8-24h" , 
+	           "value" : 0.54
+	         } , 
+	         { 
+	          "label" : "> 24h" , 
+	           "value" : 0.01
+	         }
+	       ]
+	     }
+	   ];
+ 
+ defaultChartConfig("ticket-volume", dummyStocks(),true, true, {forceY:false}, "Data dos casos", "Volume de casos");
+ defaultPieChart("tickets-by-channel", channelData);
+ defaultHorizontalBarChart("tickets-by-time", histoData);
+ defaultPieChart("tickets-by-shift", ticketVolumeData);
+ defaultBarChart("ticket-response-time", reponseTimeData);
 	
 $(function () {
 	  // custom uiDropdown element, example can be seen in user-list.html on the 'Filter users' button

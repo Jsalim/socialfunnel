@@ -143,12 +143,12 @@ svg {
 
 svg text {
   font: normal 12px 'Open Sans', sans-serif;
-  color: #444;
+  color: #696d73;
 }
 
 svg .title {
  font: bold 14px 'Open Sans', sans-serif;
- color: #444;
+ color: #696d73;
 }
 
 .nvd3 .nv-background {
@@ -616,7 +616,7 @@ svg .title {
 
 .nvd3.nv-sparklineplus .nv-currentValue {
   /*
-  stroke: #444;
+  stroke: #696d73;
   fill: #000;
   */
   font-weight: bold;

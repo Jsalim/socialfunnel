@@ -551,7 +551,7 @@ div.text-area textarea.text-content{
 /* END OF ALL LAYOUT */
 
 /* NAVBAR */
-div.top-tabs{position: fixed;width: 100%;z-index: 1003;}
+div.top-tabs{position: fixed;width: 100%;z-index: 1003; /* -webkit-box-shadow: 0px 0px 6px 0px #444; -moz-box-shadow: 0px 0px 6px 0px #444; box-shadow: 0px 0px 6px 0px #444; */}
 div.top-tabs a.brand{padding: 0; width: 176px!important; vertical-align: middle!important; text-align: center;}
 div.top-tabs a.brand img{width: 100%; max-width: 177px;}
 /* END OF NAVBAR */
@@ -598,10 +598,11 @@ tr.next > td {padding-left:5px!important; }
 
 /* HELPDESK REPORTS*/
 
-div.helpdesk-container-fiter {margin-bottom: 15px;}
-div.helpdesk-reports-container h4.title { margin: 5px 0px 0px 0px!important; }
+div.report-fiter {margin-bottom: 15px;}
+div.helpdesk-reports-container h4.title {margin: 5px 0px 0px 0px!important; }
+div.helpdesk-reports-container div.helpdesk-charts {margin-top: 40px!important}
 
-div.chart{margin-left: 0!important;}
+/* div.chart{margin-left: 0!important;} */
 ticket-volume-chart h4{margin-bottom: 5px;}
 div.ticket-volume-chart text{color:#444;}
 
