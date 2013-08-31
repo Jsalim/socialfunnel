@@ -75,6 +75,9 @@ public class Brand implements Comparable<Brand>{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "mybrand", fetch = FetchType.EAGER)
 	private Set<StreamFilter> streamFilters = new HashSet<StreamFilter>();
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<App> apps = new HashSet<App>();
+	
 	@Column(length = 1000, nullable = true)
 	private String description;
 	
@@ -204,6 +207,10 @@ public class Brand implements Comparable<Brand>{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Set<App> getApps() {
+		return apps;
 	}
 
 }

@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -7,10 +8,12 @@ import jobs.JobScheduler;
 import bootstrap.Constants;
 import bootstrap.DS;
 
+import constants.AppTypes;
 import constants.Permissions;
 import constants.RoleName;
 import constants.States;
 
+import models.App;
 import models.UserRole;
 
 import play.Application;
@@ -26,6 +29,7 @@ public class Global extends GlobalSettings {
 	@Override
 	public void onStart(Application arg0) {
 		checkAndCreateBasicRoles();
+		checkAndCreateDefaultApps();
 		
 		DS.initStore();
 		
@@ -41,6 +45,49 @@ public class Global extends GlobalSettings {
 		}catch (Exception e) {
 			States.DAS_ON = false;
 		}
+	}
+
+	private void checkAndCreateDefaultApps() {
+		EntityManager em = JPA.em("default");
+		
+		List<App> formbuilderList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "formbuilder").getResultList();
+		List<App> knoledgeBaseList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "knoledgeBase").getResultList();
+		List<App> socialnetworksList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "socialnetworks").getResultList();
+		List<App> helpDeskList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "helpDesk").getResultList();
+		List<App> reportList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "report").getResultList();
+		
+		em.getTransaction().begin();
+		if(formbuilderList.size() < 1){
+			App formbuilder = new App();
+			formbuilder.setName("formbuilder"); formbuilder.getAppTypes().add(AppTypes.EMBEDDABLE_APP);
+			em.persist(formbuilder);
+		}
+		
+		if(knoledgeBaseList.size() < 1){
+			App knoledgeBase = new App();
+			knoledgeBase.setName("knoledgeBase"); knoledgeBase.getAppTypes().add(AppTypes.FACEBOOK_APP);
+			em.persist(knoledgeBase);
+		}
+		
+		if(socialnetworksList.size() < 1){
+			App socialnetworks = new App();
+			socialnetworks.setName("socialnetworks"); socialnetworks.getAppTypes().add(AppTypes.TAB_APP);
+			em.persist(socialnetworks);
+		}
+		
+		if(helpDeskList.size() < 1){
+			App helpDesk = new App();
+			helpDesk.setName("helpDesk"); helpDesk.getAppTypes().add(AppTypes.TAB_APP);
+			em.persist(helpDesk);
+		}
+		
+		if(reportList.size() < 1){
+			App report = new App();
+			report.setName("report"); report.getAppTypes().add(AppTypes.TAB_APP);
+			em.persist(report);
+		}
+		em.getTransaction().commit();
+		em.close();
 	}
 	
 	private void checkAndCreateBasicRoles() {

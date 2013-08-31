@@ -33,6 +33,7 @@ import play.libs.Json;
 import util.MyUtil;
 
 import models.AccountKey;
+import models.App;
 import models.Brand;
 import models.FacebookAccountInfo;
 import models.Invitation;
@@ -150,7 +151,21 @@ public class BrandService {
 		userBrandRoles.add(userBrandRole);
 
 		brand.setUserBrandRoles(userBrandRoles);
+		
+		// add default apps
+		
+		App formbuilder = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "formbuilder").getSingleResult();
+		App knoledgeBase = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "knoledgeBase").getSingleResult();
+		App socialnetworks = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "socialnetworks").getSingleResult();
+		App helpDesk = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "helpDesk").getSingleResult();
+		App report = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "report").getSingleResult();
 
+		brand.getApps().add(formbuilder);
+		brand.getApps().add(knoledgeBase);
+		brand.getApps().add(socialnetworks);
+		brand.getApps().add(helpDesk);
+		brand.getApps().add(report);
+		
 		JPA.em().persist(brand);
 
 		addOrInviteUserToBrand(invitations, brand);

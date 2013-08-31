@@ -14,3 +14,6 @@ dist
 /.project
 /RUNNING_PID
 /.settings
+
+/public/nvd3/.jshintrc
+/public/nvd3/.gitignore
