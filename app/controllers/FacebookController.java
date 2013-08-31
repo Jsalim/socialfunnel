@@ -2,6 +2,7 @@ package controllers;
 
 import static play.data.Form.form;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -51,11 +52,12 @@ public class FacebookController extends Controller{
 	/**
 	 * Different from the TwitterController, the FacebookController only has the accounts action.
 	 * Since facebook uses the JS SDK for authenticating the user we do not need a handler nor a callback
+	 * @throws NoSuchAlgorithmException 
 	 * 
 	 * @see {@link TwitterController}
 	 * */
 	@With(AjaxAuthCheckInterceptor.class)
-	public static Result pageAccounts(){
+	public static Result pageAccounts() throws NoSuchAlgorithmException{
 		try {
 			DynamicForm params = form().bindFromRequest();
 			String accessToken = params.get("accessToken");

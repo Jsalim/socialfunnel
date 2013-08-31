@@ -1,5 +1,7 @@
 package models;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,8 +23,9 @@ public class FacebookAccountInfo extends AbstractAccountInfo {
 
 	/**
 	 * Add a user account
+	 * @throws NoSuchAlgorithmException 
 	 * */
-	public FacebookAccountInfo(long id, String name, String oauthToken, FacebookAccountTypes accountType) {
+	public FacebookAccountInfo(long id, String name, String oauthToken, FacebookAccountTypes accountType) throws NoSuchAlgorithmException {
 		super();
 		super.setId(id);
 		super.setOauthToken(oauthToken);
@@ -31,8 +34,9 @@ public class FacebookAccountInfo extends AbstractAccountInfo {
 	}
 	/**
 	 * Add a page account
+	 * @throws NoSuchAlgorithmException 
 	 * */
-	public FacebookAccountInfo(long id, String name, String perms, String oauthToken, FacebookAccountTypes accountType) {
+	public FacebookAccountInfo(long id, String name, String perms, String oauthToken, FacebookAccountTypes accountType) throws NoSuchAlgorithmException {
 		super();
 		super.setId(id);
 		super.setOauthToken(oauthToken);

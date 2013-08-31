@@ -1,5 +1,7 @@
 package models;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -24,7 +26,7 @@ public class TwitterAccountInfo extends AbstractAccountInfo {
 
 	public TwitterAccountInfo() {}
 	
-	public TwitterAccountInfo(String oauthToken, String tokenSecret, String screenName, long id) {
+	public TwitterAccountInfo(String oauthToken, String tokenSecret, String screenName, long id) throws NoSuchAlgorithmException {
 		super();
 		super.setId(id);
 		super.setOauthToken(oauthToken);

@@ -62,14 +62,14 @@ public class Brand implements Comparable<Brand>{
 	
 	@ManyToMany(targetEntity=TwitterAccountInfo.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "brand_twitteraccountinfo", joinColumns = {
-	@JoinColumn(name = "brand_id") }, inverseJoinColumns = {@JoinColumn(nullable=false, name="account_id"),
-			@JoinColumn(nullable=false, name="account_oauthtoken")})
+	@JoinColumn(name = "brand_id") }, 
+	inverseJoinColumns = {@JoinColumn(nullable=false, name="account_authhash") ,@JoinColumn(nullable=false, name="account_id")})
 	private Set<TwitterAccountInfo> twitterAccounts = new HashSet<TwitterAccountInfo>();
 	
 	@ManyToMany(targetEntity=FacebookAccountInfo.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "brand_facebookaccountinfo", joinColumns = {
-	@JoinColumn(name = "brand_id") }, inverseJoinColumns = {@JoinColumn(nullable=false, name="account_id"),
-			@JoinColumn(nullable=false, name="account_oauthtoken")})
+	@JoinTable(name = "brand_facebookaccountinfo", 
+	joinColumns = {@JoinColumn(name = "brand_id") }, 
+	inverseJoinColumns = {@JoinColumn(nullable=false, name="account_authhash"), @JoinColumn(nullable=false, name="account_id")})
 	private Set<FacebookAccountInfo> facebookAccounts = new HashSet<FacebookAccountInfo>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "mybrand", fetch = FetchType.EAGER)

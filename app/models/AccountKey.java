@@ -8,14 +8,14 @@ public class AccountKey implements Serializable{
 	/**
 	 * The user <b>extended</b> user token, page token or user-group token 
 	 * */
-	private String oauthToken;
+	private String authhash;
 	
 	public AccountKey() {}
 
-	public AccountKey(Long id, String oauthToken) {
+	public AccountKey(Long id, String authhash) {
 		super();
 		this.id = id;
-		this.oauthToken = oauthToken;
+		this.authhash = authhash;
 	}
 
 	public Long getId() {
@@ -26,22 +26,22 @@ public class AccountKey implements Serializable{
 		this.id = id;
 	}
 
-	public String getOauthToken() {
-		return oauthToken;
+	public String getAuthHash() {
+		return authhash;
 	}
 
-	public void setOauthToken(String oauthToken) {
-		this.oauthToken = oauthToken;
+	public void setAuthHash(String authHash) {
+		this.authhash = authHash;
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		return id == ((AccountKey)obj).getId() && oauthToken.equals( ((AccountKey)obj).getOauthToken()) ;
+		return id == ((AccountKey)obj).getId() && authhash.equals( ((AccountKey)obj).getAuthHash()) ;
 	}
 	
 	@Override
 	public int hashCode() {
-		return oauthToken.hashCode() * 31;
+		return authhash.hashCode() * 31;
 	}
 }

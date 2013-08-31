@@ -40,6 +40,7 @@ public class UserRole {
 	@ElementCollection(targetClass = Permissions.class)
 	@CollectionTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"))
 	@Column(name = "permissions_id")
+	@Enumerated(EnumType.STRING)
 	public Set<Permissions> permissions;
 
 	public static UserRole findByName(RoleName name) {

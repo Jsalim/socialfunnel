@@ -85,6 +85,7 @@ public class Agent {
 		this.name = name;
 		this.email = email;
 		this.username = username;
+		Logger.debug("Password: " + password);
 		setPassword(password);
 		this.setGravatarLink(email);
 	}

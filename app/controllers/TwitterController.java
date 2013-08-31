@@ -1,5 +1,6 @@
 package controllers;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 
 import org.codehaus.jackson.node.ArrayNode;
@@ -47,8 +48,9 @@ public class TwitterController extends Controller{
 	 * The {uuid}_twitter_request_token created in the {@link TwitterController#handler()} contains authentication 
 	 * info on the request and it is recovered in order to validate and store the access token. The twitterAccounts
 	 * stored in cache may be used to hold multiple twitter accounts and is bound to the uuid.
+	 * @throws NoSuchAlgorithmException 
 	 * */
-	public static Result callback(String oauth_token, String oauth_verifier){
+	public static Result callback(String oauth_token, String oauth_verifier) throws NoSuchAlgorithmException{
 
 		if(oauth_token != null && oauth_verifier != null){
 			try {
