@@ -21,15 +21,8 @@
 }
 .users-list .table td {
 	vertical-align: middle;
-	/* font-size: 13px; */
-	font-size: 12px;
+	font-size: 13px;
 }
-
-.users-list .table th {
-	/* font-size: 13px; */
-	font-size: 11px;
-}
-
 .users-list .table img.avatar {
 	float: left;
 	margin-right: 14px;
