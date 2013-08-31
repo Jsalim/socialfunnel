@@ -270,8 +270,9 @@ input.search{
 	margin-right: -13px;
 	margin-left: -15px;
 	/* padding: 19px 14px 15px 14px;  misael*/
-	padding: 14px 14px 10px 14px;
-	margin-bottom: 5px;
+	padding: 18px 14px 14px 14px;
+	/* margin-bottom: 5px; misael */
+	margin-bottom: 0;
 	border-bottom: 1px solid #dae1e8;
 	box-shadow: 0 2px 1px -1px #FFFFFF;
 	color: rgb(110, 130, 155);
@@ -288,13 +289,13 @@ input.search{
 #dashboard-menu > li i {
 	font-size: 23px;
 	/* top: 17px;  misael*/
-	top: 12px;
+	top: 15px;
 }
 #dashboard-menu .pointer {
 	position: absolute;
 	right: 9px;
 	/* top: 20px; misael*/
-	top: 12px;
+	top: 16px;
 }
 #dashboard-menu .pointer .arrow,
 #dashboard-menu .pointer .arrow_border {
