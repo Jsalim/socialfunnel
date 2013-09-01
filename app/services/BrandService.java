@@ -19,6 +19,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
 import org.joda.time.format.DateTimeFormat;
 
+import constants.AppNames;
 import constants.FilterTypes;
 import constants.Permissions;
 import constants.RoleName;
@@ -154,11 +155,11 @@ public class BrandService {
 		
 		// add default apps
 		
-		App formbuilder = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "formbuilder").getSingleResult();
-		App knoledgeBase = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "knoledgeBase").getSingleResult();
-		App socialnetworks = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "socialnetworks").getSingleResult();
-		App helpDesk = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "helpDesk").getSingleResult();
-		App report = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "report").getSingleResult();
+		App formbuilder = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.FORMBUILDER.toString()).getSingleResult();
+		App knoledgeBase = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.KNOWLEDGEBASE.toString()).getSingleResult();
+		App socialnetworks = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.SOCIALNETWORKS.toString()).getSingleResult();
+		App helpDesk = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.HELPDESK.toString()).getSingleResult();
+		App report = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.REPORTS.toString()).getSingleResult();
 
 		brand.getApps().add(formbuilder);
 		brand.getApps().add(knoledgeBase);

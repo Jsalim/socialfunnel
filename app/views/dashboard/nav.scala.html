@@ -18,13 +18,13 @@
 		            <li @if(tab.equals("applications")){ class="active"}>
 						<a href="@routes.Dashboard.apps()"><!-- <i class="icon-large icon-sign-blank"></i>  --><span class="tab-name">APLICATIVOS</span></a>
 		            </li>
-		             <li @if(tab.equals("interactions")){ class="active"}>
-                		<a href="@routes.Dashboard.interactions()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">REDES SOCIAIS</span></a>
+		            <li @if(tab.equals(constants.AppNames.SOCIALNETWORKS.toString())){ class="active"}>
+                		<a href="@routes.Dashboard.socialnetworks()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">REDES SOCIAIS</span></a>
                		</li>
-               		<li @if(tab.equals("helpdesk")){ class="active"}>
+               		<li @if(tab.equals(constants.AppNames.HELPDESK.toString())){ class="active"}>
                 		<a href="@routes.Dashboard.helpdesk()"><!-- <i class="icon-large icon-group"></i>  --><span class="tab-name">ATENDIMENTO</span></a>
                 	</li>
-                    <li @if(tab.equals("reports")){ class="active"}>
+                    <li @if(tab.equals(constants.AppNames.REPORTS.toString())){ class="active"}>
                 		<a href="@routes.Dashboard.reports()"><!-- <i class="icon-large icon-bar-chart"></i>  --><span class="tab-name">RELATÓRIOS</span></a>
                 	</li>
                 </ul>

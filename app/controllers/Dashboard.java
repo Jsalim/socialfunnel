@@ -65,13 +65,13 @@ public class Dashboard extends Controller {
 	}
 	@Transactional(readOnly = true)
 	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-	public static Result interactions() {
+	public static Result socialnetworks() {
 		try {
 			UserSession userSession = userService.getUserSession(session());
 			// the brand address name passed by the frontend
 //			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
 //				return ok(views.html.dashboard.interactionspanel.render(userSession, userSession.getBrand()));
-				return ok(views.html.dashboard.interactionspanel.render(userSession));
+				return ok(views.html.dashboard.socialnetworkspanel.render(userSession));
 //			}else{ // else, if there is no parameter and no brand in cache
 ////				ObjectNode result = Json.newObject();
 ////				result.put("success", false);

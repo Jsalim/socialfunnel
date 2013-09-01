@@ -8,6 +8,7 @@ import jobs.JobScheduler;
 import bootstrap.Constants;
 import bootstrap.DS;
 
+import constants.AppNames;
 import constants.AppTypes;
 import constants.Permissions;
 import constants.RoleName;
@@ -47,43 +48,50 @@ public class Global extends GlobalSettings {
 		}
 	}
 
+	/**
+	 *	GET		/dashboard/apps						controllers.Dashboard.apps()
+	 * 	GET		/dashboard/interactions				controllers.Dashboard.interactions()
+	 *	GET		/dashboard/helpdesk					controllers.Dashboard.helpdesk()
+	 *	GET		/dashboard/reports					controllers.Dashboard.reports()
+	 *
+	 * */
 	private void checkAndCreateDefaultApps() {
 		EntityManager em = JPA.em("default");
 		
-		List<App> formbuilderList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "formbuilder").getResultList();
-		List<App> knoledgeBaseList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "knoledgeBase").getResultList();
-		List<App> socialnetworksList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "socialnetworks").getResultList();
-		List<App> helpDeskList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "helpDesk").getResultList();
-		List<App> reportList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", "report").getResultList();
+		List<App> formbuilderList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.FORMBUILDER.toString()).getResultList();
+		List<App> knoledgeBaseList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.KNOWLEDGEBASE.toString()).getResultList();
+		List<App> socialNetworksList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.SOCIALNETWORKS.toString()).getResultList();
+		List<App> helpDeskList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.HELPDESK.toString()).getResultList();
+		List<App> reportList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.REPORTS.toString()).getResultList();
 		
 		em.getTransaction().begin();
 		if(formbuilderList.size() < 1){
 			App formbuilder = new App();
-			formbuilder.setName("formbuilder"); formbuilder.getAppTypes().add(AppTypes.EMBEDDABLE_APP);
+			formbuilder.setName(AppNames.FORMBUILDER.toString()); formbuilder.getAppTypes().add(AppTypes.EMBEDDABLE_APP);
 			em.persist(formbuilder);
 		}
 		
 		if(knoledgeBaseList.size() < 1){
 			App knoledgeBase = new App();
-			knoledgeBase.setName("knoledgeBase"); knoledgeBase.getAppTypes().add(AppTypes.FACEBOOK_APP);
+			knoledgeBase.setName(AppNames.KNOWLEDGEBASE.toString()); knoledgeBase.getAppTypes().add(AppTypes.FACEBOOK_APP);
 			em.persist(knoledgeBase);
 		}
 		
-		if(socialnetworksList.size() < 1){
+		if(socialNetworksList.size() < 1){
 			App socialnetworks = new App();
-			socialnetworks.setName("socialnetworks"); socialnetworks.getAppTypes().add(AppTypes.TAB_APP);
+			socialnetworks.setName(AppNames.SOCIALNETWORKS.toString()); socialnetworks.getAppTypes().add(AppTypes.TAB_APP);
 			em.persist(socialnetworks);
 		}
 		
 		if(helpDeskList.size() < 1){
 			App helpDesk = new App();
-			helpDesk.setName("helpDesk"); helpDesk.getAppTypes().add(AppTypes.TAB_APP);
+			helpDesk.setName(AppNames.HELPDESK.toString()); helpDesk.getAppTypes().add(AppTypes.TAB_APP);
 			em.persist(helpDesk);
 		}
 		
 		if(reportList.size() < 1){
 			App report = new App();
-			report.setName("report"); report.getAppTypes().add(AppTypes.TAB_APP);
+			report.setName(AppNames.REPORTS.toString()); report.getAppTypes().add(AppTypes.TAB_APP);
 			em.persist(report);
 		}
 		em.getTransaction().commit();
