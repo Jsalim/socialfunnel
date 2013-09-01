@@ -598,13 +598,18 @@ div.helpdesk-pane { background-color:#fdfdfd; border-radius:5px; border: 1px sol
 div#helpdesk-pane-trigger{height: 30px;}
 
 tr.next{border-left: 3px solid #3C5B79;}
-tr.next > td {padding-left:7px!important; }
-
 
 div#pad-wrapper h4.title{margin: 5px 0px 0px 0px!important;}
 div#pad-wrapper .header input.search {padding: 5px 6px;position: relative;top: -1px;}
 div#pad-wrapper .header a.btn-flat span {font-size: 17px;position: relative;top: 2px;margin-right: 4px;}
 div#pad-wrapper .header .ui-dropdown {margin-left: 20px;}
+
+div#pad-wrapper div.helpdesk-case-list table th {padding-bottom: 4px;}
+div#pad-wrapper div.helpdesk-case-list table td {padding: 4px 7px!important; cursor: pointer;}
+div.helpdesk-tabs .btn-flat {padding: 7px 10px!important;}
+div.helpdesk-tabs .btn-flat i {margin: 0;}
+div.helpdesk-tabs ul.nav{margin: 0;}
+div.helpdesk-tabs button {margin-bottom: 5px!important;}
  
 /* END HELPDESK LIST OF CASES*/
 
