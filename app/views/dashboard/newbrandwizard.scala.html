@@ -57,8 +57,6 @@ IT REPRESENTS THE BRAND CEATION WINZARD IN THE /dashboard/gate ACTION -->
 					    	        
 					    	        var fileDir = '@routes.Assets.at("brandsimages")/';
 
-					    	        console.log(responseJSON.fileName);
-					    	        
 					    	        if($("#thumb-preview").length == 0){
 					    	        	$("#myfile-drop-area").append('<div id="thumb-preview" style="margin: 40px auto auto auto; max-width:200px;"></div>');
 					    	        	console.log(1)
@@ -505,7 +503,6 @@ function bindAccountButtonsToggle(){
 				$(inputHidden).insertBefore($(this));
 			}
 		}else{
-			console.log("ERROR")
 		}
 	});
 }
@@ -575,7 +572,6 @@ function getTwitterAccounts(){
 
 function facebookLogin(){
 	FB.login(function(response) {
-		console.log(response)
  	   if (response.authResponse) {
 				var fbFormData = {
 					"accessToken": response.authResponse.accessToken,

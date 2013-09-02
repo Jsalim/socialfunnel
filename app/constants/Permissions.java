@@ -1,10 +1,16 @@
 package constants;
 
+/** 
+ * Permissions for each app
+ * 
+ * <strong>LAST 2 DIGITS REPRESENT THE PERMISISON. THE REST REPRESENTS THE APP</strong>
+ * 
+ * */
 public enum Permissions {
 	// Admin
 	ALL(0),
 	
-	// read permissions
+	// read permissions 
 	VIEW_USERS(101),
 	VIEW_INTERACTIONS(102),
 	VIEW_STREAM(103),

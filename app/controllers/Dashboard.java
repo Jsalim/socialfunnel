@@ -135,30 +135,6 @@ public class Dashboard extends Controller {
 	
 	@Transactional(readOnly = true)
 	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
-	public static Result apps() {
-		try {
-			UserSession userSession = userService.getUserSession(session());
-			// the brand address name passed by the frontend
-//			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession]
-//				return ok(views.html.dashboard.helpdeskpanel.render(userSession, userSession.getBrand()));
-				return ok(views.html.dashboard.appspanel.render(userSession));
-//			}else{ // else, if there is no parameter and no brand in cache
-////				ObjectNode result = Json.newObject();
-////				result.put("success", false);
-////				result.put("error", "Parametro \"brand\" esperado.");
-////				return badRequest(result);
-//				return redirect(controllers.landing.routes.Home.signin().url());
-//			}
-
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
-		}
-	}	
-	
-	@Transactional(readOnly = true)
-	@With({AuthCheckInterceptor.class, BrandDashboardInterceptor.class})
 	public static Result helpdesk() {
 		Logger.debug(flash().get("tab") + "");
 		try {

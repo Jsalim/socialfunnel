@@ -3,6 +3,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import ch.qos.logback.classic.sift.AppenderFactory;
+
 import jobs.JobScheduler;
 
 import bootstrap.Constants;
@@ -13,6 +15,7 @@ import constants.AppTypes;
 import constants.Permissions;
 import constants.RoleName;
 import constants.States;
+import exceptions.NoSutchAppException;
 
 import models.App;
 import models.UserRole;
@@ -24,13 +27,21 @@ import play.Play;
 import play.db.jpa.JPA;
 import play.libs.F.Promise;
 import play.libs.WS;
+import services.AppService;
 
 public class Global extends GlobalSettings {
 	
+	private static final AppService appService = AppService.getInstance();
+	
 	@Override
 	public void onStart(Application arg0) {
+		try {
+			checkAndCreateDefaultApps();
+		} catch (NoSutchAppException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 		checkAndCreateBasicRoles();
-		checkAndCreateDefaultApps();
 		
 		DS.initStore();
 		
@@ -53,47 +64,42 @@ public class Global extends GlobalSettings {
 	 * 	GET		/dashboard/interactions				controllers.Dashboard.interactions()
 	 *	GET		/dashboard/helpdesk					controllers.Dashboard.helpdesk()
 	 *	GET		/dashboard/reports					controllers.Dashboard.reports()
+	 * @throws NoSutchAppException 
 	 *
 	 * */
-	private void checkAndCreateDefaultApps() {
+	private void checkAndCreateDefaultApps() throws NoSutchAppException {
 		EntityManager em = JPA.em("default");
 		
-		List<App> formbuilderList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.FORMBUILDER.toString()).getResultList();
-		List<App> knoledgeBaseList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.KNOWLEDGEBASE.toString()).getResultList();
-		List<App> socialNetworksList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.SOCIALNETWORKS.toString()).getResultList();
-		List<App> helpDeskList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.HELPDESK.toString()).getResultList();
-		List<App> reportList = em.createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.REPORTS.toString()).getResultList();
-		
+		String qurey = "SELECT an.* FROM App an WHERE an.name like :name";
+
 		em.getTransaction().begin();
-		if(formbuilderList.size() < 1){
-			App formbuilder = new App();
-			formbuilder.setName(AppNames.FORMBUILDER.toString()); formbuilder.getAppTypes().add(AppTypes.EMBEDDABLE_APP);
-			em.persist(formbuilder);
+		App app = null;
+		
+		if(em.createNativeQuery(qurey).setParameter("name", AppNames.FORMBUILDER.toString()).getResultList().size() < 1){
+			app = appService.create(AppNames.FORMBUILDER);
+			em.persist(app);
 		}
 		
-		if(knoledgeBaseList.size() < 1){
-			App knoledgeBase = new App();
-			knoledgeBase.setName(AppNames.KNOWLEDGEBASE.toString()); knoledgeBase.getAppTypes().add(AppTypes.FACEBOOK_APP);
-			em.persist(knoledgeBase);
+		if(em.createNativeQuery(qurey).setParameter("name", AppNames.KNOWLEDGEBASE.toString()).getResultList().size() < 1){
+			app = appService.create(AppNames.KNOWLEDGEBASE);
+			em.persist(app);
 		}
 		
-		if(socialNetworksList.size() < 1){
-			App socialnetworks = new App();
-			socialnetworks.setName(AppNames.SOCIALNETWORKS.toString()); socialnetworks.getAppTypes().add(AppTypes.TAB_APP);
-			em.persist(socialnetworks);
+		if(em.createNativeQuery(qurey).setParameter("name", AppNames.SOCIALNETWORKS.toString()).getResultList().size() < 1){
+			app = appService.create(AppNames.SOCIALNETWORKS);
+			em.persist(app);
 		}
 		
-		if(helpDeskList.size() < 1){
-			App helpDesk = new App();
-			helpDesk.setName(AppNames.HELPDESK.toString()); helpDesk.getAppTypes().add(AppTypes.TAB_APP);
-			em.persist(helpDesk);
+		if(em.createNativeQuery(qurey).setParameter("name", AppNames.HELPDESK.toString()).getResultList().size() < 1){
+			app = appService.create(AppNames.HELPDESK);
+			em.persist(app);
 		}
 		
-		if(reportList.size() < 1){
-			App report = new App();
-			report.setName(AppNames.REPORTS.toString()); report.getAppTypes().add(AppTypes.TAB_APP);
-			em.persist(report);
+		if(em.createNativeQuery(qurey).setParameter("name", AppNames.REPORTS.toString()).getResultList().size() < 1){
+			app = appService.create(AppNames.REPORTS);
+			em.persist(app);
 		}
+		
 		em.getTransaction().commit();
 		em.close();
 	}

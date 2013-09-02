@@ -14,36 +14,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
+import constants.AppNames;
 import constants.AppTypes;
 
 @Entity
 public class App {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@Column(length = 40)
+	private String id;
 	
 	@Column(nullable = false, unique = true)
-	private String name;
+	@Enumerated(EnumType.STRING)
+	private AppNames name;
 
 	@Column(nullable = true)
 	private String tabAction;
 	
 	@ElementCollection(targetClass = AppTypes.class)
-	@CollectionTable(name = "app_types", joinColumns = @JoinColumn(name = "app_id"))
-	@Column(name = "apptypes_id", nullable = false, length = 40)
+	@CollectionTable(name = "app_apptypes", joinColumns = @JoinColumn(name = "app_id"))
+	@Column(name = "apptypes", nullable = false, length = 40)
 	@Enumerated(EnumType.STRING)
 	private Set<AppTypes> appTypes = new HashSet<AppTypes>();
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public String getName() {
+	public AppNames getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(AppNames name) {
+		this.id = name.toString();
 		this.name = name;
 	}
 

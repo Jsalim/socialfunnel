@@ -49,6 +49,7 @@ public class BrandService {
 	private static BrandService instance;
 
 	private static final UserService userService = UserService.getInstance();
+	private static final AppService appService = AppService.getInstance();
 	//	private static final EmailService emailService = EmailService.getInstance(); 
 	private final HashSet<String> brandSubdomains = new HashSet<String>();
 
@@ -154,18 +155,7 @@ public class BrandService {
 		brand.setUserBrandRoles(userBrandRoles);
 		
 		// add default apps
-		
-		App formbuilder = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.FORMBUILDER.toString()).getSingleResult();
-		App knoledgeBase = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.KNOWLEDGEBASE.toString()).getSingleResult();
-		App socialnetworks = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.SOCIALNETWORKS.toString()).getSingleResult();
-		App helpDesk = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.HELPDESK.toString()).getSingleResult();
-		App report = (App) JPA.em().createNativeQuery("SELECT a.* from App a where a.name like :name", App.class).setParameter("name", AppNames.REPORTS.toString()).getSingleResult();
-
-		brand.getApps().add(formbuilder);
-		brand.getApps().add(knoledgeBase);
-		brand.getApps().add(socialnetworks);
-		brand.getApps().add(helpDesk);
-		brand.getApps().add(report);
+		brand.getApps().addAll(appService.getDefaultApps());
 		
 		JPA.em().persist(brand);
 
@@ -413,4 +403,5 @@ public class BrandService {
 			return filter;
 		}
 	}
+
 }

@@ -1,7 +1,7 @@
 package constants;
 
 public enum AppTypes {
-	TAB_APP, EMBEDDABLE_APP, CUSTOM_APP, FACEBOOK_APP;
+	TAB_APP, EMBEDDABLE_APP, CUSTOM_APP, FACEBOOK_APP, SUBDOMAIN_APP;
 }
 
 // An apptype must have a max of 40 characters length because of the utfmb4

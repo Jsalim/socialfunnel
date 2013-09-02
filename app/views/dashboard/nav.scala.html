@@ -15,9 +15,6 @@
                     <li @if(tab.equals("index")){ class="active"}>
 						<a href="@routes.Dashboard.index()"><span class="tab-name"><i class="icon-large icon-home"></i></span></a>
 		            </li>
-		            <li @if(tab.equals("applications")){ class="active"}>
-						<a href="@routes.Dashboard.apps()"><!-- <i class="icon-large icon-sign-blank"></i>  --><span class="tab-name">APLICATIVOS</span></a>
-		            </li>
 		            <li @if(tab.equals(constants.AppNames.SOCIALNETWORKS.toString())){ class="active"}>
                 		<a href="@routes.Dashboard.socialnetworks()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">REDES SOCIAIS</span></a>
                		</li>
@@ -297,8 +294,6 @@
 					return false;
 				});
 				function createNewTicket(form){
-					
-					console.log($("#create-ticket-form").serialize());
 					
 					$("#send-button").button('loading');
 					

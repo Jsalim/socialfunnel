@@ -257,6 +257,7 @@ input.search{
 	padding-top: 5.8em;	
 }
 #dashboard-menu {
+	overflow: hidden; /* misael */
 	list-style: none;
 	padding-right: 15px;
 	padding-left: 15px;
@@ -333,7 +334,8 @@ input.search{
 }
 #dashboard-menu a i {
 	position: absolute;
-	left: 0;
+	/* left: 0; misael */
+	left: 3px;
 	height: 24px;
 	width: 24px;
 	opacity: 0.7;
@@ -419,7 +421,8 @@ input.search{
 	min-width: 400px;
 	min-height: 620px;
 	margin-bottom: 100px;
-	padding-bottom: 50px;
+	/* padding-bottom: 50px; misael */
+	padding-bottom: 10px; 
 	overflow: hidden;
 	position: relative;
 	background: #fff;
@@ -590,6 +593,12 @@ form.modal-form {margin: 0;}
 /* END OF NEW TICKET*/
 
 /* HELPDESK LIST OF CASES*/
+
+div.resizer{position: relative;margin-top: 15px;width: 100%;text-align:center; margin-left: -3px;}
+div.resizer a {text-decoration: none;}
+div.resizer a i {color: #33455A; font-size: 23px;left: 0;height: 24px;width: 24px;opacity: 0.7;transition: opacity .1s ease;-moz-transition: opacity .1s ease;-webkit-transition: opacity .1s ease;-o-transition: opacity .1s ease;}
+div.resizer:hover i{opacity: 1;}
+
 div.helpdesk-pane ul.sidebar-filter{list-style-type: none; margin: 0;}
 div.helpdesk-pane ul.sidebar-filter span.badge {float: right; margin-right: 3px;}
 div.helpdesk-pane ul.sidebar-filter li {padding: 10px;}
@@ -610,6 +619,8 @@ div.helpdesk-tabs .btn-flat {padding: 7px 10px!important;}
 div.helpdesk-tabs .btn-flat i {margin: 0;}
 div.helpdesk-tabs ul.nav{margin: 0;}
 div.helpdesk-tabs button {margin-bottom: 5px!important;}
+
+div.helpdesk-case-list .pagination{margin-top: 8px!important;}
  
 /* END HELPDESK LIST OF CASES*/
 
@@ -630,19 +641,19 @@ div.ticket-volume-chart text{color:#444;}
 /* responsive */
 @media (max-width: 1020px) {
 	.content {
-		margin-left: 65px;
+		/* margin-left: 65px; */
 	}
 	#dashboard-menu {
-		margin-left: 5px;
+		/* margin-left: 5px; */
 	}
 	#dashboard-menu .pointer {
-		display: none;
+		/* display: none; */
 	}
 	#dashboard-menu li a span {
-		visibility: hidden;
+		/* visibility: hidden; */
 	}
 	
-	div.top-tabs ul.nav li a {padding-left: 10px; padding-right: 10px}
+	/* div.top-tabs ul.nav li a {padding-left: 10px; padding-right: 10px} */
 	/* misael */
 	#sidebar-nav {position: static;}
 	/*end*/
@@ -650,7 +661,7 @@ div.ticket-volume-chart text{color:#444;}
 
 @media (max-width: 600px) {
 	.content {
-		margin-left: 0em;
+		/* margin-left: 0em; */
 		border-left-width: 0px;
 	}	
 }
@@ -659,6 +670,9 @@ div.ticket-volume-chart text{color:#444;}
 	div.top-tabs a.brand{display: none!important;}
 }
 @media (max-width: 767px) {
+	
+	div.resizer{display: none;}
+	
 	#pad-wrapper {  
 		padding: 0px 10px;
 	}
@@ -688,7 +702,8 @@ div.ticket-volume-chart text{color:#444;}
 		transition: left .25s ease;
 	}	
 	#sidebar-nav #dashboard-menu {
-		margin-left: 10px;
+		/* margin-left: 10px; misael*/
+		margin-left: 2px
 	}
 	#sidebar-nav #dashboard-menu li a span {
 		visibility: visible;
