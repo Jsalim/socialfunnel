@@ -1,0 +1,336 @@
+@(userSession: util.UserSession, brand: Brand)
+		<div class="container-fluid">
+			<div id="pad-wrapper">
+			
+				<div class="row header">
+                    <div class="col-md-12 helpdesk-tabs">
+                        <button class="btn-flat white">
+                        	<i class="icon-list"></i>
+                        </button>
+							<button class="btn-flat default">
+	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
+	                        </button>
+							<button class="btn-flat white">
+	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
+	                        </button>
+					  	<button class="btn-flat white">
+	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
+	                        </button>
+							<button class="btn-flat white">
+	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
+	                        </button>
+	                        <button onclick="openNewTicketModal()" class="btn-flat success">
+                        	<i class="icon-plus"></i>
+                        	NOVO CASO
+                        </button>
+                    </div>
+                </div>
+			
+                <div class="row">
+                	<!-- case list -->
+                	<div class="col-md-12">
+                	<div class="row">
+                	<div class="col-md-3"> <!-- ticket side filter -->
+                		<div class="helpdesk-filters pop-dialog">
+	                		<div class="helpdesk-pane body">
+		                		<div id="helpdesk-pane-trigger">
+		                			<input type="text" class="search" placeholder="Busca...">
+		                		</div>
+		                		<ul class="sidebar-filter">
+		                			<li class="active">Meus casos não resolvidos <span class="badge badge-info">1</span></li>
+		                			<li>Casos não atribuídos <span class="badge badge-info">1</span></li>
+		                			<li>Todos não resolvidos <span class="badge badge-info">1</span></li>
+		                			<li>Pendentes <span class="badge badge-info">1</span></li>
+		                			<li>Recem atualizados <span class="badge badge-info">1</span></li>
+		                			<li>Caixa de saída <span class="badge badge-info">1</span></li>
+		                			<li>Resolvidos <span class="badge badge-info">1</span></li>
+		                		</ul>
+	                		</div>
+                		</div>
+                	</div>
+                	<div class="col-md-9 helpdesk-case-list">
+                		<div class="table-products">
+	                        	<table class="table table-hover">
+		                            <thead>
+		                                <tr>
+		                                    <th class="col-md-2">
+		                                        <input type="checkbox">
+		                                        CONTATO
+		                                    </th>
+		                                    <th class="col-md-3">
+		                                        <span class="line"></span>
+												ASSUNTO
+		                                    </th>
+		                                    <th class="col-md-2">
+		                                        <span class="line"></span>
+		                                        ESTADO
+		                                    </th>
+		                                    <th class="col-md-2">
+		                                        <span class="line"></span>
+		                                        ATUALIZADO EM
+		                                    </th>
+		                                    <th class="col-md-2">
+		                                        <span class="line"></span>
+		                                        RESPONSÁVEL
+		                                    </th>
+		                                    <th class="col-md-1">
+		                                        <span class="line"></span>
+		                                        PRIORIDADE
+		                                    </th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <!-- row -->
+		                                <tr class="first next">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
+		                                    </td>
+		                                    <td>
+		                                        Misael
+		                                    </td>
+		                                    <td>
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
+		                                    </td>
+		                                    <td>
+		                                        Misael
+		                                    </td>
+		                                    <td>
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
+		                                    </td>
+		                                    <td>
+		                                        Misael
+		                                    </td>
+		                                    <td>
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
+		                                    </td>
+		                                    <td>
+		                                        Misael
+		                                    </td>
+		                                    <td>
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
+		                                    </td>
+		                                    <td>
+		                                        Misael
+		                                    </td>
+		                                    <td>
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
+		                                    </td>
+		                                    <td>
+		                                        Misael
+		                                    </td>
+		                                    <td>
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                    <ul class="pagination">
+			                    <li><a href="#">«</a></li>
+			                    <li class="active"><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                    <li><a href="#">3</a></li>
+			                    <li><a href="#">4</a></li>
+			                    <li><a href="#">»</a></li>
+			                </ul>
+		                </div>
+		                <!-- end users table -->
+                	</div>
+                	<!-- end of case list -->
+                	
+
+                	</div>
+                	</div>
+                </div>
+                <!-- end of row-fluid -->
+            </div>
+        </div>
+        
+<script type='text/javascript'>
+/*    	setDatePicker();
+   	$(".tag-list").slimScroll({height: '120px', disableFadeOut: true});
+	forceScrollRestart(".tag-list");
+ */	
+	
+$(function () {
+	  // custom uiDropdown element, example can be seen in user-list.html on the 'Filter users' button
+	var uiDropdown = new function() {
+  	var self;
+  	self = this;
+  	this.hideDialog = function($el) {
+    		return $el.find(".dialog").hide().removeClass("is-visible");
+  	};
+  	this.showDialog = function($el) {
+    		return $el.find(".dialog").show().addClass("is-visible");
+  	};
+		return this.initialize = function() {
+  		$("html").click(function() {
+    		$(".ui-dropdown .head").removeClass("active");
+      		return self.hideDialog($(".ui-dropdown"));
+    		});
+    		$(".ui-dropdown .body").click(function(e) {
+      		return e.stopPropagation();
+    		});
+    		return $(".ui-dropdown").each(function(index, el) {
+      		return $(el).click(function(e) {
+      			e.stopPropagation();
+      			$(el).find(".head").toggleClass("active");
+      			if ($(el).find(".head").hasClass("active")) {
+        			return self.showDialog($(el));
+      			} else {
+        			return self.hideDialog($(el));
+      			}
+      		});
+    		});
+    	};
+  	};
+
+    // instantiate new uiDropdown from above to build the plugins
+  	new uiDropdown();
+
+
+  	// toggle all checkboxes from a table when header checkbox is clicked
+  	$(".table th input:checkbox").click(function () {
+  		$checks = $(this).closest(".table").find("tbody input:checkbox");
+  		if ($(this).is(":checked")) {
+  			$checks.prop("checked", true);
+  		} else {
+  			$checks.prop("checked", false);
+  		}  		
+  	});
+  	
+  	/* $("input:checkbox, input:radio").uniform(); */
+});
+	
+</script>
