@@ -42,6 +42,7 @@ GET		/dashboard/settings/channels		controllers.Settings.channels()
 GET		/dashboard/helpdesk/tickets			controllers.HelpDesk.tickets()
 GET		/dashboard/helpdesk/contacts		controllers.HelpDesk.contacts()
 GET		/dashboard/helpdesk/reports			controllers.HelpDesk.reports()
+GET		/dashboard/helpdesk/settings		controllers.HelpDesk.settings()
 
 # HelpDesk API ... notice that there is no /dashboard prefix so this can be called from outside the dashboard
 POST    /helpdesk/ticket					controllers.HelpDesk.createTicket()
