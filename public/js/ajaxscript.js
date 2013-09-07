@@ -55,7 +55,7 @@ function checkWidth(){
 		);
 	});
 	
-	$(".resizer-icon").on('click', function(){
+/*	$(".resizer-icon").on('click', function(){
 		if($(this).hasClass("small") == false){
 			$("#dashboard-menu .tab a span").css("opacity", 0);
 			$("#sidebar-nav").css("width", 65);
@@ -67,7 +67,7 @@ function checkWidth(){
 			$(".content").css("margin-left", 177);
 			$(this).removeClass("small");
 		}
-	});
+	});*/
 	
 	/*$(window).resize(function() {
 		checkWidth();
