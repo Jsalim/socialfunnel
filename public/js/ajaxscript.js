@@ -69,10 +69,10 @@ function checkWidth(){
 		}
 	});
 	
-	$(window).resize(function() {
+	/*$(window).resize(function() {
 		checkWidth();
 	});
 	
-	checkWidth();
+	checkWidth();*/
 	
 })(jQuery);

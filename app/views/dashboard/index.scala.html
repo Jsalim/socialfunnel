@@ -1,317 +1,578 @@
 @(userSession: util.UserSession)
 
 @header = {
-	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/chart-showcase.css")">
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/compiled/chart-showcase.css")">
 	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("css/lib/morris.css")">
 }
 
 @content = {
 
 	@nav("index", userSession)
+	
 
-	<div class="container-fluid">
-		<div id="main-stats">
-            <div class="row-fluid stats-row">
-                <div class="span3 stat">
-                    <div class="data">
-                        <span class="number">2457</span>
-                        visits
-                    </div>
-                    <span class="date">Today</span>
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>                
+                <a href="index.html">
+                    <i class="icon-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li>
+                <a href="chart-showcase.html">                    
+                    <i class="icon-signal"></i>
+                    <span>Charts</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>Users</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="user-list.html">User list</a></li>
+                    <li><a href="new-user.html">New user form</a></li>
+                    <li><a href="user-profile.html">User profile</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>Forms</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="form-showcase.html">Form showcase</a></li>
+                    <li><a href="form-wizard.html">Form wizard</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="gallery.html">                    
+                    <i class="icon-picture"></i>
+                    <span>Gallery</span>
+                </a>
+            </li>
+            <li>
+                <a href="calendar.html">                    
+                    <i class="icon-calendar-empty"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="tables.html">
+                    <i class="icon-th-large"></i>
+                    <span>Tables</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="tables.html">Custom tables</a></li>
+                    <li><a href="datatables.html">DataTables</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
                 </div>
-                <div class="span3 stat">
-                    <div class="data">
-                        <span class="number">3240</span>
-                        users
-                    </div>
-                    <span class="date">February 2013</span>
+                <a class="dropdown-toggle ui-elements" href="#">
+                    <i class="icon-code-fork"></i>
+                    <span>UI Elements</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="active submenu">
+                    <li><a href="ui-elements.html" class="active">UI Elements</a></li>
+                    <li><a href="icons.html">Icons</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="personal-info.html">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>
+            <li>                
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-share-alt"></i>
+                    <span>Extras</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="code-editor.html">Code editor</a></li>
+                    <li><a href="grids.html">Grids</a></li>
+                    <li><a href="signin.html">Sign in</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+<!-- main container -->
+    <div class="content">
+        
+        <!-- settings changer -->
+        <div class="skins-nav">
+            <a href="#" class="skin first_nav selected">
+                <span class="icon"></span><span class="text">Default</span>
+            </a>
+            <a href="#" class="skin second_nav" data-file="css/compiled/skins/dark.css">
+                <span class="icon"></span><span class="text">Dark skin</span>
+            </a>
+        </div>
+
+        <div id="pad-wrapper">
+            <div class="row section btns">
+                <!-- flat buttons -->
+                <!-- these styles are located in css/elements.css -->
+                <!-- they also include .small and .large classes to change their size -->
+                <h4 class="title">Flat Buttons</h4>
+                <div class="col-md-6">
+                    <table>
+                        <tr>
+                            <td><code>.btn-flat.inverse</code></td>
+                            <td><a class="btn-flat inverse">INVERSE BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.white</code></td>
+                            <td><a class="btn-flat white">WHITE BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.gray</code></td>
+                            <td><a class="btn-flat gray">GRAY BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.default</code></td>
+                            <td><a class="btn-flat">DEFAULT BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.primary</code></td>
+                            <td><a class="btn-flat primary">PRIMARY BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.success</code></td>
+                            <td><a class="btn-flat success">SUCCESS BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.info</code></td>
+                            <td><a class="btn-flat info">INFO BUTTON</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-flat.danger</code></td>
+                            <td><a class="btn-flat danger">DANGER BUTTON</a></td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="span3 stat">
-                    <div class="data">
-                        <span class="number">322</span>
-                        orders
+                <!-- end flat buttons -->
+
+                <!-- controls showcase -->
+                <div class="col-md-5">
+                    <div class="row ctrls">
+                        <div class="btn-group large">
+                            <button class="glow left"><i class="icon-link"></i></button>
+                            <button class="glow middle"><i class="icon-random"></i></button>
+                            <button class="glow middle"><i class="icon-fullscreen"></i></button>
+                            <button class="glow right"><i class="icon-zoom-out"></i></button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="glow left active">LEFT</button>
+                            <button class="glow right">RIGHT</button>
+                        </div>
+                        <div class="btn-group large audio">
+                            <button class="glow left"><i class="icon-play"></i></button>
+                            <button class="glow middle"><i class="icon-pause"></i></button>
+                            <button class="glow right"><i class="icon-stop"></i></button>
+                        </div>
                     </div>
-                    <span class="date">This week</span>
+                    <div class="row ctrls">
+                        <div class="btn-flat icon"><i class="icon-github"></i> Fork me on github</div>
+                        <div class="btn-glow"><i class="icon-wrench"></i> Icon button</div>                            
+                        <div class="btn-group">
+                            <button class="btn glow">Drop down</button>
+                            <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Option one</a></li>
+                                <li><a href="#">Option two</a></li>
+                                <li><a href="#">Option three</a></li>
+                                <li><a href="#">Option four</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ctrls">
+                        <ul class="pagination pull-left">
+                            <li><a href="#">&#8249;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">&#8250;</a></li>
+                        </ul>
+
+                        <ul class="pagination inverse pull-left">
+                            <li><a href="#">&#8249;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">&#8250;</a></li>
+                        </ul>
+                    </div>
+                    <div class="row ctrls">
+                        <input class="search" type="text" placeholder="Search input.." />
+                        <div class="btn-group settings">
+                            <button class="btn glow"><i class="icon-download-alt"></i></button>
+                            <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Option one</a></li>
+                                <li><a href="#">Option two</a></li>
+                                <li><a href="#">Option three</a></li>
+                                <li><a href="#">Option four</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ctrls">
+                        <h4>Switch buttons</h4>
+                        <div class="slider-frame">
+                            <span data-on-text="ON" data-off-text="OFF" class="slider-button">OFF</span>
+                        </div>
+                        <div class="slider-frame primary">
+                            <span data-on-text="ON" data-off-text="OFF" class="slider-button">OFF</span>
+                        </div>
+                        <div class="slider-frame info">
+                            <span data-on-text="ON" data-off-text="OFF" class="slider-button">OFF</span>
+                        </div>
+                    </div>                        
                 </div>
-                <div class="span3 stat last">
-                    <div class="data">
-                        <span class="number">$2,340</span>
-                        sales
+                <!-- end controls showcase -->
+            </div>
+            <div class="row section btns">
+                <!-- glow buttons -->
+                <!-- these styles are located in css/elements.css -->
+                <!-- they also include .small and .large classes to change their size -->
+                <div class="col-md-6">
+                    <h4 class="title">Glow buttons</h4>
+                    <table>
+                        <tr>
+                            <td><code>.btn-glow</code></td>
+                            <td><a class="btn-glow">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-glow.inverse</code></td>
+                            <td><a class="btn-glow inverse">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-glow.primary</code></td>
+                            <td><a class="btn-glow primary">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn-glow.success</code></td>
+                            <td><a class="btn-glow success">Sign up now</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- end glow buttons -->
+
+                <!-- sliders -->
+                <div class="col-md-5">
+                    <h4 class="title">Sliders</h4>
+                    <div class="sliders">
+                        <div class="slider slider-sample1 vertical-handler"></div>
+                        <div class="slider slider-sample2"></div>
+                        <div class="slider slider-sample3"></div>
+                        <div class="slider success slider-sample2"></div>
+                        <div class="slider success slider-sample3"></div>
+                        <div class="slider info slider-sample2"></div>
+                        <div class="slider info slider-sample3"></div>
+                    </div>                        
+                </div>
+                <!-- end sliders -->
+            </div>
+
+            <div class="row section btns">
+                <div class="col-md-6">
+                    <h4 class="title">Bootstrap 3 buttons</h4>
+                    <table>
+                        <tr>
+                            <td><code>.btn.btn-default</code></td>
+                            <td><a class="btn btn-default">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.btn.btn-primary</code></td>
+                            <td><a class="btn btn-primary">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>btn.btn-success</code></td>
+                            <td><a class="btn btn-success">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>btn.btn-warning</code></td>
+                            <td><a class="btn btn-warning">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>btn.btn-info</code></td>
+                            <td><a class="btn btn-info">Sign up now</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>btn.btn-danger</code></td>
+                            <td><a class="btn btn-danger">Sign up now</a></td>
+                        </tr>                        
+                    </table>
+                </div>
+                <div class="col-md-5">
+                    <h4 class="title">Bootstrap 3 elements</h4>
+                    <div class="row ctrls">
+                        <div class="dropdown">
+                          <!-- Link or button to toggle dropdown -->
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation" class="dropdown-header">Dropdown header</li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default">1</button>
+                          <button type="button" class="btn btn-default">2</button>
+                          <button type="button" class="btn btn-default">3</button>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              Dropdown
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Dropdown link</a></li>
+                              <li><a href="#">Dropdown link</a></li>
+                            </ul>
+                          </div>
+                        </div>
                     </div>
-                    <span class="date">last 30 days</span>
+                    <div class="row ctrls">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#home">Home</a></li>
+                          <li><a href="#profile">Profile</a></li>
+                          <li><a href="#messages">Messages</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home">Home tab!</div>
+                            <div class="tab-pane" id="profile">Profile tab!</div>
+                            <div class="tab-pane" id="messages">Messages tab!</div>
+                        </div>
+                    </div>
+                    <div class="row ctrls">
+                        <!-- Split button -->
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-success">Action</button>
+                          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-info">Action</button>
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-primary">Action</button>
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                          </ul>
+                        </div>
+                    </div>                    
                 </div>
             </div>
-         </div>
-	</div>
 
-	<!-- main container -->
-    <div class="content wide-content">
-
-        <div class="container-fluid">
-            <div id="pad-wrapper">
-                <!-- morris stacked chart -->
-                <div class="row-fluid">
-                    <h4 class="title">Morris.js stacked</h4>
-                    <div class="span12">
-                        <h5>Quarterly Apple iOS device unit sales</h5>
-                        <br>
-                        <div id="hero-area" style="height: 250px;"></div>
-                    </div>
-                </div>
-
-                <!-- morris graph chart -->
-                <div class="row-fluid section">
-                    <h4 class="title">Morris.js <small>Monthly growth</small></h4>
-                    <div class="span12 chart">                        
-                        <div id="hero-graph" style="height: 230px;"></div>
-                    </div>
-                </div>
-
-                <!-- jQuery flot chart -->
-                <div class="row-fluid section">
-                    <h4 class="title">
-                        jQuery Flot <small>Monthly growth</small>
-                        <div class="btn-group pull-right">
-                            <button class="glow left">DAY</button>
-                            <button class="glow middle active">MONTH</button>
-                            <button class="glow right">YEAR</button>
+            <div class="separator"></div>
+            <!-- custom dialogs -->
+            <div class="row section dialogs">
+                <div class="col-md-4">
+                    <h4>Datepicker inline</h4>
+                    <div class="pop-dialog">
+                        <div class="pointer">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
                         </div>
-                    </h4>
-                    <div class="span12">
-                        <div id="statsChart"></div>
-                    </div>
-                </div>
-
-                <!-- morris bar & donut charts -->
-                <div class="row-fluid section">
-                    <h4 class="title">
-                        Morris.js
-                    </h4>
-                    <div class="span6 chart">
-                        <h5>Devices sold</h5>
-                        <div id="hero-bar" style="height: 250px;"></div>
-                    </div>
-                    <div class="span5 chart">
-                        <h5>Month traffic</h5>
-                        <div id="hero-donut" style="height: 250px;"></div>    
-                    </div>
-                </div>
-
-                <!-- jQuery knobs -->
-                <div class="row-fluid section">
-                    <h4 class="title">jQuery Knob</h4>
-                    <div class="row-fluid">
-                        <div class="span3">     
-                            <input type="text" value="50" class="knob second" data-thickness=".3" data-inputColor="#333" data-fgColor="#30a1ec" data-bgColor="#d4ecfd" data-width="140">
-                        </div>
-                        <div class="span3">
-                            <input type="text" value="75" class="knob second" data-thickness=".3" data-inputColor="#333" data-fgColor="#8ac368" data-bgColor="#c4e9aa" data-width="140">
-                        </div>
-                        <div class="span3">
-                            <input type="text" value="35" class="knob second" data-thickness=".3" data-inputColor="#333" data-fgColor="#5ba0a3" data-bgColor="#cef3f5" data-width="140">
-                        </div>
-                        <div class="span3">
-                            <input type="text" value="85" class="knob second" data-thickness=".3" data-inputColor="#333" data-fgColor="#b85e80" data-bgColor="#f8d2e0" data-width="140">
+                        <div class="body">
+                            <div id="inline-datepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" />
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <h4>Menu</h4>
+                    <div class="pop-dialog">
+                        <div class="pointer">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
+                        </div>
+                        <div class="body">
+                            <div class="menu">
+                                <a href="#" class="item">Profile</a>
+                                <a href="#" class="item">My tasks</a>
+                                <a href="#" class="item">Deals</a>
+                                <a href="#" class="item">Terms of service</a>
+                                <a href="#" class="item">Privacy policy</a>
+                                <div class="footer">
+                                    <a href="#" class="logout">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4>Settings window</h4>
+                    <div class="pop-dialog full">
+                        <div class="pointer">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
+                        </div>
+                        <div class="body">                        
+                            <div class="settings">
+                                <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                                <div class="items">
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        List item
+                                        <input type="checkbox" class="check" />
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        List item
+                                        <input type="checkbox" checked="checked" class="check" />
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        List item
+                                        <input type="checkbox" checked="checked" class="check" />
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        List item
+                                        <input type="checkbox" class="check" />
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        List item
+                                        <input type="checkbox" checked="checked" class="check" />
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        List item
+                                        <input type="checkbox" class="check" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end custom dialogs -->
 
+            <div class="separator"></div>
+            <div class="section">
+                <!-- alerts -->
+                <h4 class="title">Alerts</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert alert-info">
+                            <i class="icon-exclamation-sign"></i>
+                            Do you want to get these resources for as little as $0.70 each?
+                        </div>
+                        <div class="alert alert-success">
+                            <i class="icon-ok-sign"></i> Your order has been placed.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-warning">
+                            <i class="icon-warning-sign"></i>
+                            Password strength is low.
+                        </div>
+                        <div class="alert alert-danger">
+                            <i class="icon-remove-sign"></i>
+                            Unexpected error. Please try again later.
+                        </div>
+                    </div>
+                </div>
+                <!-- end alerts -->
             </div>
         </div>
-    </div>
-    <!-- end main container -->
 }
 
 @footer = {
- <!-- end main container -->
-    <!-- morrisjs -->
-    <script src="@routes.Assets.at("js/raphael-min.js")"></script>
-    <script src="@routes.Assets.at("js/morris.min.js")"></script>
-    <!-- call all plugins -->
-    <script src="@routes.Assets.at("js/theme.js")"></script>
 
-    <!-- build the charts -->
+    <!-- initialize this page scripts -->
     <script type="text/javascript">
-	function loadGraphs(){
-        // Morris Bar Chart
-        Morris.Bar({
-            element: 'hero-bar',
-            data: [
-                {device: '1', sells: 136},
-                {device: '3G', sells: 1037},
-                {device: '3GS', sells: 275},
-                {device: '4', sells: 380},
-                {device: '4S', sells: 655},
-                {device: '5', sells: 1571}
-            ],
-            xkey: 'device',
-            ykeys: ['sells'],
-            labels: ['Sells'],
-            barRatio: 0.4,
-            xLabelMargin: 10,
-            hideHover: 'auto',
-            barColors: ["#3d88ba"]
-        });
+        $(function () {
+
+            // Inline datepicker
+            $("#inline-datepicker").datepicker();
 
 
-        // Morris Donut Chart
-        Morris.Donut({
-            element: 'hero-donut',
-            data: [
-                {label: 'Direct', value: 25 },
-                {label: 'Referrals', value: 40 },
-                {label: 'Search engines', value: 25 },
-                {label: 'Unique visitors', value: 10 }
-            ],
-            colors: ["#30a1ec", "#76bdee", "#c4dafe"],
-            formatter: function (y) { return y + "%" }
-        });
-
-
-        // Morris Line Chart
-        var tax_data = [
-            {"period": "2013-04", "visits": 2407, "signups": 660},
-            {"period": "2013-03", "visits": 3351, "signups": 729},
-            {"period": "2013-02", "visits": 2469, "signups": 1318},
-            {"period": "2013-01", "visits": 2246, "signups": 461},
-            {"period": "2012-12", "visits": 3171, "signups": 1676},
-            {"period": "2012-11", "visits": 2155, "signups": 681},
-            {"period": "2012-10", "visits": 1226, "signups": 620},
-            {"period": "2012-09", "visits": 2245, "signups": 500}
-        ];
-        Morris.Line({
-            element: 'hero-graph',
-            data: tax_data,
-            xkey: 'period',
-            xLabels: "month",
-            ykeys: ['visits', 'signups'],
-            labels: ['Visits', 'User signups']
-        });
+            // jQuery UI Sliders
+            $(".slider-sample1").slider({
+                value: 100,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample2").slider({
+                range: "min",
+                value: 130,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample3").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [ 40, 170 ],
+            });
 
 
 
-        // Morris Area Chart
-        Morris.Area({
-            element: 'hero-area',
-            data: [
-                {period: '2010 Q1', iphone: 2666, ipad: null, itouch: 2647},
-                {period: '2010 Q2', iphone: 2778, ipad: 2294, itouch: 2441},
-                {period: '2010 Q3', iphone: 4912, ipad: 1969, itouch: 2501},
-                {period: '2010 Q4', iphone: 3767, ipad: 3597, itouch: 5689},
-                {period: '2011 Q1', iphone: 6810, ipad: 1914, itouch: 2293},
-                {period: '2011 Q2', iphone: 5670, ipad: 4293, itouch: 1881},
-                {period: '2011 Q3', iphone: 4820, ipad: 3795, itouch: 1588},
-                {period: '2011 Q4', iphone: 15073, ipad: 5967, itouch: 5175},
-                {period: '2012 Q1', iphone: 10687, ipad: 4460, itouch: 2028},
-                {period: '2012 Q2', iphone: 8432, ipad: 5713, itouch: 1791}
-            ],
-            xkey: 'period',
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['iPhone', 'iPad', 'iPod Touch'],
-            lineWidth: 2,
-            hideHover: 'auto',
-            lineColors: ["#81d5d9", "#a6e182", "#67bdf8"]
-          });
-		}
-
-		loadGraphs();
-		$(window).on('resize', function(){
-			$("#hero-bar").html("");
-			$("#hero-donut").html("");
-			$("#hero-graph").html("");
-			$("#hero-area").html("");
-			loadGraphs();
-		}); 
-	
-        // Build jQuery Knobs
-        $(".knob").knob();
-
-
-
-        //  jQuery Flot Chart
-        var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
-        var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
-
-        var plot = $.plot($("#statsChart"),
-            [ { data: visits, label: "Signups"},
-             { data: visitors, label: "Visits" }], {
-                series: {
-                    lines: { show: true,
-                            lineWidth: 1,
-                            fill: true, 
-                            fillColor: { colors: [ { opacity: 0.05 }, { opacity: 0.09 } ] }
-                         },
-                    points: { show: true, 
-                             lineWidth: 2,
-                             radius: 3
-                         },
-                    shadowSize: 0,
-                    stack: true
-                },
-                grid: { hoverable: true, 
-                       clickable: true, 
-                       tickColor: "#f9f9f9",
-                       borderWidth: 0
-                    },
-                legend: {
-                        // show: false
-                        labelBoxBorderColor: "#fff"
-                    },  
-                colors: ["#a7b5c5", "#30a0eb"],
-                xaxis: {
-                    ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
-                           [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
-                    font: {
-                        size: 12,
-                        family: "Open Sans, Arial",
-                        variant: "small-caps",
-                        color: "#9da3a9"
-                    }
-                },
-                yaxis: {
-                    ticks:3, 
-                    tickDecimals: 0,
-                    font: {size:12, color: "#9da3a9"}
+            // Switch slide buttons
+            $('.slider-button').click(function() {
+                if ($(this).hasClass("on")) {
+                    $(this).removeClass('on').html($(this).data("off-text"));   
+                } else {
+                    $(this).addClass('on').html($(this).data("on-text"));
                 }
-             });
+            });
 
-        function showTooltip(x, y, contents) {
-            $('<div id="tooltip">' + contents + '</div>').css( {
-                position: 'absolute',
-                display: 'none',
-                top: y - 30,
-                left: x - 50,
-                color: "#fff",
-                padding: '2px 5px',
-                'border-radius': '6px',
-                'background-color': '#000',
-                opacity: 0.80
-            }).appendTo("body").fadeIn(200);
-        }
+            $('.nav-tabs a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
 
-        var previousPoint = null;
-        $("#statsChart").bind("plothover", function (event, pos, item) {
-            if (item) {
-                if (previousPoint != item.dataIndex) {
-                    previousPoint = item.dataIndex;
-
-                    $("#tooltip").remove();
-                    var x = item.datapoint[0].toFixed(0),
-                        y = item.datapoint[1].toFixed(0);
-
-                    var month = item.series.xaxis.ticks[item.dataIndex].label;
-
-                    showTooltip(item.pageX, item.pageY,
-                                item.series.label + " of " + month + ": " + y);
-                }
-            }
-            else {
-                $("#tooltip").remove();
-                previousPoint = null;
-            }
         });
     </script>
-
 }
 
 @main("Social Funnel - Estatísticas")(content)(header)(footer)

@@ -1,39 +1,37 @@
 @(tab: String, userSession: util.UserSession)
     <!-- navbar -->
-    <div class="navbar navbar-inverse top-tabs">
-        <div class="navbar-inner">
-            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+        <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
-            <a class="brand" href="@routes.Dashboard.index()"><img src="@routes.Assets.at("img/logo.png")"></a>
-
-			<div class="">
-                <ul class="nav">
+            <a class="navbar-brand" href="index.html"><img src="@routes.Assets.at("img/logo.png")"></a>
+        </div>
+		
+                <ul class="nav navbar-nav">
                     <li @if(tab.equals("index")){ class="active"}>
 						<a href="@routes.Dashboard.index()"><span class="tab-name"><i class="icon-large icon-home"></i></span></a>
 		            </li>
 		            <li @if(tab.equals(constants.AppNames.SOCIALNETWORKS.toString())){ class="active"}>
-                		<a href="@routes.Dashboard.socialnetworks()"><!-- <i class="icon-large icon-comments"></i> --><span class="tab-name">REDES SOCIAIS</span></a>
+                		<a href="@routes.Dashboard.socialnetworks()"><span class="tab-name">REDES SOCIAIS</span></a>
                		</li>
                		<li @if(tab.equals(constants.AppNames.HELPDESK.toString())){ class="active"}>
-                		<a href="@routes.Dashboard.helpdesk()"><!-- <i class="icon-large icon-group"></i>  --><span class="tab-name">ATENDIMENTO</span></a>
+                		<a href="@routes.Dashboard.helpdesk()"><span class="tab-name">ATENDIMENTO</span></a>
                 	</li>
                     <li @if(tab.equals(constants.AppNames.REPORTS.toString())){ class="active"}>
-                		<a href="@routes.Dashboard.reports()"><!-- <i class="icon-large icon-bar-chart"></i>  --><span class="tab-name">RELATÓRIOS</span></a>
+                		<a href="@routes.Dashboard.reports()"><span class="tab-name">RELATÓRIOS</span></a>
                 	</li>
                 </ul>
-            </div>
-            
-            <ul class="nav pull-right">
+				<ul class="nav navbar-nav pull-right hidden-xs">
             	<!--               
                 <li class="hidden-phone">
                     <input class="search" type="text" />
                 </li>
                  -->
-                <li class="notification-dropdown hidden-phone">
+                <li class="notification-dropdown hidden-xs hidden-sm">
                     <a href="#" class="trigger">
                         <i class="icon-warning-sign"></i>
                         <span id="alert-counter" class="count"
@@ -131,7 +129,7 @@
                 </li>
                  -->
                  
-                <li class="dropdown">
+                <li class="dropdown hidden-xs hidden-sm">
                     <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
                         @userSession.getUser().getUsername()
                         <b class="caret"></b>
@@ -161,9 +159,9 @@
                     </a>
                 </li>
                  -->
-            </ul>            
-        </div>
-    </div>
+            </ul>
+            
+    </header>
     
     <!-- session-close modal -->
     <div id="session-close" class="modal hide fade">
@@ -501,7 +499,6 @@
               		}
 	              	
 	              	$(document).ready(function(){
-	              		
 
 	                    // add uniform plugin styles to html elements
 	                    $("input:checkbox, input:radio").uniform();

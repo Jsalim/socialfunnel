@@ -75,7 +75,7 @@ public class Brand implements Comparable<Brand>{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "mybrand", fetch = FetchType.EAGER)
 	private Set<StreamFilter> streamFilters = new HashSet<StreamFilter>();
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<App> apps = new HashSet<App>();
 	
 	@Column(length = 1000, nullable = true)
