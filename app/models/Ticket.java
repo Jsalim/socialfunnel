@@ -11,53 +11,65 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+
+import org.apache.solr.analysis.BrazilianStemFilterFactory;
+import org.apache.solr.analysis.EdgeNGramFilterFactory;
+import org.apache.solr.analysis.LowerCaseFilterFactory;
+import org.apache.solr.analysis.StandardTokenizerFactory;
+import org.apache.solr.analysis.StopFilterFactory;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.DateBridge;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.TokenizerDef;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.Parameter;
+import org.hibernate.search.annotations.AnalyzerDefs;
+import org.hibernate.search.annotations.AnalyzerDef;
+import org.hibernate.search.bridge.builtin.EnumBridge;
 
 import play.db.jpa.JPA;
 
 import constants.MediaChannels;
 
+
+
 /**
  * A representation of a ticket.
  * */
-
+@Indexed
+@AnalyzerDefs({
+	@AnalyzerDef(name = "pt_BR",
+			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), 
+			filters = { 
+				@TokenFilterDef(factory = BrazilianStemFilterFactory.class),
+				@TokenFilterDef(factory = LowerCaseFilterFactory.class),
+				@TokenFilterDef(factory = EdgeNGramFilterFactory.class, 
+				params = { 
+					@Parameter(name = "maxGramSize", value = "100"), 
+					@Parameter(name = "minGramSize", value = "3") 
+				}),
+				@TokenFilterDef(factory = StopFilterFactory.class, params = { 
+					@Parameter(name = "words", value = "res/stopwordsbr.txt"), 
+					@Parameter(name = "ignoreCase", value = "true") 
+				}) 
+			})
+})
 @Entity
-//@Indexed
-//@AnalyzerDefs({
-//	@AnalyzerDef(name = "pt_BR",
-//			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), 
-//			filters = { 
-//				@TokenFilterDef(factory = BrazilianStemFilterFactory.class),
-//				@TokenFilterDef(factory = LowerCaseFilterFactory.class),
-//				@TokenFilterDef(factory = EdgeNGramFilterFactory.class, 
-//				params = { 
-//					@Parameter(name = "maxGramSize", value = "100"), 
-//					@Parameter(name = "minGramSize", value = "3") 
-//				}),
-//				@TokenFilterDef(factory = StopFilterFactory.class, params = { 
-//					@Parameter(name = "words", value = "res/stopwordsbr.txt"), 
-//					@Parameter(name = "ignoreCase", value = "true") 
-//				}) 
-//			}),
-//	@AnalyzerDef(name = "cep", 
-//			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), 
-//			filters = { 
-//				@TokenFilterDef(factory = EdgeNGramFilterFactory.class, 
-//				params = { 
-//					@Parameter(name = "maxGramSize", value = "8"),
-//					@Parameter(name = "minGramSize", value = "5") 
-//				}) 
-//			}) 
-//})
-//@FullTextFilterDefs({ @FullTextFilterDef(name = "randomness", impl = TopConsultorasFilter.class) })
 public class Ticket {
 
 	@Id
+	@DocumentId
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
@@ -78,22 +90,31 @@ public class Ticket {
 
 	@Column(nullable = true)
 	@Enumerated(EnumType.STRING)
+	@FieldBridge( impl = EnumBridge.class )
+	@Field(index = Index.NO, store = Store.YES, analyze = Analyze.NO)
 	private MediaChannels channel;
 
 	@Column(nullable = false)
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.NO)
+	@DateBridge(resolution = Resolution.MINUTE)
 	private Date createdAt;
 
 	@Column(nullable = true)
-	private Date lastUpdated;
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.NO)
+	@DateBridge(resolution = Resolution.MINUTE)
+	private Date updatedAt;
 
 	@Lob
 	@Column(nullable = false)
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition = "pt_BR"))
 	private String description;
 	
 	@Lob
 	@Column(nullable = false)
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition = "pt_BR"))
 	private String subject;
 	
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.NO)
 	private long ticketNumber;
 	
 	@ManyToOne
@@ -119,17 +140,12 @@ public class Ticket {
 		return createdAt;
 	}
 
-	@PrePersist
-	private void setCreatedAt() {
-		this.createdAt = new Date();
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
+	public void setUpdatedAt(Date lastUpdated) {
+		this.updatedAt = lastUpdated;
 	}
 
 	public String getDescription() {
@@ -202,10 +218,50 @@ public class Ticket {
 		}
 	}
 	
-//	@PrePersist
-//	@PreUpdate
-//	public 
+	@Column(nullable = false)
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition = "pt_BR"))
+	public String contactName;
 	
+	@Column(nullable = true)
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition = "pt_BR"))
+	public String assignedAgentName;
 	
-
+	@Column(nullable = true)
+	@Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition = "pt_BR"))
+	public String createdByAgentName;
+	
+	@PreUpdate
+	private void preUpdate(){
+		this.updatedAt = new Date();
+		
+		if(contact != null){
+			contactName = contact.getName();
+		}
+		
+		if(assignedTo != null){
+			assignedAgentName = assignedTo.getName();
+		}
+		
+		if(createdBy != null){
+			createdByAgentName = createdBy.getName();
+		}
+	}
+	
+	@PrePersist
+	private void prePersist() {
+		this.createdAt = new Date();
+		
+		if(contact != null){
+			contactName = contact.getName();
+		}
+		
+		if(assignedTo != null){
+			assignedAgentName = assignedTo.getName();
+		}
+		
+		if(createdBy != null){
+			createdByAgentName = createdBy.getName();
+		}
+	}
+	
 }
