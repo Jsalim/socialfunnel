@@ -35,7 +35,7 @@ GET		/dashboard/settings					controllers.Dashboard.settings()
 GET		/dashboard/settings/general			controllers.Settings.generalSettings()
 GET		/dashboard/settings/profile			controllers.Settings.editProfile()
 GET		/dashboard/settings/groups			controllers.Settings.groups()
-GET		/dashboard/settings/channels		controllers.Settings.channels()
+GET		/dashboard/settings/apps			controllers.Settings.apps()
 
 
 # HelpDesk
@@ -48,18 +48,7 @@ GET		/dashboard/helpdesk/settings		controllers.HelpDesk.settings()
 POST    /helpdesk/ticket					controllers.HelpDesk.createTicket()
 GET     /helpdesk/tickettest 				controllers.HelpDesk.testTicket()
 
-# Admin
-GET     /adminpanel							controllers.admin.Panel.index()
-GET     /adminpanel/index   	            controllers.admin.Panel.index()
-GET     /adminpanel/account     	        controllers.admin.Panel.account()
-GET     /adminpanel/charts          	    controllers.admin.Panel.charts()
-GET     /adminpanel/faq                 	controllers.admin.Panel.faq()
-GET     /adminpanel/grid                 	controllers.admin.Panel.grid()
-GET     /adminpanel/login                	controllers.admin.Panel.login()
-GET     /adminpanel/plans                	controllers.admin.Panel.plans()
-
 # Home Page
-
 GET		/home  		                controllers.landing.Home.index()
 GET     /home/signup	            controllers.landing.Home.signup()
 GET     /home/signin				controllers.landing.Home.signin()

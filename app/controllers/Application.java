@@ -74,6 +74,9 @@ public class Application extends Controller {
 		public String validate() {
 
 			String message = Messages.get("user.login.failed");
+			
+			Logger.info("TESTE: " + username + " " + password);
+			
 			if (username != null && password != null) {
 				Agent user = userService.findByUsername(username);
 
@@ -138,6 +141,8 @@ public class Application extends Controller {
 		// Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 
 		DynamicForm params = form().bindFromRequest();
+		
+		Logger.info("TESTE2 :" + params.toString());
 
 		Form<Login> loginForm = Form.form(Login.class).bind(params.data());
 

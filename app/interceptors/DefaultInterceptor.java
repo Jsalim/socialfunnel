@@ -39,7 +39,7 @@ public class DefaultInterceptor extends Action.Simple{
 
 		if(hostParts.length <=2 || (hostParts.length == 3 && Constants.reservedSubdomains.contains(subDomain) )){
 			if(subDomain.equals("admin")){
-				return redirect(controllers.admin.routes.Panel.index().url());
+				return ok("admin");
 			}
 			return null;
 		}

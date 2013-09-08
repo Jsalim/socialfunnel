@@ -14,6 +14,7 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaJpa,
     "org.hibernate" % "hibernate-entitymanager" % "4.2.2.Final",
+    "org.hibernate" % "hibernate-search" % "4.3.0.Final",
     "com.restfb" % "restfb" % "1.6.12",
     "mysql" % "mysql-connector-java" % "5.1.25",
     "org.twitter4j" % "twitter4j-core" % "3.0.3",

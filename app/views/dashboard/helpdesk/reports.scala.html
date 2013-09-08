@@ -1,41 +1,41 @@
 @(userSession: util.UserSession, brand: Brand)
-	<div class="container-fluid">
-            <!-- upper main stats -->
-            <div id="main-stats">
-                <div class="row-fluid stats-row">
-                	<div class="span3 stat">
+            
+          <div id="main-stats">
+            <div class="row stats-row">
+                <div class="col-md-3 stat">
                         <div class="data">
                             <span class="number">10%</span>
                         </div>
                         <span class="date">taxa de reabertura total</span>
                     </div>
-                    <div class="span3 stat">
+                    <div class="col-md-3 stat">
                         <div class="data">
                             <span class="number">5%</span>
                         </div>
                         <span class="date">taxa de resolução em 1º contato</span>
                     </div>
-                    <div class="span3 stat">
+                    <div class="col-md-3 stat">
                         <div class="data">
                             <span class="number">15 min</span>
                         </div>
                         <span class="date">tempo médio de atendimento</span>
                     </div>
-                    <div class="span3 stat last">
+                    <div class="col-md-3 stat last">
                         <div class="data">
                             <span class="number">10 min</span>
                         </div>
                         <span class="date">tempo médio para a 1 ª resposta</span>
                     </div>
-                </div>
             </div>
+        </div>
+            
             <!-- end upper main stats -->
 
             <div id="pad-wrapper" class="helpdesk-reports-container">
             
             <!-- UI Elements section -->
                 <div class="row-fluid report-fiter">
-                	<div class="span3">
+                	<div class="col-md-3">
                    		<h4 class="title">Volume de casos</h4>
                     </div>
                     <div class="span9 chart">                        
@@ -79,7 +79,7 @@
 
                 <!-- UI Elements section -->
                 <div class="row-fluid">
-                    <div class="span12 chart">                        
+                    <div class="col-md-12 chart">                        
                         <div class='chart full' id=ticket-volume style="height: 350px;">
 					        <svg></svg>
 					    </div>
@@ -87,13 +87,13 @@
                 </div>
                 <!-- UI Elements section -->
                 <div class="row-fluid section helpdesk-charts">
-                    <div class="span6 chart">                        
+                    <div class="col-md-6 chart">                        
 	                	<h4 class="title">Casos por canal</h4>
                         <div class='chart full' id='tickets-by-channel' style="height: 350px;">
 					        <svg></svg>
 					    </div>
                     </div>
-                    <div class="span5 chart">                        
+                    <div class="col-md-5 chart">                        
 	                	<h4 class="title">Tempo para 1ª resposta</h4>
 	                	<div class='chart full' id='ticket-response-time' style="height: 350px;">
                         	<svg></svg>
@@ -102,13 +102,13 @@
                 </div>
                 <!-- UI Elements section -->
                 <div class="row-fluid section helpdesk-charts">
-                    <div class="span6 chart">                        
+                    <div class="col-md-6 chart">                        
 	                	<h4 class="title">Volume de casos por turno</h4>
 	                	<div class='chart full' id='tickets-by-shift' style="height: 350px;">
                         	<svg></svg>
 					    </div>
                     </div>
-                    <div class="span5 chart">                        
+                    <div class="col-md-5 chart">                        
 	                	<h4 class="title">Novos casos por hora do dia</h4>
                         <div class='chart full' id='tickets-by-time' style="height: 350px;">
                         	<svg></svg>
@@ -272,7 +272,6 @@
                 -->
                 <!-- end table sample -->
             </div>
-        </div>
 <script type='text/javascript'>
 /*    	setDatePicker();
    	$(".tag-list").slimScroll({height: '120px', disableFadeOut: true});

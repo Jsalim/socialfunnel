@@ -16,6 +16,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import play.db.jpa.JPA;
 
@@ -24,7 +25,36 @@ import constants.MediaChannels;
 /**
  * A representation of a ticket.
  * */
+
 @Entity
+//@Indexed
+//@AnalyzerDefs({
+//	@AnalyzerDef(name = "pt_BR",
+//			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), 
+//			filters = { 
+//				@TokenFilterDef(factory = BrazilianStemFilterFactory.class),
+//				@TokenFilterDef(factory = LowerCaseFilterFactory.class),
+//				@TokenFilterDef(factory = EdgeNGramFilterFactory.class, 
+//				params = { 
+//					@Parameter(name = "maxGramSize", value = "100"), 
+//					@Parameter(name = "minGramSize", value = "3") 
+//				}),
+//				@TokenFilterDef(factory = StopFilterFactory.class, params = { 
+//					@Parameter(name = "words", value = "res/stopwordsbr.txt"), 
+//					@Parameter(name = "ignoreCase", value = "true") 
+//				}) 
+//			}),
+//	@AnalyzerDef(name = "cep", 
+//			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), 
+//			filters = { 
+//				@TokenFilterDef(factory = EdgeNGramFilterFactory.class, 
+//				params = { 
+//					@Parameter(name = "maxGramSize", value = "8"),
+//					@Parameter(name = "minGramSize", value = "5") 
+//				}) 
+//			}) 
+//})
+//@FullTextFilterDefs({ @FullTextFilterDef(name = "randomness", impl = TopConsultorasFilter.class) })
 public class Ticket {
 
 	@Id
@@ -162,11 +192,20 @@ public class Ticket {
 		return ticketNumber;
 	}
 
+	/**
+	 * This method should be executed every time a new ticket is create in order for it to calculate the ticket's Number. 
+	 * */
 	public void setTicketNumber() {
 		if(ticketNumber <= 0 && brand != null && id > 0){
 			JPA.em().createNativeQuery("UPDATE ticket as t SET t.ticketNumber = (SELECT count(*) FROM (SELECT * FROM ticket tki where tki.id <= :id ) as tk where brand_id = :brand) where t.id = :sameid ").setParameter("id", this.id).setParameter("brand", brand.getId()).setParameter("sameid", this.id) .executeUpdate();
 			JPA.em().refresh(this);
 		}
 	}
+	
+//	@PrePersist
+//	@PreUpdate
+//	public 
+	
+	
 
 }

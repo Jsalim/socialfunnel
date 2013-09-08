@@ -612,7 +612,7 @@ div.resizer:hover i{opacity: 1;}
 div.helpdesk-pane ul.sidebar-filter{list-style-type: none; margin: 0; padding: 0!important;}
 div.helpdesk-pane ul.sidebar-filter span.badge {float: right; margin-right: 3px;}
 div.helpdesk-pane ul.sidebar-filter li {padding: 10px;}
-div.helpdesk-pane ul.sidebar-filter li:hover, ul.sidebar-filter li.active{background-color: #f1f3f5; cursor: pointer;}
+div.helpdesk-pane ul.sidebar-filter li:hover, ul.sidebar-filter li.active{background-color: #eeeeee; cursor: pointer;}
 div.helpdesk-pane { padding: 0!important;}
 div.helpdesk-filters {width: 100%}
 div#helpdesk-pane-trigger{height: 30px;}

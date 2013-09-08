@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import controllers.admin.Panel;
-
 /**
  * This class representes the Systems admin for managing all users (agents) and brands.
  * @see the {@link Panel} controller and /views/panel pages. Actions endpoints in /adminpanel 

@@ -86,12 +86,12 @@ public class Settings extends Controller{
 	}
 
 	@With(AjaxAuthCheckInterceptor.class)
-	public static Result channels(){
+	public static Result apps(){
 		try {
 			UserSession userSession = userService.getUserSession(session());
 			// the brand address name passed by the frontend
 			if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
-				return ok(views.html.dashboard.settings.channels.render(userSession, userSession.getBrand()));
+				return ok(views.html.dashboard.settings.applications.render(userSession, userSession.getBrand()));
 			}else{ // else, if there is no parameter and no brand in cache
 				ObjectNode result = Json.newObject();
 				result.put("success", false);
