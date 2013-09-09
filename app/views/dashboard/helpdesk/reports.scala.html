@@ -35,83 +35,64 @@
             
             <!-- UI Elements section -->
                 <div class="row-fluid report-fiter">
-                	<div class="col-md-3">
-                   		<h4 class="title">Volume de casos</h4>
-                    </div>
-                    <div class="span9 chart">                        
-                        <div class="ui-dropdown">
-                            <div class="head" data-toggle="tooltip" title="Click me!">
-                                Filtro
-                                <i class="arrow-down"></i>
-                            </div>  
-                            <div class="dialog">
-                                <div class="pointer">
-                                    <div class="arrow"></div>
-                                    <div class="arrow_border"></div>
-                                </div>
-                                <div class="body">
-                                    <p class="title">
-                                        Show users where:
-                                    </p>
-                                    <div class="form">
-                                        <select>
-                                            <option>Name</option>
-                                            <option>Email</option>
-                                            <option>Number of orders</option>
-                                            <option>Signed up</option>
-                                            <option>Last seen</option>
-                                        </select>
-                                        <select>
-                                            <option>is equal to</option>
-                                            <option>is not equal to</option>
-                                            <option>is greater than</option>
-                                            <option>starts with</option>
-                                            <option>contains</option>
-                                        </select>
-                                        <input type="text" />
-                                        <a class="btn-flat small">Add filter</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- UI Elements section -->
                 <div class="row-fluid">
-                    <div class="col-md-12 chart">                        
-                        <div class='chart full' id=ticket-volume style="height: 350px;">
-					        <svg></svg>
+                    <div class="col-md-12 chart">
+                    	<div class="panel">
+                    	<header class="panel-heading">
+                    		<h4>Volume de casos</h4>
+						</header>                        
+	                        <div class='chart full' id=ticket-volume style="height: 350px;">
+						        <svg></svg>
+						    </div>
 					    </div>
                     </div>
                 </div>
                 <!-- UI Elements section -->
-                <div class="row-fluid section helpdesk-charts">
+                <div class="row-fluid  helpdesk-charts">
                     <div class="col-md-6 chart">                        
-	                	<h4 class="title">Casos por canal</h4>
-                        <div class='chart full' id='tickets-by-channel' style="height: 350px;">
-					        <svg></svg>
+	                	<div class="panel">
+                    		<header class="panel-heading">
+                    			<h4>Casos por canal</h4>
+                    		</header>        
+	                        <div class='chart full' id='tickets-by-channel' style="height: 350px;">
+						        <svg></svg>
+						    </div>
 					    </div>
                     </div>
-                    <div class="col-md-5 chart">                        
-	                	<h4 class="title">Tempo para 1ª resposta</h4>
-	                	<div class='chart full' id='ticket-response-time' style="height: 350px;">
-                        	<svg></svg>
+                    <div class="col-md-6 chart">                        
+	                	<div class="panel">
+                    		<header class="panel-heading">
+                    		<h4>Tempo para 1ª resposta</h4>
+                    		</header>        
+		                	<div class='chart full' id='ticket-response-time' style="height: 350px;">
+	                        	<svg></svg>
+						    </div>
 					    </div>
                     </div>
                 </div>
                 <!-- UI Elements section -->
-                <div class="row-fluid section helpdesk-charts">
+                <div class="row-fluid helpdesk-charts">
                     <div class="col-md-6 chart">                        
-	                	<h4 class="title">Volume de casos por turno</h4>
-	                	<div class='chart full' id='tickets-by-shift' style="height: 350px;">
-                        	<svg></svg>
+	                	<div class="panel">
+                    		<header class="panel-heading">
+		                	<h4>Volume de casos por turno</h4>
+                    		</header>        
+		                	<div class='chart full' id='tickets-by-shift' style="height: 350px;">
+	                        	<svg></svg>
+						    </div>
 					    </div>
                     </div>
-                    <div class="col-md-5 chart">                        
-	                	<h4 class="title">Novos casos por hora do dia</h4>
-                        <div class='chart full' id='tickets-by-time' style="height: 350px;">
-                        	<svg></svg>
+                    <div class="col-md-6 chart">                        
+	                	<div class="panel">
+                    		<header class="panel-heading">
+                    			<h4>Novos casos por hora do dia</h4>
+                    		</header>        
+	                        <div class='chart full' id='tickets-by-time' style="height: 350px;">
+	                        	<svg></svg>
+						    </div>
 					    </div>
                     </div>
                 </div>

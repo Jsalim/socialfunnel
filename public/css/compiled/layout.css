@@ -49,7 +49,7 @@ input.search {
 
 .header {
   /* margin-bottom: 60px; misael*/
-  margin-bottom: 30px
+  margin-bottom: 25px
 }
 .header h1, .header h2, .header h3, .header h4, .header h5 {
   float: left;
@@ -415,7 +415,7 @@ input.search {
   margin-top: 55px; misael */
   
   padding: 0px 30px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 #pad-wrapper h4 {
   color: #696d73;
@@ -565,6 +565,16 @@ div.text-area textarea.text-content{
     overflow-y:auto;/*resets IE*/
     overflow-x:hidden;/*resets IE*/
 }
+
+.panel {
+  border-radius: 4px;
+  border-color: #ccc;
+}
+
+.panel-heading, .panel-footer {
+	border-color: #ccc;
+	/* background: #f7f8f9; */
+}
 /* END OF ALL LAYOUT */
 
 /* NAVBAR */
@@ -630,6 +640,15 @@ div.helpdesk-tabs .btn-flat {padding: 7px 10px!important;}
 div.helpdesk-tabs .btn-flat i {margin: 0;}
 div.helpdesk-tabs ul.nav{margin: 0;}
 div.helpdesk-tabs button {margin-bottom: 5px!important;}
+div.helpdesk-tabs ul li a{text-decoration: none; background-color: #eeeeee; padding:7px 12px!important; margin-top: 5px; margin-right: 5px;}
+div.helpdesk-tabs ul i.icon-remove:hover {color: #bb3300; text-decoration: underline;}
+div.helpdesk-tabs #new-ticket{margin-top: 5px;}
+
+.response-box .response-textarea{width: 100%; font-size:12px; resize:none; overflow: auto; resize: none; height: 68px; border: 1px solid #a1a1a1; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;-ms-box-sizing: border-box;-webkit-box-shadow: none;-moz-box-shadow: none;}  
+.response-box .dropdown-menu.open-top {top: -130px;}
+
+.response-box #reponse-actions{margin-top: 10px;}
+.response-box #reponse-actions span.action{cursor: pointer; margin-right: 10px;}
 
 div.helpdesk-case-list .pagination{margin-top: 8px!important;}
  
@@ -643,11 +662,14 @@ div.helpdesk-reports-container div.helpdesk-charts {margin-top: 40px!important}
 div#helpdesk-pane-trigger{text-align: center; height: 45px;}
 div.helpdesk-pane input.search {width: 90%; margin-top: 10px;}
 
-/* div.chart{margin-left: 0!important;} */
+/*html chart elements*/
 ticket-volume-chart h4{margin-bottom: 5px;}
 div.ticket-volume-chart text{color:#444;}
 
 /* END HELPDESK REPORTS*/
+
+text{fill: #696D73;}
+.nv-x .tick line { opacity: 0;}
 
 /* END OF CUSTOMIZATION */
 

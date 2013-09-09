@@ -1,0 +1,119 @@
+
+.arrow {
+  border-width: 8px;
+  z-index: 10;
+}
+.arrow,
+.arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.arrow:after {
+  border-width: 7px;
+  content: "";
+}
+.arrow.top {
+  left: 50%;
+  margin-left: -8px;
+  border-top-width: 0;
+  border-bottom-color: #ccc;
+  border-bottom-color: rgba(0,0,0,0.25);
+  top: -8px;
+}
+.arrow.top:after {
+  content: " ";
+  top: 1px;
+  margin-left: -7px;
+  border-top-width: 0;
+  border-bottom-color: #fff;
+}
+.arrow.right {
+  top: 50%;
+  right: -8px;
+  margin-top: -8px;
+  border-right-width: 0;
+  border-left-color: #ccc;
+  border-left-color: rgba(0,0,0,0.25);
+}
+.arrow.right:after {
+  content: " ";
+  right: 1px;
+  border-right-width: 0;
+  border-left-color: #fff;
+  bottom: -7px;
+}
+.arrow.bottom {
+  left: 50%;
+  margin-left: -8px;
+  border-bottom-width: 0;
+  border-top-color: #ccc;
+  border-top-color: rgba(0,0,0,0.25);
+  bottom: -8px;
+}
+.arrow.bottom:after {
+  content: " ";
+  bottom: 1px;
+  margin-left: -7px;
+  border-bottom-width: 0;
+  border-top-color: #fff;
+}
+.arrow.left {
+  top: 50%;
+  left: -8px;
+  margin-top: -8px;
+  border-left-width: 0;
+  border-right-color: #ccc;
+  border-right-color: rgba(0,0,0,0.25);
+}
+.arrow.left:after {
+  content: " ";
+  left: 1px;
+  border-left-width: 0;
+  border-right-color: #fff;
+  bottom: -7px;
+}
+
+.chat-item:before,
+.chat-item:after {
+  content: " ";
+  display: table;
+}
+.chat-item:after {
+  clear: both;
+}
+.chat-item .arrow {
+  top: 20px;
+}
+.chat-item .arrow.right:after {
+  border-left-color: #92cf5c;
+}
+.chat-item .chat-body {
+  position: relative;
+  margin-left: 45px;
+  min-height: 30px;
+}
+.chat-item .chat-body .panel {
+  margin: 0 -1px;
+}
+.chat-item.right .chat-body {
+  margin-left: 0;
+  margin-right: 45px;
+}
+.chat-item+.chat-item {
+  margin-top: 15px;
+}
+
+.avatar {
+	border: 1px solid rgba(255,255,255,0.2);
+	display: block;
+	border-radius: 500px;
+	white-space: nowrap;
+}
+.thumb-sm {
+width: 36px;
+display: inline-block;
+}
