@@ -3,25 +3,31 @@
 			
 				<div class="row header">
                     <div class="col-md-12 helpdesk-tabs">
-                        <button class="btn-flat white">
-                        	<i class="icon-list"></i>
-                        </button>
-							<button class="btn-flat default">
-	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
-	                        </button>
-							<button class="btn-flat white">
-	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
-	                        </button>
-					  	<button class="btn-flat white">
-	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
-	                        </button>
-							<button class="btn-flat white">
-	                        	<i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i>
-	                        </button>
-	                        <button onclick="openNewTicketModal()" class="btn-flat success">
+                        <ul class="nav nav-pills">
+						  <li class="active"><a href="#"><i class="icon-list"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+						  <li>
+						 	<button id="new-ticket" onclick="openNewTicketModal()" class="btn-flat success">
                         	<i class="icon-plus"></i>
                         	NOVO CASO
-                        </button>
+                        	</button>
+                           </li>
+						</ul>
                     </div>
                 </div>
 			
@@ -30,25 +36,26 @@
                 	<div class="col-md-12">
                 	<div class="row">
                 	<div class="col-md-3"> <!-- ticket side filter -->
-                		<div class="helpdesk-filters pop-dialog">
-	                		<div class="helpdesk-pane body">
-		                		<div id="helpdesk-pane-trigger">
-		                			<input type="text" class="search" placeholder="Busca...">
-		                		</div>
-		                		<ul class="sidebar-filter">
-		                			<li class="active">Meus casos não resolvidos <span class="badge badge-info">1</span></li>
-		                			<li>Casos não atribuídos <span class="badge badge-info">1</span></li>
-		                			<li>Todos não resolvidos <span class="badge badge-info">1</span></li>
-		                			<li>Pendentes <span class="badge badge-info">1</span></li>
-		                			<li>Recem atualizados <span class="badge badge-info">1</span></li>
-		                			<li>Caixa de saída <span class="badge badge-info">1</span></li>
-		                			<li>Resolvidos <span class="badge badge-info">1</span></li>
-		                		</ul>
+                		<div class="panel helpdesk-pane">
+	                		<div id="helpdesk-pane-trigger">
+	                			<input type="text" class="search" placeholder="Busca...">
 	                		</div>
+	                		<ul class="sidebar-filter">
+	                			<li class="active">Meus casos não resolvidos <span class="badge badge-info">1</span></li>
+	                			<li>Casos não atribuídos <span class="badge badge-info">1</span></li>
+	                			<li>Todos não resolvidos <span class="badge badge-info">1</span></li>
+	                			<li>Pendentes <span class="badge badge-info">1</span></li>
+	                			<li>Recem atualizados <span class="badge badge-info">1</span></li>
+	                			<li>Caixa de saída <span class="badge badge-info">1</span></li>
+	                			<li>Resolvidos <span class="badge badge-info">1</span></li>
+	                		</ul>
                 		</div>
                 	</div>
                 	<div class="col-md-9 helpdesk-case-list">
-                		<div class="table-products">
+                		<div class="table-products panel">
+  <header class="panel-heading">
+    	teste!
+  </header>
 	                        	<table class="table table-hover">
 		                            <thead>
 		                                <tr>

@@ -575,6 +575,9 @@ div.text-area textarea.text-content{
 	border-color: #ccc;
 	/* background: #f7f8f9; */
 }
+
+#pad-wrapper .row.header input[type="text"] {margin-top: 3px;}
+
 /* END OF ALL LAYOUT */
 
 /* NAVBAR */
@@ -649,6 +652,7 @@ div.helpdesk-tabs #new-ticket{margin-top: 5px;}
 
 .response-box #reponse-actions{margin-top: 10px;}
 .response-box #reponse-actions span.action{cursor: pointer; margin-right: 10px;}
+.chat-list .comment-info{margin-left: 10px; cursor: pointer;}
 
 div.helpdesk-case-list .pagination{margin-top: 8px!important;}
  
@@ -660,7 +664,9 @@ div.report-fiter {margin-bottom: 15px;}
 div.helpdesk-reports-container h4.title {margin: 5px 0px 0px 0px!important; }
 div.helpdesk-reports-container div.helpdesk-charts {margin-top: 40px!important}
 div#helpdesk-pane-trigger{text-align: center; height: 45px;}
-div.helpdesk-pane input.search {width: 90%; margin-top: 10px;}
+div.helpdesk-pane input.search {width: 92%; margin-top: 10px;}
+
+div.helpdesk-case-list .table thead{border-top: none;}
 
 /*html chart elements*/
 ticket-volume-chart h4{margin-bottom: 5px;}

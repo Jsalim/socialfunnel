@@ -89,8 +89,18 @@
   top: 20px;
 }
 .chat-item .arrow.right:after {
-  border-left-color: #92cf5c;
+  border-left-color: #fefbdc;
 }
+
+.chat-item .bg-success {
+  background-color: #fefbdc;
+  border: 1px solid #e9e6c4!important;
+}
+
+.chat-item .bg-success .arrow.right {
+  border-left-color: #e9e6c4!important;
+}
+
 .chat-item .chat-body {
   position: relative;
   margin-left: 45px;
