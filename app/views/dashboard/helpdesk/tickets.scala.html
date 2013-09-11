@@ -1,69 +1,57 @@
 @(userSession: util.UserSession, brand: Brand)
-			<div id="pad-wrapper">
 			
-				<div class="row header">
-                    <div class="col-md-12 helpdesk-tabs">
-                        <ul class="nav nav-pills">
-						  <li class="active"><a href="#"><i class="icon-list"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-						  <li>
-						 	<button id="new-ticket" onclick="openNewTicketModal()" class="btn-flat success">
-                        	<i class="icon-plus"></i>
-                        	NOVO CASO
-                        	</button>
-                           </li>
-						</ul>
-                    </div>
-                </div>
-			
-                <div class="row">
                 	<!-- case list -->
-                	<div class="col-md-12">
-                	<div class="row">
-                	<div class="col-md-3"> <!-- ticket side filter -->
                 		<div class="panel helpdesk-pane">
-	                		<div id="helpdesk-pane-trigger">
+	                		<div id="helpdesk-pane-header">
 	                			<input type="text" class="search" placeholder="Busca...">
 	                		</div>
-	                		<ul class="sidebar-filter">
-	                			<li class="active">Meus casos não resolvidos <span class="badge badge-info">1</span></li>
-	                			<li>Casos não atribuídos <span class="badge badge-info">1</span></li>
-	                			<li>Todos não resolvidos <span class="badge badge-info">1</span></li>
-	                			<li>Pendentes <span class="badge badge-info">1</span></li>
-	                			<li>Recem atualizados <span class="badge badge-info">1</span></li>
-	                			<li>Caixa de saída <span class="badge badge-info">1</span></li>
-	                			<li>Resolvidos <span class="badge badge-info">1</span></li>
-	                		</ul>
+	                		<ul class="nav nav-pills nav-stacked sidebar-filter">
+						        <li class="active"><a>Meus casos não resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
+	                			<li><a>Casos não atribuídos <span class="badge badge-info  pull-right">1</span></a></li>
+	                			<li><a>Todos não resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
+	                			<li><a>Pendentes <span class="badge badge-info  pull-right">1</span></a></li>
+	                			<li><a>Recem atualizados <span class="badge badge-info  pull-right">1</span></a></li>
+	                			<li><a>Caixa de saída <span class="badge badge-info  pull-right">1</span></a></li>
+	                			<li><a>Resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
+						    </ul>
                 		</div>
-                	</div>
-                	<div class="col-md-9 helpdesk-case-list">
-                		<div class="table-products panel">
-  <header class="panel-heading">
-    	teste!
-  </header>
+                		<div class="helpdesk-content panel">
+						  <header class="panel-heading">
+						  	<div class="helpdesk-tabs">
+		                        <ul id="ticket-tabs" class="nav nav-pills pull-left">
+								  <li class="active"><a href="#"><i class="icon-list"></i></a></li>
+								  <li>
+								  	<button id="new-ticket" onclick="openNewTicketModal()" class="btn-flat success">
+		                        	<i class="icon-plus"></i>
+		                        	NOVO CASO
+		                        	</button>
+								  </li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+		
+								</ul>
+	                    	</div>
+						  </header>
+						  <header class="panel-heading">
+						    	<ul class="pagination">
+			                    <li><a href="#"><i class="icon-arrow-left"></i></a></li>
+			                    <li><a href="#"><i class="icon-arrow-right"></i></a></li>
+			                	</ul>	
+						  </header>
+						  <div class="table-products">
 	                        	<table class="table table-hover">
 		                            <thead>
 		                                <tr>
-		                                    <th class="col-md-2">
+		                                    <th class="col-md-3">
 		                                        <input type="checkbox">
 		                                        CONTATO
 		                                    </th>
-		                                    <th class="col-md-3">
+		                                    <th class="col-md-4">
 		                                        <span class="line"></span>
 												ASSUNTO
 		                                    </th>
@@ -74,10 +62,6 @@
 		                                    <th class="col-md-2">
 		                                        <span class="line"></span>
 		                                        ATUALIZADO EM
-		                                    </th>
-		                                    <th class="col-md-2">
-		                                        <span class="line"></span>
-		                                        RESPONSÁVEL
 		                                    </th>
 		                                    <th class="col-md-1">
 		                                        <span class="line"></span>
@@ -109,7 +93,30 @@
 		                                        12/06/2013
 		                                    </td>
 		                                    <td>
-		                                        Misael
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
 		                                    </td>
 		                                    <td>
 		                                        <span class="label">alta</span>
@@ -138,7 +145,30 @@
 		                                        12/06/2013
 		                                    </td>
 		                                    <td>
-		                                        Misael
+		                                        <span class="label">alta</span>
+		                                    </td>
+		                                </tr>
+		                                <!-- row -->
+		                                <tr class="">
+		                                    <td>
+		                                        <input type="checkbox">
+		                                        <a href="#">João Aleixo </a>
+		                                    </td>
+		                                    <td class="description">
+		                                        if you are going to use a passage of Lorem Ipsum.
+		                                    </td>
+		                                    <td>
+		                                        <span class="label label-success">Active</span>
+		                                        <!-- 
+		                                        <ul class="actions">
+		                                            <li><i class="table-edit"></i></span></li>
+		                                            <li><i class="table-settings"></i></li>
+		                                            <li class="last"><i class="table-delete"></i></li>
+		                                        </ul>
+		                                         -->
+		                                    </td>
+		                                    <td>
+		                                        12/06/2013
 		                                    </td>
 		                                    <td>
 		                                        <span class="label">alta</span>
@@ -167,9 +197,6 @@
 		                                        12/06/2013
 		                                    </td>
 		                                    <td>
-		                                        Misael
-		                                    </td>
-		                                    <td>
 		                                        <span class="label">alta</span>
 		                                    </td>
 		                                </tr>
@@ -194,67 +221,6 @@
 		                                    </td>
 		                                    <td>
 		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        Misael
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        Misael
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        Misael
 		                                    </td>
 		                                    <td>
 		                                        <span class="label">alta</span>
@@ -262,32 +228,19 @@
 		                                </tr>
 		                            </tbody>
 		                        </table>
-		                    <ul class="pagination">
-			                    <li><a href="#">«</a></li>
-			                    <li class="active"><a href="#">1</a></li>
-			                    <li><a href="#">2</a></li>
-			                    <li><a href="#">3</a></li>
-			                    <li><a href="#">4</a></li>
-			                    <li><a href="#">»</a></li>
-			                </ul>
+		                    </div>
 		                </div>
 		                <!-- end users table -->
-                	</div>
                 	<!-- end of case list -->
                 	
 
-                	</div>
-                	</div>
-                </div>
-                <!-- end of row-fluid -->
-            </div>
         
 <script type='text/javascript'>
 /*    	setDatePicker();
    	$(".tag-list").slimScroll({height: '120px', disableFadeOut: true});
 	forceScrollRestart(".tag-list");
- */	
-	
+*/
+
 $(function () {
 	  // custom uiDropdown element, example can be seen in user-list.html on the 'Filter users' button
 	var uiDropdown = new function() {
@@ -324,7 +277,6 @@ $(function () {
     // instantiate new uiDropdown from above to build the plugins
   	new uiDropdown();
 
-
   	// toggle all checkboxes from a table when header checkbox is clicked
   	$(".table th input:checkbox").click(function () {
   		$checks = $(this).closest(".table").find("tbody input:checkbox");
@@ -334,7 +286,8 @@ $(function () {
   			$checks.prop("checked", false);
   		}  		
   	});
-  	
+
+  	helpdeskTabResizeCheck();
   	/* $("input:checkbox, input:radio").uniform(); */
 });
 	

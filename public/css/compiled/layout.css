@@ -1,7 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #f7f7f7;
-  position: relative;
+  /* position: relative; */
   margin: 0px;
   font-size: 12px;
   padding: 0px;
@@ -423,24 +423,32 @@ input.search {
 }
 
 .content {
-  min-width: 400px;
-  min-height: 620px;
-  margin-bottom: 100px;
-  padding-bottom: 50px;
-  overflow: hidden;
-  position: relative;
-  background: #fff;
-  /* margin-left: 177px; misael*/
-  margin-left: 102px; /* misael */
-  border-left: 1px solid #dae3e9;
-  border-bottom: 1px solid #dae3e9;
-  box-shadow: -3px 3px 3px -2px #f1f1f3;
-  border-radius: 0px 0px 0px 5px;
-  -webkit-transition: margin-left .3s ease;
-  -moz-transition: margin-left .3s ease;
-  -o-transition: margin-left .3s ease;
-  -ms-transition: margin-left .3s ease;
-  transition: margin-left .3s ease;
+
+	display: block!important;
+	position: absolute!important;
+	height: auto!important;
+	bottom: 0!important;
+	top: 0!important;
+	left: 0!important;
+	right: 0!important;
+	margin-top: 48px!important;
+	overflow-y: auto!important;
+	overflow-x: hidden!important;
+		
+	overflow: hidden;
+	position: relative;
+	background: #fff;
+	/* margin-left: 177px; misael*/
+	margin-left: 102px; /* misael */
+	border-left: 1px solid #dae3e9;
+	border-bottom: 1px solid #dae3e9;
+	box-shadow: -3px 3px 3px -2px #f1f1f3;
+	border-radius: 0px 0px 0px 5px;
+	-webkit-transition: margin-left .3s ease;
+	-moz-transition: margin-left .3s ease;
+	-o-transition: margin-left .3s ease;
+	-ms-transition: margin-left .3s ease;
+	transition: margin-left .3s ease;
   /* starts skins changer */
   /* end skin changer*/
 }
@@ -530,7 +538,7 @@ input.search {
 
 /* ALL LAYOUT */
 
-div.content{left: 0!important;right: 0!important;top: 48px;position: absolute; min-height: 400px!important;}
+/* div.content{left: 0!important;right: 0!important;top: 48px;position: absolute; min-height: 400px!important;} */
 #sidebar-nav{z-index: 1;position: fixed;}
 
 #sidebar-nav ul#dashboard-menu li a{text-align: center;}
@@ -568,11 +576,11 @@ div.text-area textarea.text-content{
 
 .panel {
   border-radius: 4px;
-  border-color: #ccc;
+  border-color: #dae3e9;
 }
 
 .panel-heading, .panel-footer {
-	border-color: #ccc;
+	border-color: #dae3e9
 	/* background: #f7f8f9; */
 }
 
@@ -622,13 +630,20 @@ div.resizer a {text-decoration: none;}
 div.resizer a i {color: #33455A; font-size: 23px;left: 0;height: 24px;width: 24px;opacity: 0.7;transition: opacity .1s ease;-moz-transition: opacity .1s ease;-webkit-transition: opacity .1s ease;-o-transition: opacity .1s ease;}
 div.resizer:hover i{opacity: 1;}
 
-div.helpdesk-pane ul.sidebar-filter{list-style-type: none; margin: 0; padding: 0!important;}
-div.helpdesk-pane ul.sidebar-filter span.badge {float: right; margin-right: 3px;}
-div.helpdesk-pane ul.sidebar-filter li {padding: 10px;}
-div.helpdesk-pane ul.sidebar-filter li:hover, ul.sidebar-filter li.active{background-color: #eeeeee; cursor: pointer;}
-div.helpdesk-pane { padding: 0!important;}
+/* div.helpdesk-pane ul.sidebar-filter span.badge {float: right; margin-right: 3px;} */
+div.helpdesk-pane ul.sidebar-filter li {margin-top: 0;}
+div.helpdesk-pane ul.sidebar-filter li:hover, ul.sidebar-filter li.active{cursor: pointer;}
+div.helpdesk-pane ul.sidebar-filter li a{border-radius: 0px;}
+
+div#helpdesk-pane-header{text-align: center; height: 70px; padding: 15px 0 15px 0;}
+div.helpdesk-pane { padding: 0!important; overflow: hidden;}
+div.helpdesk-pane{position: absolute;top: 0px;bottom: 0;margin: 0;width: 300px;border-radius: 0;border:none; background: #fdfdfd}
+div.helpdesk-content{position: absolute;top: 0px;bottom: 0;margin: 0;left: 300px;border-radius: 0;padding-right: 300px; width: 100%; border-left: 1px solid #dae3e9; box-shadow: inset 3px 0px 4px -1px #f9f9f9; }
+div.helpdesk-content .pagination {margin: 0!important}
+div.helpdesk-content table thead{border-top: 0px!important;} 
+div.helpdesk-content table th {padding-bottom: 4px;}
+div.helpdesk-content table td {padding: 4px 7px!important; cursor: pointer;}
 div.helpdesk-filters {width: 100%}
-div#helpdesk-pane-trigger{height: 30px;}
 
 tr.next{border-left: 3px solid #3C5B79;}
 
@@ -637,8 +652,6 @@ div#pad-wrapper .header input.search {padding: 5px 6px;position: relative;top: -
 div#pad-wrapper .header a.btn-flat span {font-size: 17px;position: relative;top: 2px;margin-right: 4px;}
 div#pad-wrapper .header .ui-dropdown {margin-left: 20px;}
 
-div#pad-wrapper div.helpdesk-case-list table th {padding-bottom: 4px;}
-div#pad-wrapper div.helpdesk-case-list table td {padding: 4px 7px!important; cursor: pointer;}
 div.helpdesk-tabs .btn-flat {padding: 7px 10px!important;}
 div.helpdesk-tabs .btn-flat i {margin: 0;}
 div.helpdesk-tabs ul.nav{margin: 0;}
@@ -646,6 +659,12 @@ div.helpdesk-tabs button {margin-bottom: 5px!important;}
 div.helpdesk-tabs ul li a{text-decoration: none; background-color: #eeeeee; padding:7px 12px!important; margin-top: 5px; margin-right: 5px;}
 div.helpdesk-tabs ul i.icon-remove:hover {color: #bb3300; text-decoration: underline;}
 div.helpdesk-tabs #new-ticket{margin-top: 5px;}
+
+div.helpdesk-tabs ul#ticket-tabs {overflow: hidden; display: block; list-style-position: outside;}
+div.helpdesk-tabs ul#ticket-tabs li.hidden-tab{display: none;}
+div.helpdesk-tabs ul#ticket-tabs li.visible-tab{display: block;}
+div.helpdesk-tabs {height: 40px; overflow: hidden;}
+
 
 .response-box .response-textarea{width: 100%; font-size:12px; resize:none; overflow: auto; resize: none; height: 68px; border: 1px solid #a1a1a1; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;-ms-box-sizing: border-box;-webkit-box-shadow: none;-moz-box-shadow: none;}  
 .response-box .dropdown-menu.open-top {top: -130px;}
@@ -663,7 +682,6 @@ div.helpdesk-case-list .pagination{margin-top: 8px!important;}
 div.report-fiter {margin-bottom: 15px;}
 div.helpdesk-reports-container h4.title {margin: 5px 0px 0px 0px!important; }
 div.helpdesk-reports-container div.helpdesk-charts {margin-top: 40px!important}
-div#helpdesk-pane-trigger{text-align: center; height: 45px;}
 div.helpdesk-pane input.search {width: 92%; margin-top: 10px;}
 
 div.helpdesk-case-list .table thead{border-top: none;}
