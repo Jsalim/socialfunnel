@@ -2,233 +2,243 @@
 			
                 	<!-- case list -->
                 		<div class="panel helpdesk-pane">
-	                		<div id="helpdesk-pane-header">
-	                			<input type="text" class="search" placeholder="Busca...">
-	                		</div>
-	                		<ul class="nav nav-pills nav-stacked sidebar-filter">
-						        <li class="active"><a>Meus casos não resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
-	                			<li><a>Casos não atribuídos <span class="badge badge-info  pull-right">1</span></a></li>
-	                			<li><a>Todos não resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
-	                			<li><a>Pendentes <span class="badge badge-info  pull-right">1</span></a></li>
-	                			<li><a>Recem atualizados <span class="badge badge-info  pull-right">1</span></a></li>
-	                			<li><a>Caixa de saída <span class="badge badge-info  pull-right">1</span></a></li>
-	                			<li><a>Resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
-						    </ul>
+                			<section id="helpdesk-pane-frame">
+		                		<div id="helpdesk-pane-header">
+		                			<h4 class="title">Filtros</h4>
+		                			<input type="text" class="search" placeholder="Busca rápida...">
+		                		</div>
+		                		<ul class="nav nav-pills nav-stacked sidebar-filter">
+							        <li class="active"><a>Meus casos não resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
+		                			<li><a>Casos não atribuídos <span class="badge badge-info  pull-right">1</span></a></li>
+		                			<li><a>Todos não resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
+		                			<li><a>Pendentes <span class="badge badge-info  pull-right">1</span></a></li>
+		                			<li><a>Recem atualizados <span class="badge badge-info  pull-right">1</span></a></li>
+		                			<li><a>Caixa de saída <span class="badge badge-info  pull-right">1</span></a></li>
+		                			<li><a>Resolvidos <span class="badge badge-info  pull-right">1</span></a></li>
+							    </ul>
+						    </section>
                 		</div>
                 		<div class="helpdesk-content panel">
 						  <header class="panel-heading">
 						  	<div class="helpdesk-tabs">
-		                        <ul id="ticket-tabs" class="nav nav-pills pull-left">
-								  <li class="active"><a href="#"><i class="icon-list"></i></a></li>
+		                        <ul id="ticket-tabs" class="nav nav-pills">
+								  <li class="active contact-tab"><a href="#"><i class="icon-list"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
+								  <li class="contact-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
 								  <li>
 								  	<button id="new-ticket" onclick="openNewTicketModal()" class="btn-flat success">
 		                        	<i class="icon-plus"></i>
 		                        	NOVO CASO
 		                        	</button>
 								  </li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 666 | João Aleixo <i class="icon-remove"></i></a></li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-								  <li class="visible-tab"><a href="#"><i class="icon-ticket"></i> 667 | João Aleixo <i class="icon-remove"></i></a></li>
-		
 								</ul>
 	                    	</div>
 						  </header>
-						  <header class="panel-heading">
-						    	<ul class="pagination">
-			                    <li><a href="#"><i class="icon-arrow-left"></i></a></li>
-			                    <li><a href="#"><i class="icon-arrow-right"></i></a></li>
-			                	</ul>	
-						  </header>
-						  <div class="table-products">
-	                        	<table class="table table-hover">
-		                            <thead>
-		                                <tr>
-		                                    <th class="col-md-3">
-		                                        <input type="checkbox">
-		                                        CONTATO
-		                                    </th>
-		                                    <th class="col-md-4">
-		                                        <span class="line"></span>
-												ASSUNTO
-		                                    </th>
-		                                    <th class="col-md-2">
-		                                        <span class="line"></span>
-		                                        ESTADO
-		                                    </th>
-		                                    <th class="col-md-2">
-		                                        <span class="line"></span>
-		                                        ATUALIZADO EM
-		                                    </th>
-		                                    <th class="col-md-1">
-		                                        <span class="line"></span>
-		                                        PRIORIDADE
-		                                    </th>
-		                                </tr>
-		                            </thead>
-		                            <tbody>
-		                                <!-- row -->
-		                                <tr class="first next">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                                <!-- row -->
-		                                <tr class="">
-		                                    <td>
-		                                        <input type="checkbox">
-		                                        <a href="#">João Aleixo </a>
-		                                    </td>
-		                                    <td class="description">
-		                                        if you are going to use a passage of Lorem Ipsum.
-		                                    </td>
-		                                    <td>
-		                                        <span class="label label-success">Active</span>
-		                                        <!-- 
-		                                        <ul class="actions">
-		                                            <li><i class="table-edit"></i></span></li>
-		                                            <li><i class="table-settings"></i></li>
-		                                            <li class="last"><i class="table-delete"></i></li>
-		                                        </ul>
-		                                         -->
-		                                    </td>
-		                                    <td>
-		                                        12/06/2013
-		                                    </td>
-		                                    <td>
-		                                        <span class="label">alta</span>
-		                                    </td>
-		                                </tr>
-		                            </tbody>
-		                        </table>
-		                    </div>
+						  <section id="helpdesk-content-frame">
+							  <header id="helpdesk-panel-heading" class="panel-heading">
+							    	<ul class="pagination">
+				                    <li><a href="#"><i class="icon-arrow-left"></i></a></li>
+				                    <li><a href="#"><i class="icon-arrow-right"></i></a></li>
+				                	</ul>	
+							  </header>
+							  <div class="table-products">
+		                        	<table class="table table-hover">
+			                            <thead>
+			                                <tr>
+			                                    <th class="col-md-3">
+			                                        <input type="checkbox">
+			                                        CONTATO
+			                                    </th>
+			                                    <th class="col-md-4">
+			                                        <span class="line"></span>
+													ASSUNTO
+			                                    </th>
+			                                    <th class="col-md-2">
+			                                        <span class="line"></span>
+			                                        ESTADO
+			                                    </th>
+			                                    <th class="col-md-2">
+			                                        <span class="line"></span>
+			                                        ATUALIZADO EM
+			                                    </th>
+			                                    <th class="col-md-1">
+			                                        <span class="line"></span>
+			                                        PRIORIDADE
+			                                    </th>
+			                                </tr>
+			                            </thead>
+			                            <tbody>
+			                                <!-- row -->
+			                                <tr class="first next">
+			                                    <td>
+			                                        <input type="checkbox">
+			                                        <a href="#">João Aleixo </a>
+			                                    </td>
+			                                    <td class="description">
+			                                        if you are going to use a passage of Lorem Ipsum.
+			                                    </td>
+			                                    <td>
+			                                        <span class="label label-success">Active</span>
+			                                        <!-- 
+			                                        <ul class="actions">
+			                                            <li><i class="table-edit"></i></span></li>
+			                                            <li><i class="table-settings"></i></li>
+			                                            <li class="last"><i class="table-delete"></i></li>
+			                                        </ul>
+			                                         -->
+			                                    </td>
+			                                    <td>
+			                                        12/06/2013
+			                                    </td>
+			                                    <td>
+			                                        <span class="label">alta</span>
+			                                    </td>
+			                                </tr>
+			                                <!-- row -->
+			                                <tr class="">
+			                                    <td>
+			                                        <input type="checkbox">
+			                                        <a href="#">João Aleixo </a>
+			                                    </td>
+			                                    <td class="description">
+			                                        if you are going to use a passage of Lorem Ipsum.
+			                                    </td>
+			                                    <td>
+			                                        <span class="label label-success">Active</span>
+			                                        <!-- 
+			                                        <ul class="actions">
+			                                            <li><i class="table-edit"></i></span></li>
+			                                            <li><i class="table-settings"></i></li>
+			                                            <li class="last"><i class="table-delete"></i></li>
+			                                        </ul>
+			                                         -->
+			                                    </td>
+			                                    <td>
+			                                        12/06/2013
+			                                    </td>
+			                                    <td>
+			                                        <span class="label">alta</span>
+			                                    </td>
+			                                </tr>
+			                                <!-- row -->
+			                                <tr class="">
+			                                    <td>
+			                                        <input type="checkbox">
+			                                        <a href="#">João Aleixo </a>
+			                                    </td>
+			                                    <td class="description">
+			                                        if you are going to use a passage of Lorem Ipsum.
+			                                    </td>
+			                                    <td>
+			                                        <span class="label label-success">Active</span>
+			                                        <!-- 
+			                                        <ul class="actions">
+			                                            <li><i class="table-edit"></i></span></li>
+			                                            <li><i class="table-settings"></i></li>
+			                                            <li class="last"><i class="table-delete"></i></li>
+			                                        </ul>
+			                                         -->
+			                                    </td>
+			                                    <td>
+			                                        12/06/2013
+			                                    </td>
+			                                    <td>
+			                                        <span class="label">alta</span>
+			                                    </td>
+			                                </tr>
+			                                <!-- row -->
+			                                <tr class="">
+			                                    <td>
+			                                        <input type="checkbox">
+			                                        <a href="#">João Aleixo </a>
+			                                    </td>
+			                                    <td class="description">
+			                                        if you are going to use a passage of Lorem Ipsum.
+			                                    </td>
+			                                    <td>
+			                                        <span class="label label-success">Active</span>
+			                                        <!-- 
+			                                        <ul class="actions">
+			                                            <li><i class="table-edit"></i></span></li>
+			                                            <li><i class="table-settings"></i></li>
+			                                            <li class="last"><i class="table-delete"></i></li>
+			                                        </ul>
+			                                         -->
+			                                    </td>
+			                                    <td>
+			                                        12/06/2013
+			                                    </td>
+			                                    <td>
+			                                        <span class="label">alta</span>
+			                                    </td>
+			                                </tr>
+			                                <!-- row -->
+			                                <tr class="">
+			                                    <td>
+			                                        <input type="checkbox">
+			                                        <a href="#">João Aleixo </a>
+			                                    </td>
+			                                    <td class="description">
+			                                        if you are going to use a passage of Lorem Ipsum.
+			                                    </td>
+			                                    <td>
+			                                        <span class="label label-success">Active</span>
+			                                        <!-- 
+			                                        <ul class="actions">
+			                                            <li><i class="table-edit"></i></span></li>
+			                                            <li><i class="table-settings"></i></li>
+			                                            <li class="last"><i class="table-delete"></i></li>
+			                                        </ul>
+			                                         -->
+			                                    </td>
+			                                    <td>
+			                                        12/06/2013
+			                                    </td>
+			                                    <td>
+			                                        <span class="label">alta</span>
+			                                    </td>
+			                                </tr>
+			                                <!-- row -->
+			                                <tr class="">
+			                                    <td>
+			                                        <input type="checkbox">
+			                                        <a href="#">João Aleixo </a>
+			                                    </td>
+			                                    <td class="description">
+			                                        if you are going to use a passage of Lorem Ipsum.
+			                                    </td>
+			                                    <td>
+			                                        <span class="label label-success">Active</span>
+			                                        <!-- 
+			                                        <ul class="actions">
+			                                            <li><i class="table-edit"></i></span></li>
+			                                            <li><i class="table-settings"></i></li>
+			                                            <li class="last"><i class="table-delete"></i></li>
+			                                        </ul>
+			                                         -->
+			                                    </td>
+			                                    <td>
+			                                        12/06/2013
+			                                    </td>
+			                                    <td>
+			                                        <span class="label">alta</span>
+			                                    </td>
+			                                </tr>
+			                            </tbody>
+			                        </table>
+			                    </div>
+		                    </section>
 		                </div>
 		                <!-- end users table -->
                 	<!-- end of case list -->
@@ -286,8 +296,9 @@ $(function () {
   			$checks.prop("checked", false);
   		}  		
   	});
+  	
+  	helpdeskTabSwitch();
 
-  	helpdeskTabResizeCheck();
   	/* $("input:checkbox, input:radio").uniform(); */
 });
 	

@@ -1,21 +1,11 @@
 
-var tabsTimer;
-
-function helpdeskTabResizeCheck(){
+function helpdeskTabSwitch(){
 	
-	console.log("finish - " + $("#ticket-tabs").width());
-	
-	if($("#ticket-tabs").width() / $(".helpdesk-tabs").width() > 0.75){
-		var elem = $("#ticket-tabs li.visible-tab").last();
-		$(elem).removeClass("visible-tab")
-		$(elem).addClass("hidden-tab");
-	}else{
-		var elem = $("#ticket-tabs li.hidden-tab").first();
-		$(elem).removeClass("hidden-tab");
-		$(elem).addClass("visible-tab");
-	}
-} 
-
+	$(".contact-tab").on('click', function(){
+		$(this).parent().children("li").removeClass("active");
+		$(this).addClass("active");
+	});
+}
 
 (function($) {
 	$("a").on("click", function(e) {
@@ -49,11 +39,6 @@ function helpdeskTabResizeCheck(){
 		);
 	});
 	
-	$(window).resize(function() {
-		console.log("start - " + $("#ticket-tabs").width());
-	    clearTimeout(tabsTimer);
-	    tabsTimer = setTimeout(helpdeskTabResizeCheck, 100);
-	});
-
+	helpdeskTabSwitch();
 	
 })(jQuery);

@@ -1,3 +1,66 @@
 @(userSession: util.UserSession, brand: Brand)
 
-groups
+ <!-- end upper main stats -->
+
+<div id="pad-wrapper">
+	<div id="team-tabs">
+      <ul class="nav nav-pills">
+        <li class="active"><a>Agentes</a></li>
+        <li><a href="#">Grupos</a></li>
+      </ul>
+    </div>
+	   <div id="agents-list" class="row">
+        <div class="col-sm-8 col-md-8">
+        	<div class="row">
+        		<div class="col-xs-4 col-sm-3 col-md-2">
+		          <div class="thumbnail">
+		            <img data-src="holder.js/300x200" alt="300x200" src="@userSession.getUser().getImgLink()" style="width: 200px;">
+		            <div class="caption">
+		              <div class="agent-info">
+		              	<div class="agent-name">
+		              		<div class="inner">
+		              			<div class="element">
+		              				João Aleixo
+		              			</div>
+		              		</div>
+		              	</div>
+		              	<div class="agent-actions">
+		              		<i class="icon-group"></i>
+		              		<i class="icon-trash"></i>
+		              	</div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+        	</div>
+        </div>
+        <div class="col-sm-4 col-md-4 settings-wrapper">
+        	<div class="row">
+        		<div class="col-sm-12 col-md-12">
+	        		<div class="personal-info">
+		        		<h4 class="title">Novo Agente</h4>
+		        		<form class="form-horizontal inline-input" role="form">
+	                        <div class="form-group">
+	                            <label class="col-lg-2 control-label">Nome:</label>
+	                            <div class="col-lg-8">
+	                                <input class="form-control" type="text">
+	                            </div>
+	                        </div>
+	                        <div class="form-group">
+	                            <label class="col-lg-2 control-label">Email:</label>
+	                            <div class="col-lg-8">
+	                                <input class="form-control" type="text">
+	                            </div>
+	                        </div>
+	                        <div class="actions">
+	                            <button class="btn-flat">CONVIDAR</button>
+	                            <span>ou</span>
+	                            <input type="reset" value="Cancelar" class="reset">
+	                        </div>
+	                    </form>
+	                </div>
+                </div>
+        	</div>
+        </div>
+      </div>
+</div>
