@@ -33,7 +33,6 @@ public class DefaultInterceptor extends Action.Simple{
 		String host = ctx.request().host();
 		final String[] hostParts = host.split("\\.");
 		
-		Logger.info(host);
 		boolean isBrand = false;
 		final String subDomain = hostParts.length > 0 ? hostParts[0].toLowerCase().trim() : null;
 
@@ -64,7 +63,7 @@ public class DefaultInterceptor extends Action.Simple{
 		if(isBrand && (ctx.request().path().trim().equals("/") || ctx.request().path().trim().equals(""))){
 			return redirect(controllers.knowledgebase.routes.KnowledgeBase.home().url());
 		}else{
-			Logger.error("No brand found!");
+			Logger.error("No brand found! " + host + ctx.request().path());
 			return notFound();
 		}
 	}
