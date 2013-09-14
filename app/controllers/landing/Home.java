@@ -1,5 +1,6 @@
 package controllers.landing;
 
+import interceptors.DefaultInterceptor;
 import models.PasswordReset;
 
 import org.codehaus.jackson.node.ObjectNode;
@@ -15,6 +16,7 @@ import services.UserService;
 //import services.UserService;
 import util.MyUtil;
 
+@With(DefaultInterceptor.class)
 public class Home extends Controller {
 	
 	private static final UserService userService= UserService.getInstance();
