@@ -404,4 +404,20 @@ public class BrandService {
 		}
 	}
 
+	public List<Agent> getAllAgents(Brand brand) {
+		Query query = JPA.em().createQuery("SELECT u FROM UserBrandRole ubr JOIN ubr.user u JOIN ubr.brand b WHERE b.id = :brand AND ubr.active = :bool ORDER BY u.name asc");
+		query.setParameter("brand", brand.getId());
+		query.setParameter("bool", true);
+		List<Agent> agents;
+		try {
+			agents = (List<Agent>) query.getResultList();
+			return agents;
+		} catch (NoResultException e) {
+			Logger.debug(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

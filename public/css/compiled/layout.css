@@ -550,8 +550,11 @@ input.search {
 #agents-list .thumbnail .agent-name .inner {display: table-cell;vertical-align: middle;width: 100%;margin: 0 auto;text-align: center;}
 #agents-list .thumbnail .agent-name .inner .element {}
 #agents-list .thumbnail .agent-actions {min-height: 20px;}
-#agents-list .thumbnail .agent-actions i{font-size: 16px; filter: alpha(opacity=40); opacity: 0.4; margin-right: 6px;  transition: opacity .3s ease;-moz-transition: opacity .3s ease;-webkit-transition: opacity .3s ease;-o-transition: opacity .3s ease; -ms-transition: opacity .3s ease;}
+#agents-list .thumbnail .agent-actions i{cursor:pointer; font-size: 16px; filter: alpha(opacity=40); opacity: 0.4; margin-right: 6px;  transition: opacity .3s ease;-moz-transition: opacity .3s ease;-webkit-transition: opacity .3s ease;-o-transition: opacity .3s ease; -ms-transition: opacity .3s ease;}
+#agents-list .thumbnail .agent-actions i.icon-trash {margin: 0;}
 #agents-list .thumbnail .agent-actions i:hover {zoom: 1; filter: alpha(opacity=100); opacity: 1;}
+#agents-list .thumbnail .agent-actions i.icon-group:hover {color: #33455A}
+#agents-list .thumbnail .agent-actions i.icon-trash:hover {color: #bb5533}
 
 /* END OF SETTINGS GROUPS */
 
@@ -643,11 +646,6 @@ form.modal-form {margin: 0;}
 /* END OF NEW TICKET*/
 
 /* HELPDESK LIST OF CASES*/
-
-div.resizer{position: relative;margin-top: 15px;width: 100%;text-align:center; margin-left: -3px;}
-div.resizer a {text-decoration: none;}
-div.resizer a i {color: #33455A; font-size: 23px;left: 0;height: 24px;width: 24px;opacity: 0.7;transition: opacity .1s ease;-moz-transition: opacity .1s ease;-webkit-transition: opacity .1s ease;-o-transition: opacity .1s ease;}
-div.resizer:hover i{opacity: 1;}
 
 /* div.helpdesk-pane ul.sidebar-filter span.badge {float: right; margin-right: 3px;} */
 div.helpdesk-pane ul.sidebar-filter li {margin-top: 0;}

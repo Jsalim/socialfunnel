@@ -1,4 +1,4 @@
-@(userSession: util.UserSession, brand: Brand)
+@(userSession: util.UserSession, brand: Brand, agents: List[models.Agent])
 
  <!-- end upper main stats -->
 
@@ -12,15 +12,16 @@
 	   <div id="agents-list" class="row">
         <div class="col-sm-8 col-md-8">
         	<div class="row">
+        		@for(agent <- agents){
         		<div class="col-xs-4 col-sm-3 col-md-2">
 		          <div class="thumbnail">
-		            <img data-src="holder.js/300x200" alt="300x200" src="@userSession.getUser().getImgLink()" style="width: 200px;">
+		            <img alt="300x200" src="@agent.getImgLink()" style="width: 200px;">
 		            <div class="caption">
 		              <div class="agent-info">
 		              	<div class="agent-name">
 		              		<div class="inner">
 		              			<div class="element">
-		              				João Aleixo
+		              				@agent.getName()
 		              			</div>
 		              		</div>
 		              	</div>
@@ -32,6 +33,7 @@
 		            </div>
 		          </div>
 		        </div>
+		        }
         	</div>
         </div>
         <div class="col-sm-4 col-md-4 settings-wrapper">
