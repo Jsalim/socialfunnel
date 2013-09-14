@@ -1,6 +1,5 @@
 package interceptors;
 
-import exceptions.NoUUIDException;
 import play.Logger;
 import play.mvc.Action;
 import play.mvc.Controller;
@@ -21,7 +20,7 @@ public class UserSessionInterceptor extends Action.Simple{
 	 * @param ctx 
 	 * @throws NoUUIDException 
 	 * */
-	public void before(Context ctx) throws NoUUIDException{
+	public void before(Context ctx){
 		Session session = ctx.session();
 		UserSession userSession = userService.getUserSession(session);
 		userService.validateDistributedSession(userSession);

@@ -31,7 +31,9 @@ import play.Logger;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
+import play.mvc.Http.Session;
 import util.MyUtil;
+import util.UserSession;
 
 import models.AccountKey;
 import models.App;
@@ -70,7 +72,7 @@ public class BrandService {
 	 * This method should only be called by {@link DefaultInterceptor}
 	 * @see {@link DefaultInterceptor}
 	 * */
-	public boolean checkBrandSubdomain (String subDomain){
+	public boolean checkBrandSubdomain (String subDomain, Session session){
 		EntityManager em = JPA.em();
 		if (subDomain != null) {
 			if(subDomain.equals("test")){
@@ -93,6 +95,8 @@ public class BrandService {
 				}
 				
 				if(brand != null){ //TODO implement validation for forum and knowledge base apps active  
+					UserSession userSession = userService.getUserSession(session);
+					userSession.setKbBrand(brand);
 					Logger.debug("adding new brand: " + subDomain);
 					brandSubdomains.add(subDomain);
 					return true;
@@ -105,7 +109,6 @@ public class BrandService {
 	public Brand findById(Long id) {
 		return JPA.em().find(Brand.class, id);
 	}
-
 
 	public Brand createBrand(String myBrandName, String myBrandDescirption, String myNameAddress, Agent owner, Set<FacebookAccountInfo> facebookAccounts, Set<TwitterAccountInfo> twitterAccounts, Set<Invitation> invitations){
 

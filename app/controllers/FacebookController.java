@@ -25,8 +25,6 @@ import com.restfb.types.Page;
 
 import constants.FacebookAccountTypes;
 
-import exceptions.NoUUIDException;
-
 import play.Logger;
 import play.cache.Cache;
 import play.data.DynamicForm;
@@ -140,10 +138,6 @@ public class FacebookController extends Controller{
 				result.put("error", e.getMessage());
 				return internalServerError(result);
 			}
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
 		}
 	}
 

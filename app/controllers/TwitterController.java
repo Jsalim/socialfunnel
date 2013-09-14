@@ -14,8 +14,6 @@ import interceptors.UserSessionInterceptor;
 
 import com.typesafe.config.ConfigFactory;
 
-import exceptions.NoUUIDException;
-
 import play.cache.Cache;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -90,10 +88,6 @@ public class TwitterController extends Controller{
 				result.put("success", false);
 				result.put("error", e.getMessage());
 				return status(e.getStatusCode(), result);
-			} catch (NoUUIDException e) {
-				e.printStackTrace();
-				e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-				return internalServerError(e.getJson());
 			}
 		}else{
 			return badRequest("O twitter não enviou os parametros de autenticação corretos");
@@ -127,10 +121,6 @@ public class TwitterController extends Controller{
 			result.put("success", false);
 			result.put("error", e.getMessage());
 			return status(e.getStatusCode(), result);
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
 		}
 	} 
 	/**
@@ -176,10 +166,6 @@ public class TwitterController extends Controller{
 			result.put("success", false);
 			result.put("error", e.getMessage());
 			return status(e.getStatusCode(), result);
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
 		}
 	}
 

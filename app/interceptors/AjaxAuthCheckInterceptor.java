@@ -2,7 +2,6 @@ package interceptors;
 
 import org.codehaus.jackson.node.ObjectNode;
 
-import exceptions.NoUUIDException;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Action;
@@ -21,7 +20,7 @@ public class AjaxAuthCheckInterceptor extends Action.Simple{
 	/** singleton instance of {@link UserService}  */
 	private static final UserService userService = UserService.getInstance(); 
 
-	public Result before(Context ctx) throws NoUUIDException{
+	public Result before(Context ctx){
 //		Cache-Control: no-cache, no-store, must-revalidate
 //		Pragma: no-cache
 //		Expires: 0

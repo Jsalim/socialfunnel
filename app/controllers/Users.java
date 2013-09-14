@@ -24,7 +24,6 @@ import org.codehaus.jackson.node.ObjectNode;
 
 import constants.UserStatus;
 import exceptions.InvalidParameterException;
-import exceptions.NoUUIDException;
 
 import play.Logger;
 import play.cache.Cache;
@@ -103,58 +102,51 @@ public class Users extends Controller {
 	@Transactional
 	@With(AjaxAuthCheckInterceptor.class)
 	public static Result ajaxEdit(){
-		try {
-			UserSession userSession = userService.getUserSession(session());
-			DynamicForm params = form().bindFromRequest();
-			
-			String name = params.get("name");
-			String email = params.get("email");
-			String username = params.get("username");
-			String phone = params.get("phone");
-			String details = params.get("details");
-			String password = params.get("password");
-			
-			if(password == null || password.trim().isEmpty()){
-				password = "Misa99zz"; // dumb password for validation. 
-			}
+		UserSession userSession = userService.getUserSession(session());
+		DynamicForm params = form().bindFromRequest();
+		
+		String name = params.get("name");
+		String email = params.get("email");
+		String username = params.get("username");
+		String phone = params.get("phone");
+		String details = params.get("details");
+		String password = params.get("password");
+		
+		if(password == null || password.trim().isEmpty()){
+			password = "Misa99zz"; // dumb password for validation. 
+		}
 
-			Form<Agent> agentForm = userService.validateAgentForm(name, email, username, password);
+		Form<Agent> agentForm = userService.validateAgentForm(name, email, username, password);
 
-			Agent user = userSession.getUser();
+		Agent user = userSession.getUser();
+		
+		user.setEmail(email);
+		user.setDetails(details);
+		user.setName(name);
+		user.setUsername(username);
+		user.setPhone(phone);
+		if(password != null || !password.trim().isEmpty()){
+			user.setPassword(password);
+		}
+		
+		if(agentForm.hasErrors()){
+			InvalidParameterException paramException = new InvalidParameterException(Json.toJson(form().errorsAsJson()).toString());
 			
-			user.setEmail(email);
-			user.setDetails(details);
-			user.setName(name);
-			user.setUsername(username);
-			user.setPhone(phone);
-			if(password != null || !password.trim().isEmpty()){
-				user.setPassword(password);
-			}
-			
-			if(agentForm.hasErrors()){
-				InvalidParameterException paramException = new InvalidParameterException(Json.toJson(form().errorsAsJson()).toString());
-				
-				return badRequest(views.html.home.signup.render(agentForm, user, null, null));
-			}else{
+			return badRequest(views.html.home.signup.render(agentForm, user, null, null));
+		}else{
 //				user.setStatus(UserStatus.STATUS_ACTIVE);
-				boolean saved = false;
+			boolean saved = false;
 
-				if(saved) {
-					flash("registered", "true");
-					return redirect(routes.Application.login());
-				}else{
-					ObjectNode result = Json.newObject();
-					result.put("success", false);
-					result.put("error", "Convite inválido.");
-					badRequest(result);
-					return badRequest(views.html.home.signup.render(null, null, null, null));
-				}
+			if(saved) {
+				flash("registered", "true");
+				return redirect(routes.Application.login());
+			}else{
+				ObjectNode result = Json.newObject();
+				result.put("success", false);
+				result.put("error", "Convite inválido.");
+				badRequest(result);
+				return badRequest(views.html.home.signup.render(null, null, null, null));
 			}
-
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
 		}
 	}
 
@@ -261,65 +253,58 @@ public class Users extends Controller {
 	@Transactional (readOnly = true)
 	//	@With(AjaxAuthCheckInterceptor.class)
 	public static Result getNotifications(){
-		try {
-			UserSession userSession = userService.getUserSession(session());
-			
-			if(userSession.isValidSession() == false){
-				String uuid = session("uuid");
-				Cache.remove(uuid + "_user");
-				session().clear();
-				return unauthorized();
-			}
+		UserSession userSession = userService.getUserSession(session());
+		
+		if(userSession.isValidSession() == false){
+			String uuid = session("uuid");
+			Cache.remove(uuid + "_user");
+			session().clear();
+			return unauthorized();
+		}
 
-			ObjectNode result = Json.newObject();
-			ArrayList<String> errors = new ArrayList<String>();
+		ObjectNode result = Json.newObject();
+		ArrayList<String> errors = new ArrayList<String>();
 
-			String[] limit = request().queryString().get("limit");
-			String[] unseen = request().queryString().get("unseen");
-			// if parameter limit & unseen are sent together
-			if((limit != null && limit.length > 0 && !limit[0].equals("")) && (unseen != null && unseen.length > 0 && !unseen[0].equals(""))){
-				errors.add("Parametros \"limit\" e \"unseen\" não podem ser usados em conjunto");
-				// if parameter limit is sent
-			}else if(limit != null && limit.length > 0 && !limit[0].equals("")){
-				try {// try to see if parameter limit is a number
-					int myLimit = Integer.parseInt(limit[0]);
-					List<AgentNotification> notifications = userService.getAgentNotification(userSession, myLimit, 0);
-					List<AgentNotification> unseenNotis = userService.getUnseenNotifications(userSession);
-					result.put("success", true);
-					result.put("lastNotification", Json.toJson(notifications));
-					result.put("unseenNotification", Json.toJson(unseenNotis));
-					return ok(result);
-				} catch (Exception e) {
-					errors.add("Parametro limit: " + limit[0] + " inválido");
-				}
-				// if parameter unseen is sent
-			}else if(unseen != null && unseen.length > 0 && !unseen[0].equals("")){
-				// if parameter unseen is true
-				if(unseen[0].equals("true")){
-					List<AgentNotification> unseenNotis = userService.getUnseenNotifications(userSession);
-					result.put("success", true);
-					result.put("unseenNotification", Json.toJson(unseenNotis));
-					return ok(result);
-				}else if(!unseen[0].equals("false")){ // if parameter unseen is not false
-					errors.add("Parametro unseen: " + unseen[0] + " inválido");
-				}
-			}else{
-				List<AgentNotification> notifications = userService.getAgentNotification(userSession, 10, 0);
+		String[] limit = request().queryString().get("limit");
+		String[] unseen = request().queryString().get("unseen");
+		// if parameter limit & unseen are sent together
+		if((limit != null && limit.length > 0 && !limit[0].equals("")) && (unseen != null && unseen.length > 0 && !unseen[0].equals(""))){
+			errors.add("Parametros \"limit\" e \"unseen\" não podem ser usados em conjunto");
+			// if parameter limit is sent
+		}else if(limit != null && limit.length > 0 && !limit[0].equals("")){
+			try {// try to see if parameter limit is a number
+				int myLimit = Integer.parseInt(limit[0]);
+				List<AgentNotification> notifications = userService.getAgentNotification(userSession, myLimit, 0);
 				List<AgentNotification> unseenNotis = userService.getUnseenNotifications(userSession);
 				result.put("success", true);
 				result.put("lastNotification", Json.toJson(notifications));
 				result.put("unseenNotification", Json.toJson(unseenNotis));
 				return ok(result);
+			} catch (Exception e) {
+				errors.add("Parametro limit: " + limit[0] + " inválido");
 			}
-
-			InvalidParameterException paramException = new InvalidParameterException(errors.toString()); 
-			return badRequest(paramException.getJson());
-
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
+			// if parameter unseen is sent
+		}else if(unseen != null && unseen.length > 0 && !unseen[0].equals("")){
+			// if parameter unseen is true
+			if(unseen[0].equals("true")){
+				List<AgentNotification> unseenNotis = userService.getUnseenNotifications(userSession);
+				result.put("success", true);
+				result.put("unseenNotification", Json.toJson(unseenNotis));
+				return ok(result);
+			}else if(!unseen[0].equals("false")){ // if parameter unseen is not false
+				errors.add("Parametro unseen: " + unseen[0] + " inválido");
+			}
+		}else{
+			List<AgentNotification> notifications = userService.getAgentNotification(userSession, 10, 0);
+			List<AgentNotification> unseenNotis = userService.getUnseenNotifications(userSession);
+			result.put("success", true);
+			result.put("lastNotification", Json.toJson(notifications));
+			result.put("unseenNotification", Json.toJson(unseenNotis));
+			return ok(result);
 		}
+
+		InvalidParameterException paramException = new InvalidParameterException(errors.toString()); 
+		return badRequest(paramException.getJson());
 	}
 
 	/**
@@ -329,16 +314,9 @@ public class Users extends Controller {
 	@Transactional
 	//	@With(AjaxAuthCheckInterceptor.class)
 	public static Result updateNotifications(){
-		try {
-			Long notificationId = 1l;
-			UserSession userSession = userService.getUserSession(session());
-			boolean success = userService.updateUserNotifications(userSession, notificationId);
-			return ok(Json.toJson(success));
-		} 
-		catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + request().uri());
-			return internalServerError(e.getJson());
-		}
+		Long notificationId = 1l;
+		UserSession userSession = userService.getUserSession(session());
+		boolean success = userService.updateUserNotifications(userSession, notificationId);
+		return ok(Json.toJson(success));
 	}
 }

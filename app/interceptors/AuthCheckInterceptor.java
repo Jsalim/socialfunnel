@@ -3,7 +3,6 @@ package interceptors;
 import controllers.Application;
 import controllers.routes;
 import controllers.landing.Home;
-import exceptions.NoUUIDException;
 import play.Logger;
 import play.mvc.Action;
 import play.mvc.Controller;
@@ -21,7 +20,7 @@ public class AuthCheckInterceptor extends Action.Simple{
 	/** singleton instance of {@link UserService}  */
 	private static final UserService userService = UserService.getInstance(); 
 
-	public Result before(Context ctx) throws NoUUIDException{
+	public Result before(Context ctx){
 
 		Session session = ctx.session();
 		UserSession userSession = userService.getUserSession(session);

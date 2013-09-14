@@ -41,8 +41,6 @@ import com.mongodb.MongoException;
 //import com.dataanalytics.helper.Parameter;
 import com.restfb.types.Post;
 
-import exceptions.NoUUIDException;
-
 /**
  * This controller holds simple actions related to the application but not
  * related to a specific section.
@@ -82,8 +80,6 @@ public class Application extends Controller {
 
 				if (user != null) {
 					if (user.validatePassword(password)) {
-						try {
-
 							UserSession userSession = userService.getUserSession(session());
 							userSession.setUser(user);
 							userService.updateLastLogin(userSession);
@@ -91,9 +87,6 @@ public class Application extends Controller {
 							userService.updateExistingUserSession(userSession);
 							userService.updateDistributedSession(userSession);
 
-						} catch (NoUUIDException e) {
-							e.printStackTrace();
-						}
 						return null;
 					}
 				}

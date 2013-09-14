@@ -24,8 +24,6 @@ import bootstrap.MongoConfig;
 import constants.Permissions;
 import constants.RoleName;
 
-import exceptions.NoUUIDException;
-
 import models.AgentNotification;
 import models.Brand;
 import models.Invitation;
@@ -244,12 +242,13 @@ public final class UserService {
 	 * @return the user session
 	 * @throws NoUUIDException
 	 */
-	public UserSession getUserSession(Session session) throws NoUUIDException {
+	public UserSession getUserSession(Session session){
 		String uuid = session.get("uuid");
 		// if the session object has no uuid, create one
 		if (uuid == null) {
 			uuid = java.util.UUID.randomUUID().toString();
 			session.put("uuid", uuid);
+			Logger.debug("CREATING NEW UUID: " + uuid);
 		}
 		// try to find a user session on cache
 		UserSession userSession = (UserSession) Cache.get(uuid + "_user");

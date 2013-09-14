@@ -23,7 +23,6 @@ import models.admin.SysAdmin;
 import org.joda.time.DateTime;
 
 import constants.RoleName;
-import exceptions.NoUUIDException;
 import play.Configuration;
 import play.Logger;
 import play.Play;
@@ -162,7 +161,7 @@ public class AdminService {
 	 * @return the admin session
 	 * @throws NoUUIDException
 	 */
-	public AdminSession getAdminSession(Session session) throws NoUUIDException {
+	public AdminSession getAdminSession(Session session) {
 		String uuid = session.get("uuid2");
 		// if the session object has no uuid, create one
 		if (uuid == null) {

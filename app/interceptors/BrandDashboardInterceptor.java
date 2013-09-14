@@ -6,7 +6,6 @@ import models.Brand;
 
 import org.codehaus.jackson.node.ObjectNode;
 
-import exceptions.NoUUIDException;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Action;
@@ -27,50 +26,43 @@ public class BrandDashboardInterceptor extends Action.Simple{
 	public Result before(Context ctx) {
 		
 		Logger.debug("BrandDashboardInterceptor.before:\n------------------------------ begining action " + ctx.request().path() + " ------------------------------\n");
-		try {
-			UserSession userSession = userService.getUserSession(ctx.session());
-			// the brand address name passed by the frontend
-			String[] brandAddress = ctx.request().queryString().get("brand");
-			if(brandAddress != null && brandAddress.length > 0 && !brandAddress[0].equals("")){
-				// get the brand by name address
-				Brand brand = brandService.findByNameAddress(brandAddress[0]);
-				if(brand != null){ // if a brand matching the given parameter is found
-					List<Brand> userBrands = brandService.getUserBrands(userSession.getUser());
-					for(Brand myBrand: userBrands){ // Check if user has permissions to access this brand
-						if(brand.getId() == myBrand.getId()){
-							userSession.setBrand(brand); // set the brand to cache
+		UserSession userSession = userService.getUserSession(ctx.session());
+		// the brand address name passed by the frontend
+		String[] brandAddress = ctx.request().queryString().get("brand");
+		if(brandAddress != null && brandAddress.length > 0 && !brandAddress[0].equals("")){
+			// get the brand by name address
+			Brand brand = brandService.findByNameAddress(brandAddress[0]);
+			if(brand != null){ // if a brand matching the given parameter is found
+				List<Brand> userBrands = brandService.getUserBrands(userSession.getUser());
+				for(Brand myBrand: userBrands){ // Check if user has permissions to access this brand
+					if(brand.getId() == myBrand.getId()){
+						userSession.setBrand(brand); // set the brand to cache
 //							userService.updateExistingUserSession(userSession); // update user session object in cache
-							userService.updateUsersNotificationInCache(userSession);
-							return null;
-						}
+						userService.updateUsersNotificationInCache(userSession);
+						return null;
 					}
-					// if user does not have a UserBrandRole matching the brand
-					ObjectNode result = Json.newObject();
-					result.put("success", false);
-					result.put("error", "Access denied for this user.");
-					return unauthorized(result);
-
-				}else{ // if no brand is found for the given parameter
-					ObjectNode result = Json.newObject();
-					result.put("success", false);
-					result.put("error", "No brand found for: " + brandAddress[0]);
-					return badRequest(result);
 				}
-			}else if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
-				userService.updateUsersNotificationInCache(userSession);
-				return null; // OK - No error was thrown and the user is authorized to view this dashboard
-				
-			}else{ // else, if there is no parameter and no brand in cache
+				// if user does not have a UserBrandRole matching the brand
 				ObjectNode result = Json.newObject();
 				result.put("success", false);
-				result.put("error", "Parametro \"brand\" esperado.");
+				result.put("error", "Access denied for this user.");
+				return unauthorized(result);
+
+			}else{ // if no brand is found for the given parameter
+				ObjectNode result = Json.newObject();
+				result.put("success", false);
+				result.put("error", "No brand found for: " + brandAddress[0]);
 				return badRequest(result);
 			}
-
-		} catch (NoUUIDException e) {
-			e.printStackTrace();
-			e.setErrorMessage("Erro interno! Não foi possivel identificar sua sessão para: " + ctx.request().uri());
-			return internalServerError(e.getJson());
+		}else if(userSession.getBrand() != null){ // if a there is a brand on the UserSession
+			userService.updateUsersNotificationInCache(userSession);
+			return null; // OK - No error was thrown and the user is authorized to view this dashboard
+			
+		}else{ // else, if there is no parameter and no brand in cache
+			ObjectNode result = Json.newObject();
+			result.put("success", false);
+			result.put("error", "Parametro \"brand\" esperado.");
+			return badRequest(result);
 		}
 	}
 

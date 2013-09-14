@@ -1,28 +1,19 @@
-package interceptors;
-
-import java.util.Map;
-
-import bootstrap.Constants;
+package controllers.knowledgebase;
 
 import play.Logger;
 import play.db.jpa.JPA;
 import play.libs.F;
 import play.mvc.Action;
-import play.mvc.Http.Context;
 import play.mvc.Result;
+import play.mvc.Http.Context;
 import services.BrandService;
-/**
- * This interceptor show be executed in the context of every request.
- * 
- *  @see
-    <a href="https://github.com/playframework/playframework/blob/master/framework/src/play-java-jpa/src/main/java/play/db/jpa/JPA.java">
- 		https://github.com/playframework/playframework/blob/master/framework/src/play-java-jpa/src/main/java/play/db/jpa/JPA.java
-    </a>
- * */
-public class DefaultInterceptor extends Action.Simple{
+import services.UserService;
+import bootstrap.Constants;
+
+public class KBInterceptor  extends Action.Simple{
 
 	private static final BrandService brandService = BrandService.getInstance();
-
+	private static final UserService userService = UserService.getInstance();
 	/**
 	 * This method is run before executing the context action.
 	 * @param ctx 
@@ -62,12 +53,8 @@ public class DefaultInterceptor extends Action.Simple{
 			}
 		}
 		
-		if(isBrand && (ctx.request().path().trim().equals("/") || ctx.request().path().trim().equals(""))){
-			return redirect(controllers.knowledgebase.routes.KnowledgeBase.home().url());
-		}else if(isBrand){
-			if((ctx.request().path().trim().equals("/home"))){
-				Logger.warn("TODO: redirect to home withoud subdomain");
-			}
+		if(isBrand){
+			Logger.debug("Knowledge Base from brand: " + subDomain);
 			return null;
 		}else{
 			Logger.error("No brand found! " + host + ctx.request().path());
@@ -82,16 +69,9 @@ public class DefaultInterceptor extends Action.Simple{
 
 	@Override
 	public Result call(Context ctx) throws Throwable {
-		Logger.debug("DefaultInterceptor.before:\n------------------------------ begining action " + ctx.request().path() + " ------------------------------\n");
+		Logger.debug("KBInterceptor.before:\n------------------------------ begining action " + ctx.request().path() + " ------------------------------\n");
 		Result result;
 	
-		// action is run here
-		Map<String, String[]> param = ctx.request().queryString();
-		if(param != null && param.get("tab") != null){
-			ctx.flash().remove("tab");
-			ctx.flash().put("tab", param.get("tab")[0]);
-		}
-		
 		// execute this method before the action is run
 		result = this.before(ctx);
 		if(result == null){
@@ -100,7 +80,7 @@ public class DefaultInterceptor extends Action.Simple{
 		// execute this method after the action is run
 		this.after(ctx);
 
-		Logger.debug("DefaultInterceptor.after:\n------------------------------ ending action " + ctx.request().path() + " ------------------------------\n");
+		Logger.debug("KBInterceptor.after:\n------------------------------ ending action " + ctx.request().path() + " ------------------------------\n");
 		return result;
 	}
 

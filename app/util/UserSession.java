@@ -34,6 +34,8 @@ public class UserSession {
 	private List<AgentNotification> unSeenNotis = new ArrayList<AgentNotification>();
 	@Transient
 	private List<AgentNotification> lastNotis = new ArrayList<AgentNotification>();
+	@Transient
+	private Brand kbBrand;
 	
 	public Agent getUser() {
 		return user;
@@ -93,6 +95,14 @@ public class UserSession {
 
 	public void setValidSession(boolean validSession) {
 		this.validSession = validSession;
+	}
+
+	public Brand getKbBrand() {
+		return kbBrand;
+	}
+
+	public void setKbBrand(Brand kbBrand) {
+		this.kbBrand = kbBrand;
 	}
 
 }
