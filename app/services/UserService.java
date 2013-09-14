@@ -290,7 +290,7 @@ public final class UserService {
 		UserSession userSession = new UserSession();
 		userSession.setUUID(uuid);
 		Cache.set(userSession.getUUID() + "_user", userSession, Play.application().configuration().getInt("dasboard.cache.expiration"));
-		Logger.debug("Usersession.createNewUserSession: New user session chached in memory for " + Configuration.root().getInt("dasboard.cache.expiration")
+		Logger.debug("Creating New UserSession: New user session chached in memory for " + Configuration.root().getInt("dasboard.cache.expiration")
 				+ "s - " + uuid);
 		return userSession;
 	}
