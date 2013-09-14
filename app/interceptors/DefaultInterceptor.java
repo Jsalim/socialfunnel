@@ -36,6 +36,8 @@ public class DefaultInterceptor extends Action.Simple{
 		boolean isBrand = false;
 		final String subDomain = hostParts.length > 0 ? hostParts[0].toLowerCase().trim() : null;
 
+		Logger.error("HOST: " + host + ctx.request().path());
+
 		if(hostParts.length <=2 || (hostParts.length == 3 && Constants.reservedSubdomains.contains(subDomain) )){
 			if(subDomain.equals("admin")){
 				return ok("admin");
