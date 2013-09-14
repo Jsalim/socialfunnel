@@ -50,11 +50,11 @@ GET     /helpdesk/tickettest 				controllers.HelpDesk.testTicket()
 
 # Home Page
 GET		/home  		                controllers.landing.Home.index()
-GET     /home/signup	            controllers.landing.Home.signup()
-GET     /home/signin				controllers.landing.Home.signin()
-GET     /home/reset					controllers.landing.Home.reset()
-POST    /home/reset 				controllers.landing.Home.doReset()
-POST	/home/resetpassword			controllers.landing.Home.resetPassword()
+GET     /signup	            controllers.landing.Home.signup()
+GET     /signin				controllers.landing.Home.signin()
+GET     /reset					controllers.landing.Home.reset()
+POST    /reset 				controllers.landing.Home.doReset()
+POST	/resetpassword			controllers.landing.Home.resetPassword()
 
 # KnowledgeBase
 GET		/kb							controllers.knowledgebase.KnowledgeBase.home()

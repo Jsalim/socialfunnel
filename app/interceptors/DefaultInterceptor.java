@@ -36,7 +36,7 @@ public class DefaultInterceptor extends Action.Simple{
 		boolean isBrand = false;
 		final String subDomain = hostParts.length > 0 ? hostParts[0].toLowerCase().trim() : null;
 
-		Logger.error("HOST: " + host + ctx.request().path());
+		Logger.warn("HOST: " + host + ctx.request().path());
 
 		if(hostParts.length <=2 || (hostParts.length == 3 && Constants.reservedSubdomains.contains(subDomain) )){
 			if(subDomain.equals("admin")){
@@ -64,6 +64,11 @@ public class DefaultInterceptor extends Action.Simple{
 		
 		if(isBrand && (ctx.request().path().trim().equals("/") || ctx.request().path().trim().equals(""))){
 			return redirect(controllers.knowledgebase.routes.KnowledgeBase.home().url());
+		}else if(isBrand){
+			if((ctx.request().path().trim().equals("/home"))){
+				Logger.warn("TODO: redirect to home withoud subdomain");
+			}
+			return null;
 		}else{
 			Logger.error("No brand found! " + host + ctx.request().path());
 			return notFound();
