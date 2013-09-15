@@ -53,7 +53,7 @@
 			                	<input class="span12" type="text" name="brandname" placeholder="Marca" value="@if(brand != null){@brand.getName()}"/>
 			                </div>
 			                <div id="brand-address" class="input-append control-group">
-			                	<input class="brand-subdomain" type="text" name="brandaddress" placeholder="subdomínio" value="@if(brand != null){@brand.getNameAddress()}"/><span class="add-on brand-domain">.socialfunnel.net</span>
+			                	<input class="brand-subdomain" type="text" name="brandaddress" placeholder="subdomínio" value="@if(brand != null){@brand.getSubdomain()}"/><span class="add-on brand-domain">.socialfunnel.net</span>
 			                </div>
 			                <div id="brand-phone" class="control-group">
 			                	<input class="span12" type="text" name="brandphone" placeholder="Telefone" value="@if(brand != null){@brand.getPhone()}"/>

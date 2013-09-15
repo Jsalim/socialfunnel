@@ -33,7 +33,7 @@ public class Dashboard extends Controller {
 	private static final BrandService brandService = BrandService.getInstance();
 
 	/**
-	 * Renders the a brand specific Dashboard. The {@link Brand#getNameAddress()} method returns a unique brand address name. A instance of
+	 * Renders the a brand specific Dashboard. The {@link Brand#getSubdomain()} method returns a unique brand address name. A instance of
 	 * a brand address name should be passed by parameter by the front-end.
 	 * 
 	 * @see /dashboard/index.scala.html

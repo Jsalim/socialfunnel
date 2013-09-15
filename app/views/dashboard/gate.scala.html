@@ -149,7 +149,7 @@
 		                  <div class="caption">
 			                 <div id="brand-links">
 			                 <p class="actions">
-			                    <a href="@routes.Dashboard.index()?brand=@{brand.getNameAddress()}"><i class="icon-signin"></i></a>
+			                    <a href="@routes.Dashboard.index()?brand=@{brand.getSubdomain()}"><i class="icon-signin"></i></a>
 			                    <a class="cogs" onclick="configurations(@{brand.getId()})"><i class="icon-cogs"></i></a>
 				                <a class="delete text-error" onclick="deleteBrand(@{brand.getId()})"><i class="icon-trash"></i></a>
 			                 </p>

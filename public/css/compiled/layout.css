@@ -22,7 +22,8 @@ body.menu {
   overflow-x: hidden;
 }
 body.menu .content {
-  margin-left: 165px;
+  /* margin-left: 165px; misael */
+  margin-left: 105px;
   position: fixed;
   width: 850px;
 }
@@ -32,6 +33,7 @@ body.menu #sidebar-nav {
   /*height: 100%;*/
   border-right: 0px;
   box-shadow: none;
+  top:54px;
 }
 
 input.search {
@@ -441,9 +443,9 @@ input.search {
 	/* margin-left: 177px; misael*/
 	margin-left: 102px; /* misael */
 	border-left: 1px solid #dae3e9;
-	border-bottom: 1px solid #dae3e9;
+/* 	border-bottom: 1px solid #dae3e9; misael*/
 	box-shadow: -3px 3px 3px -2px #f1f1f3;
-	border-radius: 0px 0px 0px 5px;
+/* 	border-radius: 0px 0px 0px 5px; misael*/
 	-webkit-transition: margin-left .3s ease;
 	-moz-transition: margin-left .3s ease;
 	-o-transition: margin-left .3s ease;
@@ -655,9 +657,9 @@ div.helpdesk-pane ul.sidebar-filter li a{border-radius: 0px;}
 div#helpdesk-pane-header{text-align: center; height: 100px; padding: 15px 0 15px 0;}
 div#helpdesk-pane-header h4{color: #696d73;font-style: italic;}
 div.helpdesk-pane input.search {width: 92%; margin-top: 15px;}
-div.helpdesk-pane { padding: 0!important; overflow: hidden;}
+div.helpdesk-pane { padding: 0!important; overflow: hidden; border-bottom: 1px solid #dae3e9;}
 div.helpdesk-pane{position: absolute;top: 0px;bottom: 0;margin: 0;width: 300px;border-radius: 0;border:none; background: #fdfdfd}
-div.helpdesk-content{position: absolute;top: 0px;bottom: 0;margin: 0;left: 300px;border-radius: 0;padding-right: 300px; width: 100%; border-left: 1px solid #dae3e9; box-shadow: inset 3px 0px 4px -1px #f0f0f0; }
+div.helpdesk-content{overflow: auto; position: absolute;top: 0px;bottom: 0;margin: 0;left: 300px;border-radius: 0;padding-right: 300px; width: 100%; border-left: 1px solid #dae3e9; box-shadow: inset 3px 0px 4px -1px #f0f0f0; }
 div.helpdesk-content #helpdesk-panel-heading {height: 52px;}
 div.helpdesk-content #helpdesk-panel-heading .pagination {margin: 0!important}
 div.helpdesk-content table thead{border-top: 0px!important;} 
@@ -688,6 +690,7 @@ div.helpdesk-tabs #new-ticket{margin-top: 5px;}
 .response-box #reponse-actions span.action{cursor: pointer; margin-right: 10px;}
 .chat-list .comment-info{margin-left: 10px; cursor: pointer;}
 
+div.helpdesk-case-list .panel-body {padding: 10px!important;}
 div.helpdesk-case-list .pagination{margin-top: 8px!important;}
 div.helpdesk-case-list .table thead{border-top: none;}
  
@@ -733,7 +736,8 @@ text{fill: #696D73;}
     background-color: #f7f7f7;
     padding-top: 0px;
     border-right: 1px solid #ccc;
-    width: 165px;
+    /* width: 165px; misael*/
+    width: 105px;
     box-shadow: 1px 1px 4px 1px #e9e9e9;
     -webkit-transition: left .3s ease;
     -moz-transition: left .3s ease;
@@ -743,7 +747,7 @@ text{fill: #696D73;}
   }
 
   #sidebar-nav #dashboard-menu {
-    margin-left: 10px;
+    /* margin-left: 10px; misael*/
   }
 
   #sidebar-nav #dashboard-menu li a span {

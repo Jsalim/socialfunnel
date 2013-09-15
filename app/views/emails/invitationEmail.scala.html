@@ -9,16 +9,16 @@
 	Como um agente, você vai rapidamente ser capaz de criar uma comunidade em torno da sua marca,
 	descobrir quantos e quais são os seus clientes nas redes sociais, responder e resolver qualquer caso de cliente através de
 	seu 
-	<!-- <a target="_blank" href="http://@{invitation.getBrand().getNameAddress() + ".socialfunnel.net"}@landing.routes.Home.signin()">Dashboard</a> -->
-	<a target="_blank" href="http://localhost:9000@routes.Dashboard.index()?brand=@{invitation.getBrand().getNameAddress()}?invitation=@{invitation.getHash()}">Dashboard</a>
+	<!-- <a target="_blank" href="http://@{invitation.getBrand().getSubdomain() + ".socialfunnel.net"}@landing.routes.Home.signin()">Dashboard</a> -->
+	<a target="_blank" href="http://localhost:9000@routes.Dashboard.index()?brand=@{invitation.getBrand().getSubdomain()}?invitation=@{invitation.getHash()}">Dashboard</a>
 </p>
 
 <ul>
 	<!-- <li>Defina seu login e senha em <a target="_blank" href="http://socialfunnel.net@landing.routes.Home.signup()?invitation=@{invitation.getHash()}">aqui</a></li> -->
 	<li>Se você ainda não está cadastrado, defina seu login e senha <a target="_blank" href="http://localhost:9000@landing.routes.Home.signup()?invitation=@{invitation.getHash()}">aqui</a></li>
 	<li>Acesse o dashboard em 
-		<a target="_blank" href="http://localhost:9000@routes.Dashboard.index()?brand=@{invitation.getBrand().getNameAddress()}">
-			http://localhost:9000@routes.Dashboard.index()?brand=@{invitation.getBrand().getNameAddress()}
+		<a target="_blank" href="http://localhost:9000@routes.Dashboard.index()?brand=@{invitation.getBrand().getSubdomain()}">
+			http://localhost:9000@routes.Dashboard.index()?brand=@{invitation.getBrand().getSubdomain()}
 		</a>
 	</li>
 </ul>

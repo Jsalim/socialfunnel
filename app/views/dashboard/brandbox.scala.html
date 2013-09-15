@@ -27,7 +27,7 @@
 		                  <div class="caption">
 			                 <div style="height: 26px;">
 			                 <p class="actions" style="display: none;">
-			                    <a href="@routes.Dashboard.index()?brand=@{brand.getNameAddress()}"><i class="icon-signin"></i></a>
+			                    <a href="@routes.Dashboard.index()?brand=@{brand.getSubdomain()}"><i class="icon-signin"></i></a>
 			                    <a style="color: #444;" onclick="configurations(@{brand.getId()})"><i class="icon-cogs"></i></a>
 				                <a style="float: right;" class="delete text-error" onclick="deleteBrand(@{brand.getId()})"><i class="icon-trash"></i></a>
 			                 </p>

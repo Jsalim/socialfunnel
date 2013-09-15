@@ -115,7 +115,7 @@ public class BrandService {
 		Brand brand = new Brand();
 		brand.setName(myBrandName);
 		brand.setDescription(myBrandDescirption);
-		brand.setNameAddress(myNameAddress);
+		brand.setSubdomain(myNameAddress);
 		brand.setOwner(owner);
 
 		Set<FacebookAccountInfo> fbaAccounts = new HashSet<FacebookAccountInfo>();

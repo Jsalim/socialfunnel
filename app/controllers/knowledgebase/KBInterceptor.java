@@ -1,5 +1,6 @@
 package controllers.knowledgebase;
 
+import models.Brand;
 import play.Logger;
 import play.db.jpa.JPA;
 import play.libs.F;
@@ -8,6 +9,7 @@ import play.mvc.Result;
 import play.mvc.Http.Context;
 import services.BrandService;
 import services.UserService;
+import util.UserSession;
 import bootstrap.Constants;
 
 public class KBInterceptor  extends Action.Simple{
@@ -20,6 +22,9 @@ public class KBInterceptor  extends Action.Simple{
 	 * @return 
 	 * */
 	public Result before(final Context ctx){
+		
+		UserSession userSession = userService.getUserSession(ctx.session());
+		Brand kbBrand = userSession.getKbBrand();
 
 		String host = ctx.request().host();
 		final String[] hostParts = host.split("\\.");
@@ -27,7 +32,7 @@ public class KBInterceptor  extends Action.Simple{
 		boolean isBrand = false;
 		final String subDomain = hostParts.length > 0 ? hostParts[0].toLowerCase().trim() : null;
 
-		Logger.warn("HOST: " + host + ctx.request().path());
+		Logger.warn("KB HOST: " + host + ctx.request().path());
 
 		if(hostParts.length <=2 || (hostParts.length == 3 && Constants.reservedSubdomains.contains(subDomain) )){
 			if(subDomain.equals("admin")){
@@ -36,7 +41,7 @@ public class KBInterceptor  extends Action.Simple{
 			return null;
 		}
 		
-		if((subDomain != null && !subDomain.isEmpty()) ){
+		if((subDomain != null && !subDomain.isEmpty()) && ( kbBrand == null || (kbBrand != null && !kbBrand.getSubdomain().equals(subDomain))) ){
 			try {
 				if(ctx.args.get("currentEntityManager") == null){ // 
 					isBrand = JPA.withTransaction(new F.Function0<Boolean>() {

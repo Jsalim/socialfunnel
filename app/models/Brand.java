@@ -42,7 +42,7 @@ public class Brand implements Comparable<Brand>{
 	private Date updatedAt;
 	
 	@Column(unique = true, nullable = false)
-	private String nameAddress;
+	private String subdomain;
 	@Column(nullable = false)
 	private boolean active = true;
 	
@@ -50,7 +50,7 @@ public class Brand implements Comparable<Brand>{
 	
 	public Brand(String name, String nameAddress, String phone) {
 		this.name = name;
-		this.nameAddress = nameAddress;
+		this.subdomain = nameAddress;
 		this.phone = phone;
 	}
 	
@@ -153,13 +153,13 @@ public class Brand implements Comparable<Brand>{
 		this.facebookAccounts = facebookAccounts;
 	}
 
-	public String getNameAddress() {
-		return nameAddress;
+	public String getSubdomain() {
+		return subdomain;
 	}
 
-	public void setNameAddress(String nameAddress) {
+	public void setSubdomain(String nameAddress) {
 		if(nameAddress != null){
-			this.nameAddress = nameAddress.toLowerCase();
+			this.subdomain = nameAddress.toLowerCase();
 		}
 	}
 
