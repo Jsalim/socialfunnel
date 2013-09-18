@@ -52,6 +52,7 @@ public class BrandService {
 
 	private static final UserService userService = UserService.getInstance();
 	private static final AppService appService = AppService.getInstance();
+	private static final EmailService emailService = EmailService.getInstance();
 	//	private static final EmailService emailService = EmailService.getInstance(); 
 	private final HashSet<String> brandSubdomains = new HashSet<String>();
 
@@ -93,7 +94,7 @@ public class BrandService {
 				}catch(Exception e){
 					Logger.error("Cant findo a brand: " + e.getMessage());
 				}
-				
+
 				if(brand != null){ //TODO implement validation for forum and knowledge base apps active  
 					UserSession userSession = userService.getUserSession(session);
 					userSession.setKbBrand(brand);
@@ -156,10 +157,10 @@ public class BrandService {
 		userBrandRoles.add(userBrandRole);
 
 		brand.setUserBrandRoles(userBrandRoles);
-		
+
 		// add default apps
 		brand.getApps().addAll(appService.getDefaultApps());
-		
+
 		JPA.em().persist(brand);
 
 		addOrInviteUserToBrand(invitations, brand);
@@ -196,21 +197,21 @@ public class BrandService {
 		}
 	}
 
-	private void addOrInviteUserToBrand(Set<Invitation> invitations, Brand brand){
-		//		try {
-		//			if(invitations != null)
-		//				for (Invitation invitation: invitations){
-		//					invitation.setBrand(brand);
-		//					invitation.setHash(MyUtil.stringToMD5(invitation.getEmail() + new Date().getTime() + new Random().nextInt(Integer.MAX_VALUE)));
-		//	
-		//					JPA.em().persist(invitation);
-		//				}
-		//			
-		//				emailService.batchInvitationEmails(invitations);
-		//			}
-		//		} catch (NoSuchAlgorithmException e) {
-		//			e.printStackTrace();
-		//		}
+	public void addOrInviteUserToBrand(Set<Invitation> invitations, Brand brand){
+		try {
+			if(invitations != null)
+				for (Invitation invitation: invitations){
+					invitation.setBrand(brand);
+					invitation.setHash(MyUtil.stringToMD5(invitation.getEmail() + new Date().getTime() + new Random().nextInt(Integer.MAX_VALUE)));
+
+					JPA.em().persist(invitation);
+				}
+
+//			emailService.batchInvitationEmails(invitations);
+			emailService.batchAmazonInvitationEmails(invitations);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//Available
@@ -240,10 +241,10 @@ public class BrandService {
 			return false;
 		}
 	}
-	
+
 	public Brand getBrandByNameAddress(String address) {
 		EntityManager em = JPA.em();
-		
+
 		if(em.getTransaction().isActive()){
 			em.getTransaction().begin();
 		}

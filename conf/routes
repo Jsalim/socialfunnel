@@ -82,6 +82,7 @@ GET  	/brands/:id							controllers.Brands.readBrand(id: String)
 DELETE  /brands/:id							controllers.Brands.removeBrand(id: Long)
 POST	/brands/filter						controllers.Brands.addFilter()
 GET		/brands/filter						controllers.Brands.getFilter()
+POST	/brands/agent						controllers.Brands.addAgent()
 
 #Twitter
 GET		/twitter/handler 			controllers.TwitterController.handler()

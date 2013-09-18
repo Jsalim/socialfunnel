@@ -41,21 +41,21 @@
         		<div class="col-sm-12 col-md-12">
 	        		<div class="personal-info">
 		        		<h4 class="title">Novo Agente</h4>
-		        		<form class="form-horizontal inline-input" role="form">
+		        		<form id="add-agent-form" class="form-horizontal inline-input" role="form" action="@routes.Brands.addAgent()">
 	                        <div class="form-group">
 	                            <label class="col-lg-2 control-label">Nome:</label>
 	                            <div class="col-lg-8">
-	                                <input class="form-control" type="text">
+	                                <input name="name" class="form-control" type="text">
 	                            </div>
 	                        </div>
 	                        <div class="form-group">
 	                            <label class="col-lg-2 control-label">Email:</label>
 	                            <div class="col-lg-8">
-	                                <input class="form-control" type="text">
+	                                <input name="email" class="form-control" type="text">
 	                            </div>
 	                        </div>
 	                        <div class="actions">
-	                            <button class="btn-flat">CONVIDAR</button>
+	                            <button id="invite" class="btn-flat" data-loading-text="ENVIANDO">CONVIDAR</button>
 	                            <span>ou</span>
 	                            <input type="reset" value="Cancelar" class="reset">
 	                        </div>
@@ -66,3 +66,34 @@
         </div>
       </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#add-agent-form").submit(function(form){
+			addAgent(form);
+			return false;
+		});
+		
+		function addAgent(){
+			$("#invite").button('loading');
+			
+			var data = $("#add-agent-form").serialize();
+			var url = $("#add-agent-form").attr("action");
+			
+			$.ajax({
+				url: url,
+				type:'POST',
+				data:data, 
+				success: function(response){
+					console.log("success");
+				},
+				error: function(response){
+					console.log("error");
+				},
+				complete: function(){
+					$("#invite").button('reset');
+				}
+			});
+		}
+	});
+</script>

@@ -7,7 +7,6 @@ import interceptors.UserSessionInterceptor;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +19,8 @@ import models.StreamFilter;
 import models.TwitterAccountInfo;
 import models.Agent;
 
-import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
-import org.joda.time.format.DateTimeFormat;
-
-import com.google.gson.JsonObject;
-
-import constants.FilterTypes;
 
 import exceptions.InvalidParameterException;
 import play.Logger;
@@ -215,6 +207,44 @@ public class Brands extends Controller{
 		}
 	}
 
+	@Transactional
+	@With(AjaxAuthCheckInterceptor.class)
+	public static Result addAgent(){
+		DynamicForm dynamicForm = form().bindFromRequest();
+		String name = dynamicForm.get("name");
+		String email = dynamicForm.get("email");
+		
+		UserSession userSession = userService.getUserSession(session());
+		userSession = userService.getUserSession(session());
+		Brand brand = userSession.getBrand();
+		
+		ObjectNode result = Json.newObject();
+		if(name != null && email != null){
+			
+			Logger.info(name + " " + email); 
+			
+			if(!MyUtil.isEmailAddr(email)){
+				result.put("success", false);
+				result.put("error", "Invalid email");
+				return badRequest(result);	
+			}
+			
+			Invitation invitation = new Invitation(null, null, name, email);
+			Set<Invitation> invitations = new HashSet<Invitation>();
+			invitations.add(invitation);
+			
+			brand = brandService.findById(brand.getId());
+
+			brandService.addOrInviteUserToBrand(invitations, brand);
+			result.put("success", true);
+			result.put("user invited with success", "Error while inviting new agent");
+			return internalServerError(result);
+		}
+		result.put("success", false);
+		result.put("error", "Error while inviting new agent");
+		return internalServerError(result);
+	}
+
 	/**
 	 * Check if brand name has already been taken
 	 * */
@@ -337,24 +367,24 @@ public class Brands extends Controller{
 		}
 	}
 
-//	/**
-//	 * Endpoint for image/file upload. 
-//	 * we use the file-uploader plugin
-//	 * @see <a href="https://github.com/valums/file-uploader/blob/master/docs/options-fineuploaderbasic.md">fine-uploader</a> 
-//	 * */
-//	//	@With(AjaxAuthCheckInterceptor.class)
-//	//	public static Result file(){
-//	//		
-//	//	}
-//
+	//	/**
+	//	 * Endpoint for image/file upload. 
+	//	 * we use the file-uploader plugin
+	//	 * @see <a href="https://github.com/valums/file-uploader/blob/master/docs/options-fineuploaderbasic.md">fine-uploader</a> 
+	//	 * */
+	//	//	@With(AjaxAuthCheckInterceptor.class)
+	//	//	public static Result file(){
+	//	//		
+	//	//	}
+	//
 	@With(AjaxAuthCheckInterceptor.class)
 	@Transactional
 	public static Result addFilter(){
 
-//		DynamicForm data = form().bindFromRequest();
+		//		DynamicForm data = form().bindFromRequest();
 		JsonNode data = request().body().asJson();
 		UserSession userSession;
-		
+
 		try { // NoUUIDException 
 			userSession = userService.getUserSession(session());
 			Brand brand = userSession.getBrand();
@@ -364,7 +394,7 @@ public class Brands extends Controller{
 			String paramBeginning = data.get("beginning") != null ? data.get("beginning").asText() : null;
 			String paramEnding = data.get("ending") != null ? data.get("ending").asText() : null;
 			String paramFilterType = data.get("filterType") != null ? data.get("filterType").asText() : null;
-			
+
 			// optional parametersl 
 			String paramSearchExpression = data.get("searchExpression") != null ? data.get("searchExpression").asText() : null;
 			String paramFilterName = data.get("filterName") != null ? data.get("filterName").asText() : null;
@@ -372,15 +402,15 @@ public class Brands extends Controller{
 			String paramJsonMessages = data.get("jsonMessageTypes") != null ? data.get("jsonMessageTypes").toString() : null;
 			String paramJsonChannels = data.get("jsonChannels") != null ? data.get("jsonChannels").toString() : null;
 			String paramJsonTerms = data.get("jsonTerms") != null ? data.get("jsonTerms").toString() : null;
-			
-		 	StreamFilter streamFilter = brandService.createFilter(brand, paramBeginning, paramEnding, paramFilterType, 
+
+			StreamFilter streamFilter = brandService.createFilter(brand, paramBeginning, paramEnding, paramFilterType, 
 					paramSearchExpression, paramFilterName, paramJsonProfiles, 
 					paramJsonMessages, paramJsonChannels, paramJsonTerms);
-			
+
 			ObjectNode result = Json.newObject();
 			result.put("success", true);
 			result.put("filterId", streamFilter.getId());
-			
+
 			return ok(result);
 		} catch (InvalidParameterException e) {
 			e.printStackTrace();
@@ -400,7 +430,7 @@ public class Brands extends Controller{
 		ObjectNode result = Json.newObject();
 		result.put("success", true);
 		result.put("filters", Json.toJson(filters));
-		
+
 		return ok(result);
 	}
 }

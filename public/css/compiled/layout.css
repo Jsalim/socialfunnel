@@ -658,8 +658,8 @@ div#helpdesk-pane-header{text-align: center; height: 100px; padding: 15px 0 15px
 div#helpdesk-pane-header h4{color: #696d73;font-style: italic;}
 div.helpdesk-pane input.search {width: 92%; margin-top: 15px;}
 div.helpdesk-pane { padding: 0!important; overflow: hidden; border-bottom: 1px solid #dae3e9;}
-div.helpdesk-pane{position: absolute;top: 0px;bottom: 0;margin: 0;width: 300px;border-radius: 0;border:none; background: #fdfdfd}
-div.helpdesk-content{overflow: auto; position: absolute;top: 0px;bottom: 0;margin: 0;left: 300px;border-radius: 0;padding-right: 300px; width: 100%; border-left: 1px solid #dae3e9; box-shadow: inset 3px 0px 4px -1px #f0f0f0; }
+div.helpdesk-pane{position: absolute;top: 0px;bottom: 0;margin: 0;width: 250px;border-radius: 0;border:none; background: #fdfdfd}
+div.helpdesk-content{overflow: auto; position: absolute;top: 0px;bottom: 0;margin: 0;left: 250px;border-radius: 0;padding-right: 250px; width: 100%; border-left: 1px solid #dae3e9; box-shadow: inset 3px 0px 4px -1px #f0f0f0; }
 div.helpdesk-content #helpdesk-panel-heading {height: 52px;}
 div.helpdesk-content #helpdesk-panel-heading .pagination {margin: 0!important}
 div.helpdesk-content table thead{border-top: 0px!important;} 
