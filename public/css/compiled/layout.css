@@ -610,6 +610,17 @@ div.text-area textarea.text-content{
 
 #dashboard-menu .first .pointer .arrow {border-color: transparent #fdfdfd transparent transparent!important}
 
+.greetings-panel {background: #f7f7f7;}
+.greetings-panel h4.title{color: #696d73;font-style: italic; text-align: center;}
+.greetings-panel #home-config{position: absolute;top: 5%;bottom: 0;left: 5%;right: 5%;}
+.greetings-panel #home-config .row{height: 100%; margin: 0}
+.greetings-panel #home-config .row .right-panel{height: 100%; overflow: auto;}
+.greetings-panel #home-config .row .left-panel{height: 100%; overflow: auto; padding-top: 10px;}
+.greetings-panel #home-config .row .left-panel #info{margin: 10px;}
+.greetings-panel #home-config .row .left-panel #settings{margin: 10px;}
+.greetings-panel #home-config .row .left-panel #settings .progress{margin: 25px 15px 0 15px;}
+.greetings-panel #home-config .row .right-panel{border-left: 1px solid #dae3e9;box-shadow: inset 3px 0px 4px -1px #f0f0f0;}
+
 /* END OF ALL LAYOUT */
 
 /* NAVBAR */

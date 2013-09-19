@@ -31,7 +31,7 @@ public class EmailService {
 	static final String SMTP_USERNAME = "AKIAJQ72M6Z7B4MEJIOQ";  // Replace with your SMTP username.
 	static final String SMTP_PASSWORD = "AgpIxZ2ns1fJI09fUrXgVoEDWDMjKukXYPBsZ8ybqSsB";  // Replace with your SMTP password.
 
-	static final String FROM = "support@socialfunnel.net";
+	static final String FROM = "misael@socialfunnel.net";
 
 	// Amazon SES SMTP host name.
 	static final String HOST = "email-smtp.us-east-1.amazonaws.com";    
