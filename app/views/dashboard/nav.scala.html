@@ -8,10 +8,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="@routes.Assets.at("img/logo.png")"></a>
+            <a class="navbar-brand" href="index.html"><!-- <img src="@routes.Assets.at("img/logo.png")"> --></a>
         </div>
 		
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav tab-apps">
                     <li @if(tab.equals("index")){ class="active"}>
 						<a href="@routes.Dashboard.index()"><span class="tab-name"><i class="icon-large icon-home"></i></span></a>
 		            </li>
@@ -135,7 +135,6 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-	                   	<li><a href="#" onclick="openNewAccount()">Páginas e perfis</a></li>
 	                   	<li><a href="#" onclick="openMessageModal()">Publicar conteúdo</a></li>
 	                   	<li class="divider"></li>
 	                   	<li><a href="#" onclick="openNewTicketModal()">Novo caso</a></li>

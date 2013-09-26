@@ -433,7 +433,8 @@ input.search {
 	top: 0!important;
 	left: 0!important;
 	right: 0!important;
-	margin-top: 48px!important;
+	/* margin-top: 48px!important; */
+	margin-top:34px;
 	overflow-y: auto!important;
 	overflow-x: hidden!important;
 		
@@ -540,26 +541,6 @@ input.search {
 
 /* ALL LAYOUT */
 
-/* SETTINGS - GROUPS */
-#team-tabs {margin-bottom: 25px;}
-#team-tabs ul{width: 200px; margin: 0 auto}
-#team-tabs li a {font-size: 16px; }
-#agents-list .personal-info {min-height: 210px}
-#agents-list .personal-info h4.title {text-align: center;}
-#agents-list .thumbnail {margin-bottom: 15px;}
-#agents-list .thumbnail .caption{padding: 0; text-align: center; color: #696D73!important}
-#agents-list .thumbnail .agent-name {height: 45px; display:table; width: 100%;}
-#agents-list .thumbnail .agent-name .inner {display: table-cell;vertical-align: middle;width: 100%;margin: 0 auto;text-align: center;}
-#agents-list .thumbnail .agent-name .inner .element {}
-#agents-list .thumbnail .agent-actions {min-height: 20px;}
-#agents-list .thumbnail .agent-actions i{cursor:pointer; font-size: 16px; filter: alpha(opacity=40); opacity: 0.4; margin-right: 6px;  transition: opacity .3s ease;-moz-transition: opacity .3s ease;-webkit-transition: opacity .3s ease;-o-transition: opacity .3s ease; -ms-transition: opacity .3s ease;}
-#agents-list .thumbnail .agent-actions i.icon-trash {margin: 0;}
-#agents-list .thumbnail .agent-actions i:hover {zoom: 1; filter: alpha(opacity=100); opacity: 1;}
-#agents-list .thumbnail .agent-actions i.icon-group:hover {color: #33455A}
-#agents-list .thumbnail .agent-actions i.icon-trash:hover {color: #bb5533}
-
-/* END OF SETTINGS GROUPS */
-
 /* div.content{left: 0!important;right: 0!important;top: 48px;position: absolute; min-height: 400px!important;} */
 #sidebar-nav{z-index: 1;position: fixed;}
 
@@ -610,6 +591,23 @@ div.text-area textarea.text-content{
 
 #dashboard-menu .first .pointer .arrow {border-color: transparent #fdfdfd transparent transparent!important}
 
+/* END OF ALL LAYOUT */
+
+/* NAVBAR */
+div.top-tabs{position: fixed;width: 100%;z-index: 1003; /* -webkit-box-shadow: 0px 0px 6px 0px #444; -moz-box-shadow: 0px 0px 6px 0px #444; box-shadow: 0px 0px 6px 0px #444; */}
+div.top-tabs a.brand{padding: 0; width: 176px!important; vertical-align: middle!important; text-align: center;}
+div.top-tabs a.brand img{width: 100%; max-width: 177px;}
+
+header.top-tabs {border-width: 1px}
+
+.navbar-inverse {min-height: 36px;}
+.navbar-inverse .nav > li > a {padding: 7px 9px 6px; height: 34px}
+.navbar-inverse .navbar-brand {padding: 0; max-width: 101px;}
+
+/* END OF NAVBAR */
+
+/* HOME */
+
 .greetings-panel {background: #f7f7f7;}
 .greetings-panel h4.title{color: #696d73;font-style: italic; text-align: center;}
 .greetings-panel #home-config{position: absolute;top: 5%;bottom: 0;left: 5%;right: 5%;}
@@ -621,16 +619,27 @@ div.text-area textarea.text-content{
 .greetings-panel #home-config .row .left-panel #settings .progress{margin: 25px 15px 0 15px;}
 .greetings-panel #home-config .row .right-panel{border-left: 1px solid #dae3e9;box-shadow: inset 3px 0px 4px -1px #f0f0f0;}
 
-/* END OF ALL LAYOUT */
+/*END OF HOME*/
 
-/* NAVBAR */
-div.top-tabs{position: fixed;width: 100%;z-index: 1003; /* -webkit-box-shadow: 0px 0px 6px 0px #444; -moz-box-shadow: 0px 0px 6px 0px #444; box-shadow: 0px 0px 6px 0px #444; */}
-div.top-tabs a.brand{padding: 0; width: 176px!important; vertical-align: middle!important; text-align: center;}
-div.top-tabs a.brand img{width: 100%; max-width: 177px;}
+/* SETTINGS - GROUPS */
+#team-tabs {margin-bottom: 25px;}
+#team-tabs ul{width: 200px; margin: 0 auto}
+#team-tabs li a {font-size: 16px; }
+#agents-list .personal-info {min-height: 210px}
+#agents-list .personal-info h4.title {text-align: center;}
+#agents-list .thumbnail {margin-bottom: 15px;}
+#agents-list .thumbnail .caption{padding: 0; text-align: center; color: #696D73!important}
+#agents-list .thumbnail .agent-name {height: 45px; display:table; width: 100%;}
+#agents-list .thumbnail .agent-name .inner {display: table-cell;vertical-align: middle;width: 100%;margin: 0 auto;text-align: center;}
+#agents-list .thumbnail .agent-name .inner .element {}
+#agents-list .thumbnail .agent-actions {min-height: 20px;}
+#agents-list .thumbnail .agent-actions i{cursor:pointer; font-size: 16px; filter: alpha(opacity=40); opacity: 0.4; margin-right: 6px;  transition: opacity .3s ease;-moz-transition: opacity .3s ease;-webkit-transition: opacity .3s ease;-o-transition: opacity .3s ease; -ms-transition: opacity .3s ease;}
+#agents-list .thumbnail .agent-actions i.icon-trash {margin: 0;}
+#agents-list .thumbnail .agent-actions i:hover {zoom: 1; filter: alpha(opacity=100); opacity: 1;}
+#agents-list .thumbnail .agent-actions i.icon-group:hover {color: #33455A}
+#agents-list .thumbnail .agent-actions i.icon-trash:hover {color: #bb5533}
 
-header.top-tabs {border-width: 1px}
-
-/* END OF NAVBAR */
+/* END OF SETTINGS GROUPS */
 
 /* NEW TICKET */
 #newTicketModal{
@@ -734,6 +743,11 @@ text{fill: #696D73;}
   .content {
     min-width: 0px;
     margin: 0;
+    margin-top: 48px;/*misael*/
+  }
+
+  ul.tab-apps{
+  	display: none;
   }
 
   #dashboard-menu .pointer {
